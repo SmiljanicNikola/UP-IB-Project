@@ -1,5 +1,6 @@
 package com.example.UPIBProjekat.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class KorisnikService {
 	public List<Korisnik> listAll(){
 		return korisnikRepo.findAll();
 	}
+	
+	
 	
 	public void save(Korisnik korisnik) {
 		korisnikRepo.save(korisnik);

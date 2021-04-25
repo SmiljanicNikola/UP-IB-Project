@@ -1,10 +1,20 @@
 package com.example.UPIBProjekat.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,6 +83,39 @@ public class KorisnikController {
 	@DeleteMapping("/korisnici/{id}")
 	public void delete(@PathVariable Integer id) {
 		korisnikService.delete(id);
+	}
+	
+	
+
+	@PostMapping("/korisnici/login")
+		public ResponseEntity<Korisnik> login(@QueryParam(value = "email") String email, @QueryParam(value = "lozinka") String lozinka){
+			List<Korisnik> korisnici = new ArrayList<>();
+			korisnici = korisnikService.listAll();
+			for(Korisnik korisnik : korisnici) {
+				if((korisnik.getEmail() == email) && (korisnik.getLozinka() == lozinka)) {
+					return new ResponseEntity<Korisnik>(HttpStatus.OK);
+				}
+				else{
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+			}
+			
+			return new ResponseEntity<Korisnik>(HttpStatus.OK);
+			
+		}
+		
+	@POST
+	@Consumes("MediaType.APPLICATION_JSON")
+	@Produces("MediaType.APPLICATION_JSON")
+	@Path("/korisnici/register")
+	public ResponseEntity<Korisnik> Register(@QueryParam("ime") String ime, @QueryParam("prezime") String prezime,
+											@QueryParam("email") String email, @QueryParam("adresa") String adresa,
+											@QueryParam("lozinka") String lozinka, @QueryParam("grad") String grad,
+											@QueryParam("drzava") String drzava,@QueryParam("telefon") String telefon){
+		Korisnik k1 = new Korisnik(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent", false);
+		korisnikService.save(k1);
+		return new ResponseEntity<Korisnik>(HttpStatus.OK);
+		
 	}
 	
 	

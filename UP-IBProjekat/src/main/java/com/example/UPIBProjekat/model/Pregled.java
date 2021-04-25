@@ -13,7 +13,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 public class Pregled {
 
 	private int id;
-	private String trajanjePregleda;
+	private LocalDateTime trajanjePregleda;
 	//private Lekar lekarId;
 	//private MedicinskaSestra medicinskaSestraId;
 	private float cena;
@@ -23,29 +23,10 @@ public class Pregled {
 		
 	}
 
-	/*public Pregled(Integer id, LocalDateTime datumIVremePregleda, String trajanjePregleda, Lekar lekarId,
-			MedicinskaSestra medicinskaSestraId, float cena) {
-		super();
-		this.id = id;
-		this.datumIVremePregleda = datumIVremePregleda;
-		this.trajanjePregleda = trajanjePregleda;
-		//this.lekarId = lekarId;
-		//this.medicinskaSestraId = medicinskaSestraId;
-		this.cena = cena;
-	}*/
-
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return id;
-	}
-
-	public Pregled(int id, String trajanjePregleda, float cena) {
-		super();
-		this.id = id;
-		this.trajanjePregleda = trajanjePregleda;
-		this.cena = cena;
 	}
 
 
@@ -53,12 +34,13 @@ public class Pregled {
 		this.id = id;
 	}
 
-	public String getTrajanjePregleda() {
+
+	public LocalDateTime getTrajanjePregleda() {
 		return trajanjePregleda;
 	}
 
 
-	public void setTrajanjePregleda(String trajanjePregleda) {
+	public void setTrajanjePregleda(LocalDateTime trajanjePregleda) {
 		this.trajanjePregleda = trajanjePregleda;
 	}
 
@@ -66,6 +48,7 @@ public class Pregled {
 	/*public Lekar getLekarId() {
 		return lekarId;
 	}
+
 
 	public void setLekarId(Lekar lekarId) {
 		this.lekarId = lekarId;
@@ -79,8 +62,8 @@ public class Pregled {
 
 	public void setMedicinskaSestraId(MedicinskaSestra medicinskaSestraId) {
 		this.medicinskaSestraId = medicinskaSestraId;
-	}*/
-
+	}
+*/
 
 	public float getCena() {
 		return cena;
@@ -90,7 +73,18 @@ public class Pregled {
 	public void setCena(float cena) {
 		this.cena = cena;
 	}
-	
+
+
+	public Pregled(int id, LocalDateTime trajanjePregleda, Lekar lekarId, MedicinskaSestra medicinskaSestraId,
+			float cena) {
+		super();
+		this.id = id;
+		this.trajanjePregleda = trajanjePregleda;
+		this.lekarId = lekarId;
+		this.medicinskaSestraId = medicinskaSestraId;
+		this.cena = cena;
+	}
+
 	
 	
 	

@@ -33,6 +33,21 @@ public class Korisnik {
 	
 
 
+	public Korisnik(String ime, String prezime, String email, String adresa, String lozinka, String grad, String drzava,
+			String telefon, String uloga, boolean prijavljen) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.adresa = adresa;
+		this.lozinka = lozinka;
+		this.grad = grad;
+		this.drzava = drzava;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.prijavljen = prijavljen;
+	}
+
 	public Korisnik(int id, String ime, String prezime, String email, String adresa, String lozinka, String grad,
 			String drzava, String telefon, String uloga, boolean prijavljen) {
 		super();
