@@ -13,15 +13,34 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 public class Pregled {
 
 	private int id;
-	private LocalDateTime trajanjePregleda;
-	//private Lekar lekarId;
-	//private MedicinskaSestra medicinskaSestraId;
+	private LocalDateTime datumIVreme;
+	private String trajanjePregleda;
+	/*private Lekar lekarId;
+	private MedicinskaSestra medicinskaSestraId;*/
 	private float cena;
 	
 	
 	public Pregled() {
 		
 	}
+
+
+	
+	
+	
+	/*public Pregled(int id, LocalDateTime datumIVreme, String trajanjePregleda, Lekar lekarId,
+			MedicinskaSestra medicinskaSestraId, float cena) {
+		super();
+		this.id = id;
+		this.datumIVreme = datumIVreme;
+		this.trajanjePregleda = trajanjePregleda;
+		this.lekarId = lekarId;
+		this.medicinskaSestraId = medicinskaSestraId;
+		this.cena = cena;
+	}*/
+
+
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,12 +54,22 @@ public class Pregled {
 	}
 
 
-	public LocalDateTime getTrajanjePregleda() {
+	public LocalDateTime getDatumIVreme() {
+		return datumIVreme;
+	}
+
+
+	public void setDatumIVreme(LocalDateTime datumIVreme) {
+		this.datumIVreme = datumIVreme;
+	}
+
+
+	public String getTrajanjePregleda() {
 		return trajanjePregleda;
 	}
 
 
-	public void setTrajanjePregleda(LocalDateTime trajanjePregleda) {
+	public void setTrajanjePregleda(String trajanjePregleda) {
 		this.trajanjePregleda = trajanjePregleda;
 	}
 
@@ -62,8 +91,8 @@ public class Pregled {
 
 	public void setMedicinskaSestraId(MedicinskaSestra medicinskaSestraId) {
 		this.medicinskaSestraId = medicinskaSestraId;
-	}
-*/
+	}*/
+
 
 	public float getCena() {
 		return cena;
@@ -74,17 +103,8 @@ public class Pregled {
 		this.cena = cena;
 	}
 
-
-	public Pregled(int id, LocalDateTime trajanjePregleda, Lekar lekarId, MedicinskaSestra medicinskaSestraId,
-			float cena) {
-		super();
-		this.id = id;
-		this.trajanjePregleda = trajanjePregleda;
-		this.lekarId = lekarId;
-		this.medicinskaSestraId = medicinskaSestraId;
-		this.cena = cena;
-	}
-
+	
+	
 	
 	
 	

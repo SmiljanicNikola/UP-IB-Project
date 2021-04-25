@@ -29,8 +29,13 @@ import com.example.UPIBProjekat.service.KorisnikService;
 
 @RestController
 public class KorisnikController {
+	
+	
 	@Autowired
 	private KorisnikService korisnikService;
+	
+	
+	private List<Korisnik> korisnici = new ArrayList<>();
 	
 	@GetMapping("/korisnici")
 	public List<Korisnik> list(){
@@ -42,6 +47,8 @@ public class KorisnikController {
 		korisnikService.save(korisnik);
 
 	}
+	
+	
 	
 	
 	@GetMapping("/korisnici/{id}")
@@ -88,8 +95,10 @@ public class KorisnikController {
 	
 
 	@PostMapping("/korisnici/login")
-		public ResponseEntity<Korisnik> login(@QueryParam(value = "email") String email, @QueryParam(value = "lozinka") String lozinka){
-			List<Korisnik> korisnici = new ArrayList<>();
+	@Consumes("MediaType.APPLICATION_JSON")
+	@Produces("MediaType.APPLICATION_JSON")
+		public ResponseEntity<Korisnik> login(@QueryParam(value="email") String email, @QueryParam(value="lozinka") String lozinka){
+			//List<Korisnik> korisnici = new ArrayList<>();
 			korisnici = korisnikService.listAll();
 			for(Korisnik korisnik : korisnici) {
 				if((korisnik.getEmail() == email) && (korisnik.getLozinka() == lozinka)) {
@@ -104,14 +113,18 @@ public class KorisnikController {
 			
 		}
 		
-	@POST
+
 	@Consumes("MediaType.APPLICATION_JSON")
 	@Produces("MediaType.APPLICATION_JSON")
-	@Path("/korisnici/register")
-	public ResponseEntity<Korisnik> Register(@QueryParam("ime") String ime, @QueryParam("prezime") String prezime,
-											@QueryParam("email") String email, @QueryParam("adresa") String adresa,
-											@QueryParam("lozinka") String lozinka, @QueryParam("grad") String grad,
-											@QueryParam("drzava") String drzava,@QueryParam("telefon") String telefon){
+	@PostMapping("/korisnici/register")
+	public ResponseEntity<Korisnik> Register(@QueryParam("ime") String ime, 
+											@QueryParam("prezime") String prezime,
+											@QueryParam("email") String email,
+											@QueryParam("adresa") String adresa,
+											@QueryParam("lozinka") String lozinka,
+											@QueryParam("grad") String grad,
+											@QueryParam("drzava") String drzava,
+											@QueryParam("telefon") String telefon){
 		Korisnik k1 = new Korisnik(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent", false);
 		korisnikService.save(k1);
 		return new ResponseEntity<Korisnik>(HttpStatus.OK);
