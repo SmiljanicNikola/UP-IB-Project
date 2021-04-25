@@ -51,7 +51,19 @@ public class KorisnikController {
 			@PathVariable Integer id) {
 		try {
 			Korisnik existKorisnik = korisnikService.get(id);
-			korisnikService.save(korisnik);
+			if(existKorisnik != null) {
+				existKorisnik.setIme(korisnik.getIme());
+				existKorisnik.setPrezime(korisnik.getPrezime());
+				existKorisnik.setEmail(korisnik.getEmail());
+				existKorisnik.setAdresa(korisnik.getAdresa());
+				existKorisnik.setLozinka(korisnik.getLozinka());
+				existKorisnik.setGrad(korisnik.getGrad());
+				existKorisnik.setDrzava(korisnik.getDrzava());
+				existKorisnik.setTelefon(korisnik.getTelefon());
+				existKorisnik.setUloga(korisnik.getUloga());
+				existKorisnik.setPrijavljen(korisnik.isPrijavljen());
+				korisnikService.save(existKorisnik);
+			}
 		return new ResponseEntity<>(HttpStatus.OK);
 		}catch(NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,8 +74,6 @@ public class KorisnikController {
 	public void delete(@PathVariable Integer id) {
 		korisnikService.delete(id);
 	}
-	
-	
 	
 	
 }
