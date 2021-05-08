@@ -78,7 +78,6 @@ public class KorisnikController {
 				existKorisnik.setDrzava(korisnik.getDrzava());
 				existKorisnik.setTelefon(korisnik.getTelefon());
 				existKorisnik.setUloga(korisnik.getUloga());
-				existKorisnik.setPrijavljen(korisnik.isPrijavljen());
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -125,7 +124,7 @@ public class KorisnikController {
 											@QueryParam("grad") String grad,
 											@QueryParam("drzava") String drzava,
 											@QueryParam("telefon") String telefon){
-		Korisnik k1 = new Korisnik(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent", false);
+		Korisnik k1 = new Korisnik(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent");
 		korisnikService.save(k1);
 		return new ResponseEntity<Korisnik>(HttpStatus.OK);
 		

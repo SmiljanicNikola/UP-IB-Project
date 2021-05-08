@@ -1,25 +1,45 @@
 package com.example.UPIBProjekat.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-@Entity
+@Table
+@Entity(name="Korisnik")
 public class Korisnik {
 	private int id;
+	
+	@Column(name = "ime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String ime;
+	
+	@Column(name = "prezime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String prezime;
+	
+	@Column(name = "email", unique = true, nullable = false, columnDefinition = "TEXT")
 	private String email;
+	
+	@Column(name = "adresa", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String adresa;
+	
+	@Column(name = "lozinka", unique = false, nullable = false)
 	private String lozinka;
+	
+	@Column(name = "grad", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String grad;
+	
+	@Column(name = "drzava", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String drzava;
+	
+	@Column(name = "telefon", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String telefon;
+	
+	@Column(name = "uloga", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String uloga;
-	private boolean prijavljen;
 	
 	public Korisnik() {
 		
@@ -29,41 +49,6 @@ public class Korisnik {
 		return ime;
 	}
 	
-
-	
-
-
-	public Korisnik(String ime, String prezime, String email, String adresa, String lozinka, String grad, String drzava,
-			String telefon, String uloga, boolean prijavljen) {
-		super();
-		this.ime = ime;
-		this.prezime = prezime;
-		this.email = email;
-		this.adresa = adresa;
-		this.lozinka = lozinka;
-		this.grad = grad;
-		this.drzava = drzava;
-		this.telefon = telefon;
-		this.uloga = uloga;
-		this.prijavljen = prijavljen;
-	}
-
-	public Korisnik(int id, String ime, String prezime, String email, String adresa, String lozinka, String grad,
-			String drzava, String telefon, String uloga, boolean prijavljen) {
-		super();
-		this.id = id;
-		this.ime = ime;
-		this.prezime = prezime;
-		this.email = email;
-		this.adresa = adresa;
-		this.lozinka = lozinka;
-		this.grad = grad;
-		this.drzava = drzava;
-		this.telefon = telefon;
-		this.uloga = uloga;
-		this.prijavljen = prijavljen;
-	}
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
@@ -75,11 +60,20 @@ public class Korisnik {
 		this.id = id;
 	}
 
-
 	
-
-
-	
+	public Korisnik(String ime, String prezime, String email, String adresa, String lozinka, String grad, String drzava,
+			String telefon, String uloga) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.adresa = adresa;
+		this.lozinka = lozinka;
+		this.grad = grad;
+		this.drzava = drzava;
+		this.telefon = telefon;
+		this.uloga = uloga;
+	}
 
 	public Korisnik(int id, String ime, String prezime, String email, String adresa, String lozinka, String grad,
 			String drzava, String telefon, String uloga) {
@@ -152,14 +146,7 @@ public class Korisnik {
 	}
 
 
-	public boolean isPrijavljen() {
-		return prijavljen;
-	}
-
-
-	public void setPrijavljen(boolean prijavljen) {
-		this.prijavljen = prijavljen;
-	}
+	
 
 
 	
