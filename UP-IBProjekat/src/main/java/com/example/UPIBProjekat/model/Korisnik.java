@@ -9,7 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Table
+@Table(name = "korisnik")
 @Entity(name="Korisnik")
 public class Korisnik {
 	private int id;
