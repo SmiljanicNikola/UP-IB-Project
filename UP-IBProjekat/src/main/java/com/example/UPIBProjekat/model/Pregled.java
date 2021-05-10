@@ -28,12 +28,12 @@ public class Pregled implements Serializable {
 	@Column(name = "trajanjePregleda", unique = false, nullable = false)
 	private String trajanjePregleda;
 	
-	@OneToOne
-    @JoinColumn(name = "lekarId", referencedColumnName = "lekar_id", unique = false, nullable = false)
+	@ManyToOne
+    @JoinColumn(name = "lekar_id", referencedColumnName = "lekar_id", nullable = false)
 	private Lekar lekarId;
 	
-	@OneToOne
-	@JoinColumn(name = "medicinskaSestraId", referencedColumnName = "medicinskaSestra_id", unique = false, nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "medicinskaSestra_id", referencedColumnName = "medicinskaSestra_id", nullable = false)
 	private MedicinskaSestra medicinskaSestraId;
 	
 	@Column(name = "cena", unique = false, nullable = false)
@@ -102,6 +102,7 @@ public class Pregled implements Serializable {
 	public void setLekarId(Lekar lekarId) {
 		this.lekarId = lekarId;
 	}
+
 
 
 	public MedicinskaSestra getMedicinskaSestraId() {

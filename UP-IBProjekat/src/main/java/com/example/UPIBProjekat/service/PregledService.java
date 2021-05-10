@@ -16,7 +16,7 @@ public class PregledService {
 	private PregledRepository pregledRepo;
 	
 	public List<Pregled> listAll(){
-		return (List<Pregled>) pregledRepo.findAll();
+		return pregledRepo.findAll();
 	}
 	
 	public void save(Pregled pregled) {
