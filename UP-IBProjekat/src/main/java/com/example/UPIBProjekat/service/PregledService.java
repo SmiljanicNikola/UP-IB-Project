@@ -15,8 +15,8 @@ public class PregledService {
 	@Autowired
 	private PregledRepository pregledRepo;
 	
-	public ArrayList<Pregled> listAll(){
-		return (ArrayList<Pregled>) pregledRepo.findAll();
+	public List<Pregled> listAll(){
+		return (List<Pregled>) pregledRepo.findAll();
 	}
 	
 	public void save(Pregled pregled) {

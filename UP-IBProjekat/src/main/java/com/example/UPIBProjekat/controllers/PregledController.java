@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.UPIBProjekat.model.Korisnik;
 import com.example.UPIBProjekat.model.Pregled;
 import com.example.UPIBProjekat.service.PregledService;
 
@@ -23,8 +24,13 @@ public class PregledController {
 	@Autowired
 	private PregledService pregledService;
 	
+	
+	private List<Pregled> pregledi = new ArrayList<>();
+
+	
+	
 	@GetMapping("/pregledi")
-	public ArrayList<Pregled> list(){
+	public List<Pregled> list(){
 		return pregledService.listAll();
 	}
 	

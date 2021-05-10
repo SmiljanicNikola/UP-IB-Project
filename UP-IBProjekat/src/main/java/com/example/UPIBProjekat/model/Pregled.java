@@ -1,24 +1,42 @@
 package com.example.UPIBProjekat.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 @Table(name = "pregled")
 @Entity(name="Pregled")
-public class Pregled {
-
+public class Pregled implements Serializable {
+	
+	//@Column(name = "pregled_id", unique = true, nullable = false)
 	private int id;
+			
+	@Column(name = "datumIVreme", unique = false, nullable = false)
 	private LocalDateTime datumIVreme;
+	
+	@Column(name = "trajanjePregleda", unique = false, nullable = false)
 	private String trajanjePregleda;
-	/*private Lekar lekarId;
-	private MedicinskaSestra medicinskaSestraId;*/
+	
+	@OneToOne
+    @JoinColumn(name = "lekarId", referencedColumnName = "lekar_id", unique = false, nullable = false)
+	private Lekar lekarId;
+	
+	@OneToOne
+	@JoinColumn(name = "medicinskaSestraId", referencedColumnName = "medicinskaSestra_id", unique = false, nullable = false)
+	private MedicinskaSestra medicinskaSestraId;
+	
+	@Column(name = "cena", unique = false, nullable = false)
 	private float cena;
 	
 	
@@ -76,7 +94,7 @@ public class Pregled {
 	}
 
 
-	/*public Lekar getLekarId() {
+	public Lekar getLekarId() {
 		return lekarId;
 	}
 
@@ -93,7 +111,7 @@ public class Pregled {
 
 	public void setMedicinskaSestraId(MedicinskaSestra medicinskaSestraId) {
 		this.medicinskaSestraId = medicinskaSestraId;
-	}*/
+	}
 
 
 	public float getCena() {

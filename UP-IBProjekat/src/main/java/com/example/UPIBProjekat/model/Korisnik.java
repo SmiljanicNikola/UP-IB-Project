@@ -1,5 +1,7 @@
 package com.example.UPIBProjekat.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Table(name = "korisnik")
 @Entity(name="Korisnik")
-public class Korisnik {
+public class Korisnik implements Serializable {
 	private int id;
 	
 	@Column(name = "ime", unique = false, nullable = false, columnDefinition = "TEXT")
