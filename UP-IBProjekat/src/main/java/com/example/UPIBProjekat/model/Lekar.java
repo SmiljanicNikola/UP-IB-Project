@@ -29,7 +29,7 @@ public class Lekar implements Serializable {
     @Column(name = "ime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String ime;
     
-    @Column(name = "prezimee", unique = false, nullable = false, columnDefinition = "TEXT")
+    @Column(name = "prezime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String prezime;
 	
 	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "lekar")
