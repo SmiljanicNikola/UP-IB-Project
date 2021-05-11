@@ -1,0 +1,34 @@
+package com.example.UPIBProjekat.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.UPIBProjekat.Repository.PregledRepository;
+import com.example.UPIBProjekat.model.Pregled;
+
+@Service
+public class PregledService {
+
+	@Autowired
+	private PregledRepository pregledRepo;
+	
+	public List<Pregled> listAll(){
+		return pregledRepo.findAll();
+	}
+	
+	public void save(Pregled pregled) {
+		pregledRepo.save(pregled);
+	}
+	
+	public Pregled get(Integer id) {
+		return pregledRepo.findById(id).get();
+	}
+	
+	public void delete(Integer id) {
+		pregledRepo.deleteById(id);
+	}
+	
+}
