@@ -23,38 +23,48 @@ public class MedicinskaSestra implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "medicinskaSestra_id", unique = true, nullable = false)
-	private int medicinskaSestra_id;
+	private Integer medicinskaSestra_id;
 	
     @Column(name = "ime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String ime;
     
-    @Column(name = "ime", unique = false, nullable = false, columnDefinition = "TEXT")
+    @Column(name = "prezime", unique = false, nullable = false, columnDefinition = "TEXT")
 	private String prezime;
 	
-	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "medicinskasestra")
+	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "medicinskaSestra")
     private Set<Pregled> pregledi = new HashSet<Pregled>();
 	
 	
 	public MedicinskaSestra() {
-		
+		super();
 	}
 
-
-	public MedicinskaSestra(int medicinskaSestra_id, String ime, String prezime) {
+	public MedicinskaSestra(String ime, String prezime, Set<Pregled> pregledi) {
 		super();
-		this.medicinskaSestra_id = medicinskaSestra_id;
 		this.ime = ime;
 		this.prezime = prezime;
+		this.pregledi = pregledi;
 	}
 
-	
+	public void add(Pregled p) {
+        if (p.getMedicinskaSestra() != null)
+            p.getMedicinskaSestra().getPregledi().remove(p);
+        p.setMedicinskaSestra(this);
+        pregledi.add(p);
+    }
+
+	public void remove(Pregled p) {
+        p.setMedicinskaSestra(null);
+        pregledi.remove(p);
+    }
+
 
 	public String getIme() {
 		return ime;
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/*@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)*/
 	public int getMedicinskaSestra_id() {
 		return medicinskaSestra_id;
 	}
@@ -87,6 +97,14 @@ public class MedicinskaSestra implements Serializable {
 
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
+	}
+
+	public Set<Pregled> getPregledi() {
+		return pregledi;
+	}
+
+	public void setPregledi(Set<Pregled> pregledi) {
+		this.pregledi = pregledi;
 	}
 	
 	

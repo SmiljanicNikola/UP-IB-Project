@@ -30,11 +30,11 @@ public class Pregled implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "lekar_id", referencedColumnName = "lekar_id", nullable = false)
-	private Lekar lekarId;
+	private Lekar lekar;
 	
 	@ManyToOne
 	@JoinColumn(name = "medicinskaSestra_id", referencedColumnName = "medicinskaSestra_id", nullable = false)
-	private MedicinskaSestra medicinskaSestraId;
+	private MedicinskaSestra medicinskaSestra;
 	
 	@Column(name = "cena", unique = false, nullable = false)
 	private float cena;
@@ -45,21 +45,17 @@ public class Pregled implements Serializable {
 	}
 
 
-	
-	
-	
-	/*public Pregled(int id, LocalDateTime datumIVreme, String trajanjePregleda, Lekar lekarId,
-			MedicinskaSestra medicinskaSestraId, float cena) {
+
+	public Pregled(int id, LocalDateTime datumIVreme, String trajanjePregleda, Lekar lekar,
+			MedicinskaSestra medicinskaSestra, float cena) {
 		super();
 		this.id = id;
 		this.datumIVreme = datumIVreme;
 		this.trajanjePregleda = trajanjePregleda;
-		this.lekarId = lekarId;
-		this.medicinskaSestraId = medicinskaSestraId;
+		lekar.add(this);
+		medicinskaSestra.add(this);
 		this.cena = cena;
-	}*/
-
-
+	}
 
 
 	@Id
@@ -94,7 +90,7 @@ public class Pregled implements Serializable {
 	}
 
 
-	public Lekar getLekarId() {
+	/*public Lekar getLekarId() {
 		return lekarId;
 	}
 
@@ -112,7 +108,31 @@ public class Pregled implements Serializable {
 
 	public void setMedicinskaSestraId(MedicinskaSestra medicinskaSestraId) {
 		this.medicinskaSestraId = medicinskaSestraId;
+	}*/
+
+
+	public Lekar getLekar() {
+		return lekar;
 	}
+
+
+
+	public void setLekar(Lekar lekar) {
+		this.lekar = lekar;
+	}
+
+
+
+	public MedicinskaSestra getMedicinskaSestra() {
+		return medicinskaSestra;
+	}
+
+
+
+	public void setMedicinskaSestra(MedicinskaSestra medicinskaSestra) {
+		this.medicinskaSestra = medicinskaSestra;
+	}
+
 
 
 	public float getCena() {
