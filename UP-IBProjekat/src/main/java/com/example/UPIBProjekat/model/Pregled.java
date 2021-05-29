@@ -30,11 +30,11 @@ public class Pregled implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "lekar_id", referencedColumnName = "lekar_id", nullable = false)
-	private Lekar lekarId;
+	private Doctor lekarId;
 	
 	@ManyToOne
 	@JoinColumn(name = "medicinskaSestra_id", referencedColumnName = "medicinskaSestra_id", nullable = false)
-	private MedicinskaSestra medicinskaSestraId;
+	private Nurse medicinskaSestraId;
 	
 	@Column(name = "cena", unique = false, nullable = false)
 	private float cena;
@@ -94,23 +94,23 @@ public class Pregled implements Serializable {
 	}
 
 
-	public Lekar getLekarId() {
+	public Doctor getLekarId() {
 		return lekarId;
 	}
 
 
-	public void setLekarId(Lekar lekarId) {
+	public void setLekarId(Doctor lekarId) {
 		this.lekarId = lekarId;
 	}
 
 
 
-	public MedicinskaSestra getMedicinskaSestraId() {
+	public Nurse getMedicinskaSestraId() {
 		return medicinskaSestraId;
 	}
 
 
-	public void setMedicinskaSestraId(MedicinskaSestra medicinskaSestraId) {
+	public void setMedicinskaSestraId(Nurse medicinskaSestraId) {
 		this.medicinskaSestraId = medicinskaSestraId;
 	}
 

@@ -6,27 +6,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.UPIBProjekat.Repository.KorisnikRepository;
-import com.example.UPIBProjekat.model.Korisnik;
+import com.example.UPIBProjekat.Repository.UserRepository;
+import com.example.UPIBProjekat.model.User;
 
 @Service
 public class KorisnikService {
 	
 	@Autowired
-	private KorisnikRepository korisnikRepo;
+	private UserRepository korisnikRepo;
 	
 	
-	public List<Korisnik> listAll(){
+	public List<User> listAll(){
 		return korisnikRepo.findAll();
 	}
 	
 	
 	
-	public void save(Korisnik korisnik) {
+	public void save(User korisnik) {
 		korisnikRepo.save(korisnik);
 	}
 	
-	public Korisnik get(Integer id) {
+	public User get(Integer id) {
 		return korisnikRepo.findById(id).get();
 	}
 	

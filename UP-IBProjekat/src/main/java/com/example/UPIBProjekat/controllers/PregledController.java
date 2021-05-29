@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.UPIBProjekat.model.Korisnik;
+import com.example.UPIBProjekat.model.User;
 import com.example.UPIBProjekat.model.Pregled;
 import com.example.UPIBProjekat.service.PregledService;
 

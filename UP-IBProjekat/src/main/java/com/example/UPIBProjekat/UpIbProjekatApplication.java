@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.UPIBProjekat.Repository.KorisnikRepository;
+import com.example.UPIBProjekat.Repository.UserRepository;
 
 @SpringBootApplication
 public class UpIbProjekatApplication {

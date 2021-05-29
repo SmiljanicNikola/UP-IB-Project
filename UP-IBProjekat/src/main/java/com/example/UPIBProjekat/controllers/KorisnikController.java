@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -25,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.UPIBProjekat.model.Korisnik;
+import com.example.UPIBProjekat.model.User;
 import com.example.UPIBProjekat.service.KorisnikService;
 
 @CrossOrigin(origins="http://localhost:3000")
@@ -37,15 +34,15 @@ public class KorisnikController {
 	private KorisnikService korisnikService;
 	
 	
-	private List<Korisnik> korisnici = new ArrayList<>();
+	private List<User> korisnici = new ArrayList<>();
 	
 	@GetMapping("/korisnici")
-	public List<Korisnik> list(){
+	public List<User> list(){
 		return korisnikService.listAll();
 	}
 	
 	@PostMapping("/korisnici")
-	public void add(@RequestBody Korisnik korisnik) {
+	public void add(@RequestBody User korisnik) {
 		korisnikService.save(korisnik);
 
 	}
@@ -54,32 +51,32 @@ public class KorisnikController {
 	
 	
 	@GetMapping("/korisnici/{id}")
-	public ResponseEntity<Korisnik> get(@PathVariable Integer id){
+	public ResponseEntity<User> get(@PathVariable Integer id){
 		try {
-			Korisnik korisnik = korisnikService.get(id);
-			return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+			User korisnik = korisnikService.get(id);
+			return new ResponseEntity<User>(korisnik, HttpStatus.OK);
 			
 		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Korisnik>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	
 	@PutMapping("/korisnici/{id}")
-	public ResponseEntity<?> update(@RequestBody Korisnik korisnik, 
+	public ResponseEntity<?> update(@RequestBody User korisnik, 
 			@PathVariable Integer id) {
 		try {
-			Korisnik existKorisnik = korisnikService.get(id);
+			User existKorisnik = korisnikService.get(id);
 			if(existKorisnik != null) {
-				existKorisnik.setIme(korisnik.getIme());
-				existKorisnik.setPrezime(korisnik.getPrezime());
-				existKorisnik.setEmail(korisnik.getEmail());
-				existKorisnik.setAdresa(korisnik.getAdresa());
-				existKorisnik.setLozinka(korisnik.getLozinka());
-				existKorisnik.setGrad(korisnik.getGrad());
-				existKorisnik.setDrzava(korisnik.getDrzava());
-				existKorisnik.setTelefon(korisnik.getTelefon());
-				existKorisnik.setUloga(korisnik.getUloga());
+				existKorisnik.setFirstname(korisnik.getFirstname());
+				existKorisnik.setLastname(korisnik.getLastname());
+				existKorisnik.setUsername(korisnik.getUsername());
+				existKorisnik.setAdress(korisnik.getAdress());
+				existKorisnik.setPassword(korisnik.getPassword());
+				existKorisnik.setCity(korisnik.getCity());
+				existKorisnik.setCountry(korisnik.getCountry());
+				existKorisnik.setPhone(korisnik.getPhone());
+				existKorisnik.setActive(korisnik.isActive());
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -95,42 +92,42 @@ public class KorisnikController {
 	
 	
 
-	@PostMapping("/korisnici/login")
-	@Consumes("MediaType.APPLICATION_JSON")
-	@Produces("MediaType.APPLICATION_JSON")
-		public ResponseEntity<Korisnik> login(@QueryParam(value="email") String email, @QueryParam(value="lozinka") String lozinka){
-			//List<Korisnik> korisnici = new ArrayList<>();
-			korisnici = korisnikService.listAll();
-			for(Korisnik korisnik : korisnici) {
-				if((korisnik.getEmail() == email) && (korisnik.getLozinka() == lozinka)) {
-					return new ResponseEntity<Korisnik>(HttpStatus.OK);
-				}
-				else{
-					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
-			}
-			
-			return new ResponseEntity<Korisnik>(HttpStatus.OK);
-			
-		}
-		
-
-	@Consumes("MediaType.APPLICATION_JSON")
-	@Produces("MediaType.APPLICATION_JSON")
-	@PostMapping("/korisnici/register")
-	public ResponseEntity<Korisnik> Register(@QueryParam("ime") String ime, 
-											@QueryParam("prezime") String prezime,
-											@QueryParam("email") String email,
-											@QueryParam("adresa") String adresa,
-											@QueryParam("lozinka") String lozinka,
-											@QueryParam("grad") String grad,
-											@QueryParam("drzava") String drzava,
-											@QueryParam("telefon") String telefon){
-		Korisnik k1 = new Korisnik(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent");
-		korisnikService.save(k1);
-		return new ResponseEntity<Korisnik>(HttpStatus.OK);
-		
-	}
+//	@PostMapping("/korisnici/login")
+//	@Consumes("MediaType.APPLICATION_JSON")
+//	@Produces("MediaType.APPLICATION_JSON")
+//		public ResponseEntity<User> login(@QueryParam(value="email") String email, @QueryParam(value="lozinka") String lozinka){
+//			//List<Korisnik> korisnici = new ArrayList<>();
+//			korisnici = korisnikService.listAll();
+//			for(User korisnik : korisnici) {
+//				if((korisnik.getEmail() == email) && (korisnik.getPassword() == lozinka)) {
+//					return new ResponseEntity<User>(HttpStatus.OK);
+//				}
+//				else{
+//					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//				}
+//			}
+//			
+//			return new ResponseEntity<User>(HttpStatus.OK);
+//			
+//		}
+//		
+//
+//	@Consumes("MediaType.APPLICATION_JSON")
+//	@Produces("MediaType.APPLICATION_JSON")
+//	@PostMapping("/korisnici/register")
+//	public ResponseEntity<User> Register(@QueryParam("ime") String ime, 
+//											@QueryParam("prezime") String prezime,
+//											@QueryParam("email") String email,
+//											@QueryParam("adresa") String adresa,
+//											@QueryParam("lozinka") String lozinka,
+//											@QueryParam("grad") String grad,
+//											@QueryParam("drzava") String drzava,
+//											@QueryParam("telefon") String telefon){
+//		User k1 = new User(ime,prezime, email, adresa, lozinka, grad, drzava, telefon,"Pacijent");
+//		korisnikService.save(k1);
+//		return new ResponseEntity<User>(HttpStatus.OK);
+//		
+//	}
 	
 	
 }
