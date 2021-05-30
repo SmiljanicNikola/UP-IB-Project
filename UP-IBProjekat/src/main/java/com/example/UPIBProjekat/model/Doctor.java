@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name = "doctor")
 public class Doctor implements Serializable {
@@ -38,6 +39,10 @@ public class Doctor implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
     private Clinic clinic;
+    
+    
+    @OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "doctor")
+    private Set<Appointment> appointments = new HashSet<Appointment>();
     
 //    comment
     //comment 2
@@ -68,7 +73,17 @@ public class Doctor implements Serializable {
 
 	public void setClinic(Clinic clinic) {
 		this.clinic = clinic;
+	}
+
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
 	}	
+	
+	
 
 
 }
