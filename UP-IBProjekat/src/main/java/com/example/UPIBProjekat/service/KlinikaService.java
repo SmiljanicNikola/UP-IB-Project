@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.UPIBProjekat.Repository.KlinikaRepository;
-import com.example.UPIBProjekat.model.Klinika;
+import com.example.UPIBProjekat.Repository.ClinicRepository;
+import com.example.UPIBProjekat.model.Clinic;
 
 
 
@@ -15,18 +15,18 @@ import com.example.UPIBProjekat.model.Klinika;
 public class KlinikaService {
 	
 	@Autowired
-	private KlinikaRepository klinikaRepo;
+	private ClinicRepository klinikaRepo;
 	
 	
-	public List<Klinika> listAll(){
-		return (ArrayList<Klinika>)klinikaRepo.findAll();
+	public List<Clinic> listAll(){
+		return (ArrayList<Clinic>)klinikaRepo.findAll();
 	}
 	
-	public void save(Klinika klinika) {
+	public void save(Clinic klinika) {
 		klinikaRepo.save(klinika);
 	}
 	
-	public Klinika get(Integer id) {
+	public Clinic get(Integer id) {
 		return klinikaRepo.findById(id).get();
 	}
 	

@@ -41,6 +41,9 @@ public class SignupRequest {
 	
 	@NotBlank
 	private boolean active;
+	
+	@NotBlank
+	private Integer clinic;
 
 	public String getFirstname() {
 		return firstname;
@@ -121,6 +124,16 @@ public class SignupRequest {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public Integer getClinic_id() {
+		return clinic;
+	}
+
+	public void setClinic_id(Integer clinic) {
+		this.clinic = clinic;
+	}
+	
+	
   
     
     

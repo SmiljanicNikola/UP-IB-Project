@@ -2,6 +2,7 @@ package com.example.UPIBProjekat.security;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.UPIBProjekat.Repository.ClinicRepository;
 import com.example.UPIBProjekat.Repository.DoctorRepository;
 import com.example.UPIBProjekat.Repository.NurseRepository;
 import com.example.UPIBProjekat.Repository.PatientRepository;
 import com.example.UPIBProjekat.Repository.RoleRepository;
 import com.example.UPIBProjekat.Repository.UserRepository;
+import com.example.UPIBProjekat.model.Clinic;
 import com.example.UPIBProjekat.model.Doctor;
 import com.example.UPIBProjekat.model.Nurse;
 import com.example.UPIBProjekat.model.Patient;
@@ -61,6 +64,9 @@ public class JwtAuthenticationController {
 	@Autowired
 	private NurseRepository nurseRepository;
 	
+	@Autowired
+	private ClinicRepository clinicRepository;
+	
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
@@ -93,8 +99,6 @@ public class JwtAuthenticationController {
 				 roles));
 }
 	
-
-	
 	@PostMapping("doctor/signup")
 	public ResponseEntity<?> registerDoctor(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -102,7 +106,8 @@ public class JwtAuthenticationController {
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
-
+		
+		System.out.println("BLAAAAAAA");
 
 		User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getAdress(), encoder.encode(signUpRequest.getPassword()),
 				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive() == true);
@@ -119,6 +124,7 @@ public class JwtAuthenticationController {
 		
 		Doctor doctor = new Doctor();
 		doctor.setUser(user);
+		doctor.setClinic(clinicRepository.getOne(signUpRequest.getClinic_id()));
 		doctorRepository.save(doctor);
 
 		

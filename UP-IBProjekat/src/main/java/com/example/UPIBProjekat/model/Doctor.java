@@ -5,14 +5,18 @@ import static javax.persistence.FetchType.LAZY;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,21 +36,14 @@ public class Doctor implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
     
-   
-	
-//	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "lekar")
-//    private Set<Pregled> pregledi = new HashSet<Pregled>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
+    private Clinic clinic;
+    
 	
 	public Doctor() {
 		
 	}
-	
-	
-
-		//this.pregledi = pregledi;
-// Set<Pregled> pregledi
-
-
 
 	public User getUser() {
 		return user;
@@ -64,19 +61,13 @@ public class Doctor implements Serializable {
 		this.user = user;
 	}
 
-
-
-
-
-
-
-	/*public Set<Pregled> getPregledi() {
-		return pregledi;
+	public Clinic getClinic() {
+		return clinic;
 	}
 
+	public void setClinic(Clinic clinic) {
+		this.clinic = clinic;
+	}	
 
-	public void setPregledi(Set<Pregled> pregledi) {
-		this.pregledi = pregledi;
-	}*/
 
 }
