@@ -5,6 +5,7 @@ import UserComponent from './components/UserComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import RegisterUser from './components/RegisterUser';
+import ClinicComponent from './components/ClinicComponent';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
               <HeaderComponent/>
                 <div className="container">
                     <Switch> 
-                          <Route path="/" exact component={UserComponent}></Route>
+                          <Route path="/klinike" exact component={ClinicComponent}></Route>
                           <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/register" component={ RegisterUser }></Route>
                     </Switch>

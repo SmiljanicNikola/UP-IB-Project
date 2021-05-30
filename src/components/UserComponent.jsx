@@ -56,8 +56,8 @@ class UserComponent extends React.Component{
                                 user=>
                                 <tr key = {user.id}>
                                     <td> {user.id}</td>
-                                    <td> {user.ime}</td>
-                                    <td>{user.prezime}</td>
+                                    <td> {user.firstname}</td>
+                                    <td>{user.lastname}</td>
                                     <td>{user.email}</td>
                                     <td>{user.adresa}</td>
                                     <td>{user.lozinka}</td>
