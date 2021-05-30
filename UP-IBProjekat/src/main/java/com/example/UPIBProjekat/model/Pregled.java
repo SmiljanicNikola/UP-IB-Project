@@ -23,7 +23,7 @@ public class Pregled implements Serializable {
 	private int id;
 			
 	@Column(name = "datumIVreme", unique = false, nullable = false)
-	private LocalDateTime datumIVreme;
+	private LocalDateTime date_and_time;
 	
 	@Column(name = "trajanjePregleda", unique = false, nullable = false)
 	private String trajanjePregleda;
@@ -74,14 +74,14 @@ public class Pregled implements Serializable {
 	}
 
 
-	public LocalDateTime getDatumIVreme() {
+	/*public LocalDateTime getDatumIVreme() {
 		return datumIVreme;
 	}
 
 
 	public void setDatumIVreme(LocalDateTime datumIVreme) {
 		this.datumIVreme = datumIVreme;
-	}
+	}*/
 
 
 	public String getTrajanjePregleda() {
