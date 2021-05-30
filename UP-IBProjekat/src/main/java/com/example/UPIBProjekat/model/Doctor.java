@@ -40,6 +40,7 @@ public class Doctor implements Serializable {
     private Clinic clinic;
     
 //    comment
+    //comment 2
 	
 	public Doctor() {
 		
