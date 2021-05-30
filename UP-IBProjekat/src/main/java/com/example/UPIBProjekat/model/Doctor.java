@@ -39,6 +39,7 @@ public class Doctor implements Serializable {
     @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
     private Clinic clinic;
     
+//    comment
 	
 	public Doctor() {
 		
