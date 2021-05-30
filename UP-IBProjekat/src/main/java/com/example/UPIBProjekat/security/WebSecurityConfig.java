@@ -1,5 +1,7 @@
 package com.example.UPIBProjekat.security;
 
+import javax.ws.rs.HttpMethod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -75,6 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+			.antMatchers("/korisnici").permitAll()
+			.antMatchers(HttpMethod.GET,"/**").permitAll()
 //			.antMatchers("/api/test/**").permitAll()
 //			.antMatchers("/api/articles").permitAll()
 //			.antMatchers("/api/articles/**").hasAnyAuthority("BUYER", "SALESMEN")
