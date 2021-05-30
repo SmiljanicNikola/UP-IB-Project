@@ -16,50 +16,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.UPIBProjekat.model.User;
-import com.example.UPIBProjekat.model.Pregled;
-import com.example.UPIBProjekat.service.PregledService;
+import com.example.UPIBProjekat.model.Appointment;
+import com.example.UPIBProjekat.service.AppointmentService;
 
 @RestController
-public class PregledController {
+public class AppointmentController {
 
 	@Autowired
-	private PregledService pregledService;
-	
-	
-	private List<Pregled> pregledi = new ArrayList<>();
-
-	
+	private AppointmentService appointmentService;
+		
 	
 	@GetMapping("/pregledi")
-	public List<Pregled> list(){
-		return pregledService.listAll();
+	public List<Appointment> list(){
+		return appointmentService.listAll();
 	}
 	
 	
 	@PostMapping("/pregledi")
-	public void add(@RequestBody Pregled pregled) {
-		pregledService.save(pregled);
+	public void add(@RequestBody Appointment pregled) {
+		appointmentService.save(pregled);
 
 	}
 	
 	
 	@GetMapping("/pregledi/{id1}")
-	public ResponseEntity<Pregled> get(@PathVariable Integer id1){
+	public ResponseEntity<Appointment> get(@PathVariable Integer id1){
 		try {
-			Pregled pregled = pregledService.get(id1);
-			return new ResponseEntity<Pregled>(pregled, HttpStatus.OK);
+			Appointment pregled = appointmentService.get(id1);
+			return new ResponseEntity<Appointment>(pregled, HttpStatus.OK);
 			
 		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Pregled>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Appointment>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	
 	@PutMapping("/pregledi/{id1}")
-	public void update(@RequestBody Pregled pregled,
+	public void update(@RequestBody Appointment pregled,
 			@PathVariable Integer id) {
 		
-		pregledService.save(pregled);
+		appointmentService.save(pregled);
 		
 	}
 	
