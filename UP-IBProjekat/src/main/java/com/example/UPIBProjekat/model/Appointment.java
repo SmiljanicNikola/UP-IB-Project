@@ -19,7 +19,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 @Entity
 public class Appointment implements Serializable {
 	
-	//@Column(name = "pregled_id", unique = true, nullable = false)
+	@Column(name = "appointment_id", unique = true, nullable = false)
 	private Integer id;
 			
 	@Column(name = "date_and_time", unique = false, nullable = false)
@@ -46,6 +46,10 @@ public class Appointment implements Serializable {
 	
 	
 
+	
+
+
+
 	public Appointment(Integer id, LocalDateTime dateAndTime, String appointmentLenght, Doctor doctor, Nurse nurse,
 			float price) {
 		super();
@@ -59,16 +63,29 @@ public class Appointment implements Serializable {
 
 
 
+
+
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}
 
 
+
+
+
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
+
+
+
 
 
 	public LocalDateTime getDateAndTime() {

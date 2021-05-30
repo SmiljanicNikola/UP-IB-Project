@@ -61,7 +61,7 @@ public class AppointmentController {
 	
 	@DeleteMapping("/pregledi/{id}")
 	public void delete(@PathVariable Integer id) {
-		pregledService.delete(id);
+		appointmentService.delete(id);
 	}
 	
 }
