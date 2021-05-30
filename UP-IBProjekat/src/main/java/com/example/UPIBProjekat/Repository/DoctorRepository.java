@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.example.UPIBProjekat.model.Doctor;
 
 @Repository
-public interface DoctorRepository extends CrudRepository<Doctor, Integer> {
+public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
 }

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.UPIBProjekat.Repository.ClinicRepository;
 import com.example.UPIBProjekat.model.Clinic;
 
-
-
 @Service
 public class KlinikaService {
 	
