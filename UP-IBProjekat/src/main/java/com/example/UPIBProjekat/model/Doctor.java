@@ -26,7 +26,6 @@ import javax.persistence.Table;
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="doctor_id", unique = true, nullable = false)
