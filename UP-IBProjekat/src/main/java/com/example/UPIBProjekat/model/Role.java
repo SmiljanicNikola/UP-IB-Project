@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "roles")
@@ -27,7 +29,7 @@ public class Role implements Serializable{
     @Column(name = "name", unique = true, nullable = false)
 	private String name;
     
-    
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
     

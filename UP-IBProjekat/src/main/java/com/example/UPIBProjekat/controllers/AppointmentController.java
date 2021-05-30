@@ -44,26 +44,26 @@ public class AppointmentController {
 	}
 	
 	
-	/*@PostMapping("/pregledi")
+	@PostMapping("/pregledi")
 	public void add(@RequestBody Appointment pregled) {
 		appointmentService.save(pregled);
 
-	}*/
+	}
 	
-	@PostMapping("/pregledi")
-	@Consumes("MediaType.APPLICATION_JSON")
-	@Produces("MediaType.APPLICATION_JSON")
-	public ResponseEntity<AppointmentDTO> saveAppointment(@RequestBody AppointmentDTO appointmentDTO) {
-        Appointment appointment = new Appointment();
-        appointment.setDateAndTime(appointmentDTO.getDateAndTime());
-        appointment.setAppointmentLenght(appointmentDTO.getAppointmentLenght());
-        appointment.setDoctor(doctorService.get(appointmentDTO.getId()));
-        appointment.setNurse(nurseService.get(appointmentDTO.getId()));
-        appointment.setPrice(appointmentDTO.getPrice());
-       
-        appointment = appointmentService.save(appointment);
-        return new ResponseEntity<>(new AppointmentDTO(appointment), HttpStatus.CREATED);
-    }
+//	@PostMapping("/pregledi")
+//	@Consumes("MediaType.APPLICATION_JSON")
+//	@Produces("MediaType.APPLICATION_JSON")
+//	public ResponseEntity<AppointmentDTO> saveAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+//        Appointment appointment = new Appointment();
+//        appointment.setDateAndTime(appointmentDTO.getDateAndTime());
+//        appointment.setAppointmentLenght(appointmentDTO.getAppointmentLenght());
+//        appointment.setDoctor(doctorService.get(appointmentDTO.getId()));
+//        appointment.setNurse(nurseService.get(appointmentDTO.getId()));
+//        appointment.setPrice(appointmentDTO.getPrice());
+//       
+//        appointment = appointmentService.save(appointment);
+//        return new ResponseEntity<>(new AppointmentDTO(appointment), HttpStatus.CREATED);
+//    }
 	
 	
 	@GetMapping("/pregledi/{id1}")

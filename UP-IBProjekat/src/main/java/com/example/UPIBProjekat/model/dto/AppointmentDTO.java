@@ -37,7 +37,7 @@ public class AppointmentDTO {
 			NurseDTO nurse, float price) {
 		super();
 		this.id = id;
-		DateAndTime = dateAndTime;
+		this.DateAndTime = dateAndTime;
 		this.appointmentLenght = appointmentLenght;
 		this.doctor = doctor;
 		this.nurse = nurse;

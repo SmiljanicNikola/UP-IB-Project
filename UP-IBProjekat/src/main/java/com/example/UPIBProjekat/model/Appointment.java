@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,10 +17,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
-@Table(name = "appointments")
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
+@Table(name = "appointments")
 public class Appointment implements Serializable {
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "appointment_id", unique = true, nullable = false)
 	private Integer id;
 			
@@ -27,66 +37,48 @@ public class Appointment implements Serializable {
 	
 	@Column(name = "appointment_lenght", unique = false, nullable = false)
 	private String appointmentLenght;
-	
-	@ManyToOne
-    @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id", nullable = false)
+
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private Doctor doctor;
 	
-	@ManyToOne
-	@JoinColumn(name = "nurse_id", referencedColumnName = "nurse_id", nullable = false)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "nurse_id", referencedColumnName = "nurse_id")
 	private Nurse nurse;
+	
 	
 	@Column(name = "price", unique = false, nullable = false)
 	private float price;
+	
+
 	
 	
 	public Appointment() {
 		
 	}
-	
-	
-
-	
-
 
 
 	public Appointment(Integer id, LocalDateTime dateAndTime, String appointmentLenght, Doctor doctor, Nurse nurse,
 			float price) {
 		super();
 		this.id = id;
-		DateAndTime = dateAndTime;
+		this.DateAndTime = dateAndTime;
 		this.appointmentLenght = appointmentLenght;
 		this.doctor = doctor;
 		this.nurse = nurse;
 		this.price = price;
 	}
 
-
-
-
-
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}
 
 
-
-
-
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-
-
-
-
 
 	public LocalDateTime getDateAndTime() {
 		return DateAndTime;

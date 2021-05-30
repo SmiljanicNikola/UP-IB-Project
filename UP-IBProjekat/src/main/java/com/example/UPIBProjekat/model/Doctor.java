@@ -41,7 +41,7 @@ public class Doctor implements Serializable {
     private Clinic clinic;
     
     
-    @OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "doctor")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
 //    comment
