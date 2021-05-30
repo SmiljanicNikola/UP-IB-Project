@@ -38,6 +38,7 @@ public class Clinic implements Serializable{
 	@Column(name="avg_rate", unique = true, nullable = false)
 	private double prosecnaOcena;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "clinic")
     private Set<Doctor> doctors;
 	
