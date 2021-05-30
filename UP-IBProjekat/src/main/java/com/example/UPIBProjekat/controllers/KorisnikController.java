@@ -32,10 +32,7 @@ public class KorisnikController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
-	
-	
-	private List<User> korisnici = new ArrayList<>();
-	
+		
 	@GetMapping("/korisnici")
 	public List<User> list(){
 		return korisnikService.listAll();

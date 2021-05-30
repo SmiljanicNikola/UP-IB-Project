@@ -30,10 +30,9 @@ public class Nurse implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
-	
-//	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "medicinskasestra")
-//    private Set<Pregled> pregledi = new HashSet<Pregled>();
-	
+    @OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "doctor")
+    private Set<Appointment> appointments = new HashSet<Appointment>();
+    
 	
 	public Nurse() {
 		
@@ -57,6 +56,16 @@ public class Nurse implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	
