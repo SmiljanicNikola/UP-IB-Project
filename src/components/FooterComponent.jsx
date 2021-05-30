@@ -14,7 +14,7 @@ class FooterComponent extends Component{
         return(
             <div>
                 <footer className="footer">
-                    <span className="text-muted">Contact us: UPIB.Projekat@gmail.com</span>
+                    <span className="text-muted">Contacttt us: UPIB.Projekat@gmail.com</span>
                 </footer>
             </div>
 
