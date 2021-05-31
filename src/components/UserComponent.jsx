@@ -28,8 +28,8 @@ class UserComponent extends React.Component{
         return (
             <div>
                 <h1 className="text-center"> Lista korisnika</h1>
-                <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button>
+                {/* <button className="btn btn-primary" >Login</button>
+                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
                     
 
@@ -42,11 +42,10 @@ class UserComponent extends React.Component{
                             <td>Prezime</td>
                             <td>Email</td>
                             <td>Adresa</td>
-                            <td>Lozinka</td>
                             <td>Grad</td>
                             <td>Drzava</td>
                             <td>Telefon</td>
-                            <td>Uloga</td>
+                           
                         </tr>
                     </thead>
 
@@ -58,13 +57,12 @@ class UserComponent extends React.Component{
                                     <td> {user.id}</td>
                                     <td> {user.firstname}</td>
                                     <td>{user.lastname}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.adresa}</td>
-                                    <td>{user.lozinka}</td>
-                                    <td>{user.grad}</td>
-                                    <td>{user.drzava}</td>
-                                    <td>{user.telefon}</td>
-                                    <td>{user.uloga}</td>
+                                    <td>{user.username}</td>
+                                    <td>{user.adress}</td>
+                                    <td>{user.city}</td>
+                                    <td>{user.country}</td>
+                                    <td>{user.phone}</td>
+                                
 
 
                                 </tr>

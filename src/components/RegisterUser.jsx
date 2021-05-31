@@ -147,10 +147,10 @@ class RegisterUser extends Component {
                                                 value={this.state.uloga} onChange={this.changeUlogaHandler}/>
                                         </div>
 
-                                        
+                                        <center>
                                         <button className="btn btn-success" onClick={this.saveKorisnik}>Register</button>
                                         <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
-
+                                        </center>
                                 </form>
                             </div>
                         </div>
