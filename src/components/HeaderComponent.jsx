@@ -18,12 +18,8 @@ class HeaderComponent extends Component{
                 <div><a href="klinike" className="navbar-brand">  Klinike  </a></div>
                 <div><a href="" className="navbar-brand">  Pregledi  </a></div>
                 <div><a href="korisnici" className="navbar-brand">  Korisnici  </a></div>
-                <div><a href="login2" className="navbar-brand">  LoginPravi  </a></div>
                 <div><a href="login" className="navbar-brand">  Login  </a></div>
                 <div><a href="register" className="navbar-brand">  Register  </a></div>
-
-
-
                 </nav>
                 </header>
             </div>
