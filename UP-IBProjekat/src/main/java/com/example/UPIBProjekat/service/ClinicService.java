@@ -10,7 +10,7 @@ import com.example.UPIBProjekat.Repository.ClinicRepository;
 import com.example.UPIBProjekat.model.Clinic;
 
 @Service
-public class KlinikaService {
+public class ClinicService {
 	
 	@Autowired
 	private ClinicRepository klinikaRepo;

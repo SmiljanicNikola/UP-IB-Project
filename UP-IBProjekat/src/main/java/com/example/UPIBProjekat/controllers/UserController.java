@@ -23,15 +23,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.UPIBProjekat.model.User;
-import com.example.UPIBProjekat.service.KorisnikService;
+import com.example.UPIBProjekat.service.UserService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-public class KorisnikController {
+public class UserController {
 	
 	
 	@Autowired
-	private KorisnikService korisnikService;
+	private UserService korisnikService;
 		
 	@GetMapping("/korisnici")
 	public List<User> list(){

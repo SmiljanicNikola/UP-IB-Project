@@ -10,7 +10,7 @@ import com.example.UPIBProjekat.Repository.UserRepository;
 import com.example.UPIBProjekat.model.User;
 
 @Service
-public class KorisnikService {
+public class UserService {
 	
 	@Autowired
 	private UserRepository korisnikRepo;

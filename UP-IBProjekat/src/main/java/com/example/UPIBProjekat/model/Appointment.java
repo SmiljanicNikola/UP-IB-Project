@@ -38,12 +38,10 @@ public class Appointment implements Serializable {
 	@Column(name = "appointment_lenght", unique = false, nullable = false)
 	private String appointmentLenght;
 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private Doctor doctor;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "nurse_id", referencedColumnName = "nurse_id")
 	private Nurse nurse;

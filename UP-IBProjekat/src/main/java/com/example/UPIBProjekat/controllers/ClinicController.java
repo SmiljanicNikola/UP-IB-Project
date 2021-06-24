@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.UPIBProjekat.model.Clinic;
-import com.example.UPIBProjekat.service.KlinikaService;
+import com.example.UPIBProjekat.service.ClinicService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-public class KlinikaController {
+public class ClinicController {
 	
 	@Autowired
-	private KlinikaService klinikaservice;
+	private ClinicService klinikaservice;
 	
 	@GetMapping("/klinike")
 	public List<Clinic> list(){
