@@ -1,5 +1,7 @@
 package com.example.UPIBProjekat.model;
 
+import static javax.persistence.CascadeType.ALL;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,11 +40,14 @@ public class Appointment implements Serializable {
 	@Column(name = "appointment_lenght", unique = false, nullable = false)
 	private String appointmentLenght;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private Doctor doctor;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "nurse_id", referencedColumnName = "nurse_id")
 	private Nurse nurse;
 	

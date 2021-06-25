@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -40,12 +42,20 @@ public class Doctor implements Serializable {
     @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
     private Clinic clinic;
     
-    
+    //@OneToMany(mappedBy= "doctor",fetch = FetchType.EAGER)//SAA OVIMEEEE
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
+    //@OneToMany(cascade= {ALL}, mappedBy= "doctor",fetch = LAZY)
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
 //    comment
     //comment 2
+    
+    public void add(Appointment a) {
+        if (a.getDoctor() != null)
+            a.getDoctor().getAppointments().remove(a);
+        a.setDoctor(this);
+        getAppointments().add(a);
+    }
 	
 	public Doctor() {
 		

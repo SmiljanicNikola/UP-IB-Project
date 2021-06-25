@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "nurse")
 public class Nurse implements Serializable {
@@ -32,14 +34,22 @@ public class Nurse implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
+    //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "nurse")
+    //@OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = FetchType.EAGER) //SAAAA OVIMEEE
+    @OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = LAZY)
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
 	
 	public Nurse() {
 		
 	}
-
+    public void add(Appointment a) {
+        if (a.getNurse() != null)
+            a.getNurse().getAppointments().remove(a);
+        a.setNurse(this);
+        getAppointments().add(a);
+    }
+    
 
 	public Integer getId() {
 		return id;
