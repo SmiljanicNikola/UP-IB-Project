@@ -42,8 +42,8 @@ public class Doctor implements Serializable {
     @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
     private Clinic clinic;
     
-    //@OneToMany(mappedBy= "doctor",fetch = FetchType.EAGER)//SAA OVIMEEEE
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
+    @OneToMany(mappedBy= "doctor",fetch = FetchType.EAGER)//SAA OVIMEEEE
+    //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
     //@OneToMany(cascade= {ALL}, mappedBy= "doctor",fetch = LAZY)
     private Set<Appointment> appointments = new HashSet<Appointment>();
     

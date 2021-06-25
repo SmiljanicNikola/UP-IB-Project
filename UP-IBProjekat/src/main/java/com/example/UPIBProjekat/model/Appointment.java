@@ -41,7 +41,7 @@ public class Appointment implements Serializable {
 	private String appointmentLenght;
 
 	//@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private Doctor doctor;
