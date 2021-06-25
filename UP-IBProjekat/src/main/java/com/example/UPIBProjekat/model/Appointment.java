@@ -34,25 +34,25 @@ public class Appointment implements Serializable {
 	@Column(name = "appointment_id", unique = true, nullable = false)
 	private Integer id;
 			
-	@Column(name = "date_and_time", unique = false, nullable = false)
+	@Column(name = "date_and_time", unique = false)
 	private LocalDateTime DateAndTime;
 	
-	@Column(name = "appointment_lenght", unique = false, nullable = false)
+	@Column(name = "appointment_lenght", unique = false)
 	private String appointmentLenght;
 
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//@JsonIgnore
 	@ManyToOne
+	//@JsonIgnore
+	//@ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private Doctor doctor;
 	
-	//@ManyToOne(fetch = FetchType.LAZY)
 	@ManyToOne
+	//@ManyToOne
 	@JoinColumn(name = "nurse_id", referencedColumnName = "nurse_id")
 	private Nurse nurse;
 	
 	
-	@Column(name = "price", unique = false, nullable = false)
+	@Column(name = "price", unique = false)
 	private float price;
 	
 

@@ -36,14 +36,15 @@ public class Nurse implements Serializable {
 	
     //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "nurse")
     //@OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = FetchType.EAGER) //SAAAA OVIMEEE
-    @OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = LAZY)
+    @OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
 	
 	public Nurse() {
 		
 	}
-    public void add(Appointment a) {
+   public void add(Appointment a) {
         if (a.getNurse() != null)
             a.getNurse().getAppointments().remove(a);
         a.setNurse(this);

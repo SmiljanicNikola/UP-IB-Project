@@ -25,7 +25,7 @@ public class DoctorService {
 	}
 	
 	public Doctor get(Integer id) {
-		return doctorRepo.findById(id).get();
+		return doctorRepo.findById(id).orElse(null);
 	}
 	
 	public void delete(Integer id) {
