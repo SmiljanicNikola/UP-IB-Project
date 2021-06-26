@@ -8,6 +8,9 @@ import RegisterUser from './components/RegisterUser';
 import ClinicComponent from './components/ClinicComponent';
 import Login from './components/Login';
 import LoginComponent from './components/LoginComponent';
+import RegistracijaPacijenta from './components/RegistracijaPacijenta';
+import DodavanjePregleda from './components/DodavanjePregleda';
+
 
 
 
@@ -23,6 +26,8 @@ function App() {
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/login" component={ Login }></Route>
                           <Route path="/llogin2" component={ LoginComponent }></Route>
+                          <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
+                          <Route path="/dodavanjePregleda" component={DodavanjePregleda}></Route>
 
 
                     </Switch>

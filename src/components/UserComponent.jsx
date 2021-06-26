@@ -45,11 +45,15 @@ class UserComponent extends React.Component{
                             <td>Grad</td>
                             <td>Drzava</td>
                             <td>Telefon</td>
+                            <td>Uloga</td>
+                            <td>Actions</td>
+
                            
                         </tr>
                     </thead>
 
                     <tbody>
+                        
                         {
                             this.state.users.map(
                                 user=>
@@ -62,9 +66,7 @@ class UserComponent extends React.Component{
                                     <td>{user.city}</td>
                                     <td>{user.country}</td>
                                     <td>{user.phone}</td>
-                                
-
-
+                                    <td>{user.roles.id}</td>
                                 </tr>
                             )
 

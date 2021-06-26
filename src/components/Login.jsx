@@ -11,8 +11,6 @@ class Login extends Component {
             email: '',
             lozinka: '',
         }
-
-        
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         
         this.changeLozinkaHandler = this.changeLozinkaHandler.bind(this);
@@ -20,11 +18,7 @@ class Login extends Component {
 
         //this.saveKorisnik = this.saveKorisnik.bind(this);
 
-
-
     }
-
-
     /*saveKorisnik = (e) =>{
         e.preventDefault();
         let korisnik = {ime: this.state.ime, prezime: this.state.prezime, email: this.state.email,
@@ -32,7 +26,6 @@ class Login extends Component {
                         drzava: this.state.drzava, telefon: this.state.telefon, uloga: this.state.uloga};
         console.log('korisnik => ' + JSON.stringify(korisnik));
     }*/
-
     changeImeHandler= (event) =>{
         this.setState({ime:event.target.value});
     }

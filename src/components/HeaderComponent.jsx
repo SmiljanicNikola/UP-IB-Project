@@ -20,6 +20,9 @@ class HeaderComponent extends Component{
                 <div><a href="korisnici" className="navbar-brand">  Korisnici  </a></div>
                 <div><a href="login" className="navbar-brand">  Login  </a></div>
                 <div><a href="register" className="navbar-brand">  Register  </a></div>
+                <div><a href="registerPacijenta" className="navbar-brand">  RegisterPacijenta  </a></div>
+                <div><a href="dodavanjePregleda" className="navbar-brand">  DodavanjePregleda  </a></div>
+
                 </nav>
                 </header>
             </div>
