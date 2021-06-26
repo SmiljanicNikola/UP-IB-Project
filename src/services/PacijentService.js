@@ -4,7 +4,7 @@ const USERS_REST_API_URL = 'http://localhost:8080/korisnici';
 const PACIJENTI_REST_API_URL = 'http://localhost:8080/pacijenti';
 const PACIJENT_REST_API_URL = 'http://localhost:8080/api/auth/patient/signup';
 
-class UserService{
+class PacijentService{
     getUsers(){
         return axios.get(USERS_REST_API_URL);
     }
@@ -17,9 +17,7 @@ class UserService{
         return axios.get(PACIJENTI_REST_API_URL);
     }
 
-
-
 }
 
 
-export default new UserService();
+export default new PacijentService();

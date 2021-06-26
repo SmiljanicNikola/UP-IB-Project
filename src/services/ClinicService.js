@@ -7,7 +7,6 @@ class ClinicService{
         return axios.get(CLINICS_REST_API_URL);
     }
 
-
     createClinic(clinic){
         return axios.post(CLINICS_REST_API_URL);
     }

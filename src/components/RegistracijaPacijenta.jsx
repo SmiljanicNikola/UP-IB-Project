@@ -84,6 +84,9 @@ changeActiveHandler= (event) =>{
 changeLboHandler= (event) =>{
     this.setState({lbo: event.target.value});
 }
+cancel(){
+    this.props.history.push('/korisnici');
+}
 
     render(){
         return(
@@ -164,7 +167,9 @@ changeLboHandler= (event) =>{
                                             value={this.state.lbo} onChange={this.changeLboHandler}/>
     
                                     </div>
-                                    <button className="btn btn-success" onClick={this.savePatient}>Save</button>
+                                    <button className="btn btn-success" onClick={this.savePatient}>Save    </button>
+                                    <button className="btn btn-danger" onClick={this.cancel}>   Cancel</button>
+
                                 </form>
                             </div>
                         </div>
