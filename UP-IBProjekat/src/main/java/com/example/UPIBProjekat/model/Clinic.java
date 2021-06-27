@@ -40,6 +40,7 @@ public class Clinic implements Serializable{
 	
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "clinic")
+	@JsonIgnore
     private Set<Doctor> doctors;
 	
 
