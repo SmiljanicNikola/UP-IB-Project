@@ -1,24 +1,44 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import "../App.css";
 //import AuthService from "../services/auth.service";
 class Login extends Component {
 
-    constructor(props){
+    /*constructor(props){
         super(props)
 
         this.state = {
             
-            email: '',
-            lozinka: '',
+            username: '',
+            password: '',
         }
-        this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        
-        this.changeLozinkaHandler = this.changeLozinkaHandler.bind(this);
+        this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
+        this.changePasswordHandler = this.changePasswordHandler.bind(this);
         
 
         //this.saveKorisnik = this.saveKorisnik.bind(this);
 
-    }
+    }*/
+
+    handeSubmit = e =>{
+        e.preventDefault();
+
+
+        const data = {
+            username: this.username,
+            password: this.password
+        };
+
+        axios.post("http://localhost:8080/api/auth/login", data)
+            .then(res => {
+                localStorage.setItem('accessToken', res.data.token);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+
+    };
     /*saveKorisnik = (e) =>{
         e.preventDefault();
         let korisnik = {ime: this.state.ime, prezime: this.state.prezime, email: this.state.email,
@@ -26,45 +46,16 @@ class Login extends Component {
                         drzava: this.state.drzava, telefon: this.state.telefon, uloga: this.state.uloga};
         console.log('korisnik => ' + JSON.stringify(korisnik));
     }*/
-    changeImeHandler= (event) =>{
-        this.setState({ime:event.target.value});
-    }
 
-    changePrezimeHandler= (event) =>{
-        this.setState({prezime:event.target.value});
+    changeUsernameHandler= (event) =>{
+        this.setState({username:event.target.value});
     }
-
-    changeEmailHandler= (event) =>{
-        this.setState({email:event.target.value});
+    changePasswordHandler= (event) =>{
+        this.setState({password:event.target.value});
     }
-
-    changeAdresaHandler= (event) =>{
-        this.setState({adresa:event.target.value});
-    }
-
-    changeLozinkaHandler= (event) =>{
-        this.setState({lozinka:event.target.value});
-    }
-
-    changeGradHandler= (event) =>{
-        this.setState({grad:event.target.value});
-    }
-
-    changeDrzavaHandler= (event) =>{
-        this.setState({drzava:event.target.value});
-    }
-
-    changeTelefonHandler= (event) =>{
-        this.setState({telefon:event.target.value});
-    }
-
-    changeUlogaHandler= (event) =>{
-        this.setState({uloga:event.target.value});
-    }
-
 
     cancel(){
-        this.props.history.push('/korisnici');
+        this.props.history.push('/login');
     }
 
     
@@ -77,24 +68,25 @@ class Login extends Component {
                         <div className="card col-md-6 offset-md-3 offset-md-3">
                             <h3 className="text-center">Login</h3>
                             <div className="card-body">
-                                <form>
+                                <form onSubmit={this.handleSubmit}>
+
 
                                         <div className="form-group">    
-                                            <label>Email: </label>
-                                            <input placeholder="email" name="email" className="form-control"
-                                                value={this.state.email} onChange={this.changeEmailHandler}/>
+                                            <label>Username: </label>
+                                            <input placeholder="username" type="username" className="form-control"
+                                               onChange={e => this.username = e.target.value}/>
                                         </div>
 
-                                    
                                         <div className="form-group">                
-                                            <label>Lozinka: </label>
-                                            <input placeholder="lozinka" name="lozinka" className="form-control"
-                                                value={this.state.lozinka} onChange={this.changeLozinkaHandler}/>
+                                            <label>Password: </label>
+                                            <input placeholder="password" type="password" className="form-control"
+                                                onChange={e => this.password = e.target.value}/>
                                         </div>
-
                                         <br></br>
                                         <center>
-                                            <button className="btn btn-success" onClick={this.saveKorisnik}>Login</button>
+                                            <button className="btn btn-primary btn-block">Login</button>
+                                            <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
+
                                         </center>
                                 </form>
                             </div>

@@ -14,8 +14,10 @@ class PatientComponent extends React.Component{
 
     componentDidMount(){
         PacijentService.getPacijente().then((response) =>{
-            this.setState({patients:response.data})
+            this.setState({patientss:response.data})
         });
+
+        
     }
 
    

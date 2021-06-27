@@ -11,6 +11,7 @@ import Login from './components/Login';
 import LoginComponent from './components/LoginComponent';
 import RegistracijaPacijenta from './components/RegistracijaPacijenta';
 import DodavanjePregleda from './components/DodavanjePregleda';
+import Home from './components/Home';
 
 
 
@@ -29,6 +30,7 @@ function App() {
                           <Route path="/login" component={ Login }></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
                           <Route path="/dodavanjePregleda" component={DodavanjePregleda}></Route>
+                          <Route path="/home" component={Home}></Route>
                     </Switch>
                 </div>
               <FooterComponent/>

@@ -15,6 +15,7 @@ class HeaderComponent extends Component{
             <div>
                 <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                <div><a href="home" className="navbar-brand">  Home  </a></div>
                 <div><a href="klinike" className="navbar-brand">  Clinics  </a></div>
                 <div><a href="pacijenti" className="navbar-brand">  Patients  </a></div>
                 <div><a href="" className="navbar-brand">  Appointments  </a></div>
