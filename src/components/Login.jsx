@@ -1,102 +1,152 @@
-import axios from 'axios';
-import React, { Component } from 'react'
-import "../App.css";
-//import AuthService from "../services/auth.service";
-class Login extends Component {
+import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 
-    /*constructor(props){
-        super(props)
+import AuthService from "../services/AuthService";
 
-        this.state = {
-            
-            username: '',
-            password: '',
-        }
-        this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
-        this.changePasswordHandler = this.changePasswordHandler.bind(this);
-        
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
 
-        //this.saveKorisnik = this.saveKorisnik.bind(this);
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
-    }*/
-
-    handeSubmit = e =>{
-        e.preventDefault();
-
-
-        const data = {
-            username: this.username,
-            password: this.password
-        };
-
-        axios.post("http://localhost:8080/api/auth/login", data)
-            .then(res => {
-                localStorage.setItem('accessToken', res.data.token);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-
+    this.state = {
+      username: "",
+      password: "",
+      loading: false,
+      message: ""
     };
-    /*saveKorisnik = (e) =>{
-        e.preventDefault();
-        let korisnik = {ime: this.state.ime, prezime: this.state.prezime, email: this.state.email,
-                        adresa: this.state.adresa, lozinka: this.state.lozinka, grad: this.state.grad,
-                        drzava: this.state.drzava, telefon: this.state.telefon, uloga: this.state.uloga};
-        console.log('korisnik => ' + JSON.stringify(korisnik));
-    }*/
+  }
 
-    changeUsernameHandler= (event) =>{
-        this.setState({username:event.target.value});
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value
+    });
+  }
+
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  handleLogin(e) {
+    e.preventDefault();
+    console.log("BLA BLA BLAAA")
+    this.setState({
+      message: "",
+      loading: true
+    });
+
+    this.form.validateAll();
+
+    if (this.checkBtn.context._errors.length === 0) {
+      AuthService.login(this.state.username, this.state.password).then(
+        () => {
+          this.props.history.push("/profile");
+          window.location.reload();
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false
+      });
     }
-    changePasswordHandler= (event) =>{
-        this.setState({password:event.target.value});
-    }
+  }
 
-    cancel(){
-        this.props.history.push('/login');
-    }
+  render() {
+    return (
+      <div className="col-md-12">
+        <div className="card card-container">
+          <img
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+            alt="profile-img"
+            className="profile-img-card"
+          />
 
-    
-    render(){
-        return (
-            
-            <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Login</h3>
-                            <div className="card-body">
-                                <form onSubmit={this.handleSubmit}>
-
-
-                                        <div className="form-group">    
-                                            <label>Username: </label>
-                                            <input placeholder="username" type="username" className="form-control"
-                                               onChange={e => this.username = e.target.value}/>
-                                        </div>
-
-                                        <div className="form-group">                
-                                            <label>Password: </label>
-                                            <input placeholder="password" type="password" className="form-control"
-                                                onChange={e => this.password = e.target.value}/>
-                                        </div>
-                                        <br></br>
-                                        <center>
-                                            <button className="btn btn-primary btn-block">Login</button>
-                                            <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
-
-                                        </center>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <Form
+            onSubmit={this.handleLogin}
+            ref={c => {
+              this.form = c;
+            }}
+          >
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="username"
+                value={this.state.username}
+                onChange={this.onChangeUsername}
+                validations={[required]}
+              />
             </div>
-        )
-    }
 
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Input
+                type="password"
+                className="form-control"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChangePassword}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-primary btn-block"
+                disabled={this.state.loading}
+              >
+                {this.state.loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Login</span>
+              </button>
+            </div>
+
+            {this.state.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {this.state.message}
+                </div>
+              </div>
+            )}
+            <CheckButton
+              style={{ display: "none" }}
+              ref={c => {
+                this.checkBtn = c;
+              }}
+            />
+          </Form>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default Login
