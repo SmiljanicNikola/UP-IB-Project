@@ -3,7 +3,7 @@ import UserService from '../services/UserService';
 import PacijentService from '../services/PacijentService';
 
 
-class RegistracijaPacijenta extends Component {
+class RegistracijaPacijenta extends React.Component {
     constructor(props){
         super(props)
 

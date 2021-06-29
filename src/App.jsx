@@ -28,7 +28,7 @@ function App() {
                           <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/register" component={ RegisterUser }></Route>
-                          <Route path="/login" component={ Login }></Route>
+                          <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
                           <Route path="/dodavanjePregleda" component={DodavanjePregleda}></Route>
                           <Route path="/home" component={Home}></Route>

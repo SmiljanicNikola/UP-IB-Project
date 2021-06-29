@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import Form from "react-validation/build/form.js";
+import Input from "react-validation/build/input.js";
+import CheckButton from "react-validation/build/button.js";
+
 
 import AuthService from "../services/AuthService";
 
@@ -83,10 +84,13 @@ export default class Login extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
+          <img style={{marginLeft: 500 + 'px'}}
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
-            className="profile-img-card"
+            className=""
+            
+            width="200px"
+            height="200px"
           />
 
           <Form
