@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 
@@ -20,7 +21,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.UPIBProjekat.model.dto.AppointmentDTO;
+import com.example.UPIBProjekat.payload.AddAppointmentRequest;
+import com.example.UPIBProjekat.payload.MessageResponse;
+import com.example.UPIBProjekat.Repository.DoctorRepository;
 import com.example.UPIBProjekat.model.Appointment;
+import com.example.UPIBProjekat.model.Doctor;
+import com.example.UPIBProjekat.model.Nurse;
 import com.example.UPIBProjekat.service.AppointmentService;
 import com.example.UPIBProjekat.service.DoctorService;
 import com.example.UPIBProjekat.service.NurseService;
@@ -46,15 +52,29 @@ public class AppointmentController {
 	}
 	
 	
-	@PostMapping("/pregledi")
-	public void add(@RequestBody Appointment pregled) {
-		appointmentService.save(pregled);
+	/*@PostMapping("/pregledi")
+	public void add(@RequestBody Appointment appointment) {
+		appointmentService.save(appointment);
 
-	}
+	}*/
+	
+	@PostMapping("/pregledi")
+	public ResponseEntity<?> addAppointment(@Valid @RequestBody AddAppointmentRequest addAppointment) {
+		
+        Appointment appointment = new Appointment(addAppointment.getDateAndTime(), addAppointment.getAppointmentLenght(),addAppointment.getPrice());
+        
+        Doctor doctorr = doctorService.get(addAppointment.getDoctor_Id());
+        appointment.setDoctor(doctorr);
+        Nurse nursee = nurseService.get(addAppointment.getNurse_Id());
+        appointment.setNurse(nursee);
+        appointmentService.save(appointment);
+        
+		return ResponseEntity.ok(new MessageResponse("Uspesno dodat pregled!"));
+
+   }
+	
 	
 	/*@PostMapping("/pregledi")
-	@Consumes("MediaType.APPLICATION_JSON")
-	@Produces("MediaType.APPLICATION_JSON")
 	public ResponseEntity<AppointmentDTO> saveAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         Appointment appointment = new Appointment();
         appointment.setDateAndTime(appointmentDTO.getDateAndTime());
@@ -65,8 +85,8 @@ public class AppointmentController {
        
         appointment = appointmentService.save(appointment);
         return new ResponseEntity<>(new AppointmentDTO(appointment), HttpStatus.CREATED);
-   }*/
-	
+   }
+	*/
 	
 	@GetMapping("/pregledi/{id1}")
 	public ResponseEntity<Appointment> get(@PathVariable Integer id1){

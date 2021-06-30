@@ -40,7 +40,7 @@ public class Appointment implements Serializable {
 	@Column(name = "appointment_lenght", unique = false)
 	private String appointmentLenght;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	//@JsonIgnore
 	//@ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
@@ -73,6 +73,16 @@ public class Appointment implements Serializable {
 		this.nurse = nurse;
 		this.price = price;
 	}
+	
+	
+
+	public Appointment(LocalDateTime dateAndTime, String appointmentLenght, float price) {
+		super();
+		DateAndTime = dateAndTime;
+		this.appointmentLenght = appointmentLenght;
+		this.price = price;
+	}
+
 
 	public Integer getId() {
 		return id;

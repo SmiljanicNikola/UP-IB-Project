@@ -43,6 +43,32 @@ public class DoctorDTO {
     public DoctorDTO() {
     	
     }
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+
+	public ClinicDTO getClinic() {
+		return clinic;
+	}
+
+	public void setClinic(ClinicDTO clinic) {
+		this.clinic = clinic;
+	}
+    
+    
     
     
 	

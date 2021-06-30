@@ -1,6 +1,7 @@
 package com.example.UPIBProjekat.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,19 +30,18 @@ public class Clinic implements Serializable{
 	@Column(name="clinic_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="name", unique = true, nullable = false)
+	@Column(name="name", unique = false, nullable = false)
 	private String naziv;
 	
-	@Column(name="adress", unique = true, nullable = false)
+	@Column(name="adress", unique = false, nullable = false)
 	private String adresa;
 	
-	@Column(name="avg_rate", unique = true, nullable = false)
+	@Column(name="avg_rate", unique = false, nullable = false)
 	private double prosecnaOcena;
 	
-	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "clinic")
+	@OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL},orphanRemoval = true,mappedBy = "clinic")
 	@JsonIgnore
-    private Set<Doctor> doctors;
+    private Set<Doctor> doctors = new HashSet<Doctor>();
 	
 
 

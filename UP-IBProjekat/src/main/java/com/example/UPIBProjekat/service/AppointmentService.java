@@ -19,8 +19,8 @@ public class AppointmentService {
 		return appointmentRepo.findAll();
 	}
 	
-	public Appointment save(Appointment pregled) {
-		return appointmentRepo.save(pregled);
+	public Appointment save(Appointment appointment) {
+		return appointmentRepo.save(appointment);
 	}
 	
 	public Appointment get(Integer id) {

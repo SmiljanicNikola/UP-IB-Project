@@ -38,13 +38,13 @@ public class Doctor implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//Brisem FetchType.LAZY
     @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
     private Clinic clinic;
     
     //@OneToMany(mappedBy= "doctor",fetch = FetchType.EAGER)//SAA OVIMEEEE
     //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
-    @OneToMany(cascade= {ALL}, mappedBy= "doctor",fetch = FetchType.LAZY)
+    @OneToMany(cascade= {ALL}, mappedBy= "doctor",fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
