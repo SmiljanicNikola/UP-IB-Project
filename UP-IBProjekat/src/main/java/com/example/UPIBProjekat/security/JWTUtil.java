@@ -19,7 +19,7 @@ public class JWTUtil implements Serializable {
 	
 private static final long serialVersionUID = -2550185165626007488L;
 	
-	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+	public static final long JWT_TOKEN_VALIDITY = 6000;
 	
 	@Value("upibprojektic")
 	private byte[] secret;
@@ -58,6 +58,7 @@ private static final long serialVersionUID = -2550185165626007488L;
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
+	
 	
 	public Boolean validateToken(String token, UserDetails userDetails) {
 		final String username = getUsernameFromToken(token);

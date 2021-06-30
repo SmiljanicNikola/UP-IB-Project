@@ -10,16 +10,19 @@ private static final long serialVersionUID = -8091879091924046844L;
 	
 	private String token;
 	private String type = "Bearer";
+	private String refreshToken;
 	private Integer id;
 	private String username;
 	private List<String> roles;
 
-	public JWTResponse(String accessToken, Integer id, String username, List<String> roles) {
+	public JWTResponse(String accessToken,String refreshToken, Integer id, String username, List<String> roles) {
 		this.token = accessToken;
+		this.refreshToken = refreshToken;
 		this.id = id;
 		this.username = username;
 		this.roles = roles;
 	}
+	
 
 	public String getAccessToken() {
 		return token;
@@ -57,5 +60,17 @@ private static final long serialVersionUID = -8091879091924046844L;
 	public List<String> getRoles() {
 		return roles;
 	}
+
+
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+	
+	
 	
 }

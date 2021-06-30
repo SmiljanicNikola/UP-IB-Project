@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -13,6 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +34,14 @@ public class UserController {
 	
 	@Autowired
 	private UserService korisnikService;
-		
+	
 	@GetMapping("/korisnici")
 	public List<User> list(){
 		return korisnikService.listAll();
 	}
 	
+	
+
 	@PostMapping("/korisnici")
 	public void add(@RequestBody User korisnik) {
 		korisnikService.save(korisnik);

@@ -67,6 +67,9 @@ public class JwtAuthenticationController {
 	@Autowired
 	private ClinicRepository clinicRepository;
 	
+	@Autowired
+	private RefreshTokenService refreshTokenService;
+	
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
@@ -92,8 +95,11 @@ public class JwtAuthenticationController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+		
 		
 		return ResponseEntity.ok(new JWTResponse(jwt, 
+				refreshToken.getToken(),
 				 userDetails.getId(), 
 				 userDetails.getUsername(), 
 				 roles));
