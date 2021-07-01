@@ -15,12 +15,13 @@ private static final long serialVersionUID = -8091879091924046844L;
 	private String username;
 	private List<String> roles;
 
-	public JWTResponse(String accessToken,String refreshToken, Integer id, String username, List<String> roles) {
+	public JWTResponse(String accessToken, Integer id, String username, List<String> roles,String refreshToken, String type ) {
 		this.token = accessToken;
 		this.refreshToken = refreshToken;
 		this.id = id;
 		this.username = username;
 		this.roles = roles;
+		this.type = type;
 	}
 	
 

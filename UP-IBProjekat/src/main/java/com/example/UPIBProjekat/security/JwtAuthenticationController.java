@@ -99,10 +99,11 @@ public class JwtAuthenticationController {
 		
 		
 		return ResponseEntity.ok(new JWTResponse(jwt, 
-				refreshToken.getToken(),
 				 userDetails.getId(), 
 				 userDetails.getUsername(), 
-				 roles));
+				 roles,
+				refreshToken.getToken(),
+				"Bearer"));
 }
 	
 	@PostMapping("doctor/signup")

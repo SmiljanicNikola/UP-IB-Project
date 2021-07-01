@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.example.UPIBProjekat.security.RefreshToken;
+
 
 @Entity
 @Table(name = "users")
@@ -68,6 +70,9 @@ public class User implements Serializable {
     
     @OneToOne(mappedBy = "user")
     private Nurse nurse;
+    
+    @OneToOne(mappedBy = "user")
+    private RefreshToken refreshToken;
 	
     @ManyToMany( cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)
