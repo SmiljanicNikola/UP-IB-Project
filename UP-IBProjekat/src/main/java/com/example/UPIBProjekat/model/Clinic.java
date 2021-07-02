@@ -43,7 +43,9 @@ public class Clinic implements Serializable{
 	@JsonIgnore
     private Set<Doctor> doctors = new HashSet<Doctor>();
 	
-
+	@OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL},orphanRemoval = true,mappedBy = "clinic")
+	@JsonIgnore
+    private Set<ClinicAdministrator> clinicadmins = new HashSet<ClinicAdministrator>();
 
 	public Clinic(String naziv, String adresa, double prosecnaOcena) {
 		this.naziv = naziv;
@@ -96,6 +98,16 @@ public class Clinic implements Serializable{
 
 	public void setDoctors(Set<Doctor> doctors) {
 		this.doctors = doctors;
+	}
+
+
+	public Set<ClinicAdministrator> getClinicadmins() {
+		return clinicadmins;
+	}
+
+
+	public void setClinicadmins(Set<ClinicAdministrator> clinicadmins) {
+		this.clinicadmins = clinicadmins;
 	}
 	
 	

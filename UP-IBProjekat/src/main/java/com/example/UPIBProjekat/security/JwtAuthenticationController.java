@@ -28,6 +28,7 @@ import com.example.UPIBProjekat.Repository.PatientRepository;
 import com.example.UPIBProjekat.Repository.RoleRepository;
 import com.example.UPIBProjekat.Repository.UserRepository;
 import com.example.UPIBProjekat.model.Clinic;
+import com.example.UPIBProjekat.model.ClinicAdministrator;
 import com.example.UPIBProjekat.model.Doctor;
 import com.example.UPIBProjekat.model.Nurse;
 import com.example.UPIBProjekat.model.Patient;
@@ -37,6 +38,7 @@ import com.example.UPIBProjekat.payload.LoginRequest;
 import com.example.UPIBProjekat.payload.MessageResponse;
 import com.example.UPIBProjekat.payload.PatientSignupRequest;
 import com.example.UPIBProjekat.payload.SignupRequest;
+import com.example.UPIBProjekat.service.ClinicAdministratorService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -73,6 +75,9 @@ public class JwtAuthenticationController {
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
+	
+	@Autowired
+	private ClinicAdministratorService clinicAdminService;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -133,6 +138,38 @@ public class JwtAuthenticationController {
 		doctor.setUser(user);
 		doctor.setClinic(clinicRepository.getOne(signUpRequest.getClinic_id()));
 		doctorRepository.save(doctor);
+
+		
+
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+	
+	
+	@PostMapping("clinicadmin/signup")
+	public ResponseEntity<?> registerClinicAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
+		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username is already taken!"));
+		}
+		
+		User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getAdress(), encoder.encode(signUpRequest.getPassword()),
+				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive() == true);
+		
+		Set<Role> roles = new HashSet<>();
+		
+		Role userRole = roleRepository.findByName("ADMINISTRATOR KLINIKE")
+		.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(userRole);
+
+		user.setRoles(roles);
+
+		userRepository.save(user);
+		
+		ClinicAdministrator clinicAdmin = new ClinicAdministrator();
+		clinicAdmin.setUser(user);
+		clinicAdmin.setClinic(clinicRepository.getOne(signUpRequest.getClinic_id()));
+		clinicAdminService.save(clinicAdmin);
 
 		
 

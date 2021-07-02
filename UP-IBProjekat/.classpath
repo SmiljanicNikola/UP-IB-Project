@@ -29,8 +29,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/stefo/eclipse-workspace/Servers/Apache TomEE 8.0.6 at localhost-config"/>
-	<classpathentry kind="lib" path="C:/apache-tomee-plus-8.0.6/lib/javaee-api-8.0-5.jar">
+	<classpathentry kind="lib" path="C:/Users/Kiki/Desktop/apache-tomee-plus-8.0.6"/>
+	<classpathentry kind="lib" path="C:/Users/Kiki/Desktop/apache-tomee-plus-8.0.6/lib/javaee-api-8.0-5.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://tomcat.apache.org/tomcat-9.0-doc/api/"/>
 		</attributes>

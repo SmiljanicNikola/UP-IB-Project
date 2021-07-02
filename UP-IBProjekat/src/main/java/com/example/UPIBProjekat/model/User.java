@@ -73,6 +73,9 @@ public class User implements Serializable {
     
     @OneToOne(mappedBy = "user")
     private RefreshToken refreshToken;
+    
+    @OneToOne(mappedBy = "user")
+    private ClinicAdministrator clinicadmins;
 	
     @ManyToMany( cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)

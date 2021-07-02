@@ -25,7 +25,7 @@ public class ClinicService {
 	}
 	
 	public Clinic get(Integer id) {
-		return klinikaRepo.findById(id).get();
+		return klinikaRepo.findById(id).orElse(null);
 	}
 	
 	public void delete(Integer id) {

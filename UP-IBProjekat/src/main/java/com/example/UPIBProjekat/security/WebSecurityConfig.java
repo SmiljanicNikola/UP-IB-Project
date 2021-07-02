@@ -83,12 +83,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/pregledi/**").permitAll()
 			.antMatchers("/doktori/**").permitAll()
 			.antMatchers("/doktori").permitAll()
+			.antMatchers("/korisnici").permitAll()
+			.antMatchers("/korisnici/**").permitAll()
 
+			.antMatchers("/adminiKlinike").permitAll()
 			.antMatchers("/medicinskesestre/**").permitAll()
 
 
 
-			.antMatchers("/korisnici").hasAnyAuthority("LEKAR")
+			//.antMatchers("/korisnici").hasAnyAuthority("LEKAR")
 			.antMatchers(HttpMethod.DELETE,"/**").permitAll()
 			.antMatchers(HttpMethod.DELETE,"/pregledi/**").permitAll()
 //			.antMatchers(HttpMethod.GET,"/klinike").hasRole("PACIJENT")
