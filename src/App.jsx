@@ -15,11 +15,14 @@ import ClinicComponent from './components/ClinicComponent';
 import Login from './components/Login';
 import LoginComponent from './components/LoginComponent';
 import RegistracijaPacijenta from './components/RegistracijaPacijenta';
-import DodavanjePregleda from './components/DodavanjePregleda';
+import DodavanjePregleda from './components/AddEditViewAppointmentComp/DodavanjePregleda';
+import ViewAppointmentComponent from './components/AddEditViewAppointmentComp/ViewAppointmentComponent';
+import UpdateAppointmentComponent from './components/AddEditViewAppointmentComp/UpdateAppointmentComponent';
 import Home from './components/Home';
 
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
+import PregledComponent from './components/PregledComponent';
 
 
 
@@ -133,13 +136,19 @@ class App extends Component {
                     <Switch> 
                           <Route path="/klinike" exact component={ClinicComponent}></Route>
                           <Route path="/korisnici" component={UserComponent}></Route>
+                          <Route path="/pregledi" component={PregledComponent}></Route>
+                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/profile" component={ Profile }></Route>
                           <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
-                          <Route path="/dodavanjePregleda" component={DodavanjePregleda}></Route>
+                          <Route path="/addAppointment" component={DodavanjePregleda}></Route>
                           <Route path="/home" component={Home}></Route>
+                          <Route path="/header" component={HeaderComponent}></Route>
+                          <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
+
+
                     </Switch>
                 </BrowserRouter>
               </div>

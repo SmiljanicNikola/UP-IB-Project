@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PregledService from '../services/PregledService';
+import PregledService from '../../services/PregledService';
 
 
 class DodavanjePregleda extends Component {
