@@ -40,7 +40,8 @@ public class Appointment implements Serializable {
 	@Column(name = "appointment_lenght", unique = false)
 	private String appointmentLenght;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	//Obrisao (fetch = FetchType.LAZY)
 	//@JsonIgnore
 	//@ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")

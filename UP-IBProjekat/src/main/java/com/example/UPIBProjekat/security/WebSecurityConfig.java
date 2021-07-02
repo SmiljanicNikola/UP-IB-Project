@@ -79,8 +79,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
 			
 			.antMatchers("/klinike").permitAll()
+			.antMatchers("/pregledi").permitAll()
+			.antMatchers("/pregledi/**").permitAll()
+			.antMatchers("/doktori/**").permitAll()
+			.antMatchers("/doktori").permitAll()
+
+			.antMatchers("/medicinskesestre/**").permitAll()
+
+
+
 			.antMatchers("/korisnici").hasAnyAuthority("LEKAR")
-//			.antMatchers(HttpMethod.GET,"/**").permitAll()
+			.antMatchers(HttpMethod.DELETE,"/**").permitAll()
+			.antMatchers(HttpMethod.DELETE,"/pregledi/**").permitAll()
 //			.antMatchers(HttpMethod.GET,"/klinike").hasRole("PACIJENT")
 
 //			.antMatchers("/api/test/**").permitAll()

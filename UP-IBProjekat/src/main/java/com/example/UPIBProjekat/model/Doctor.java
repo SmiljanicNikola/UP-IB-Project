@@ -44,17 +44,17 @@ public class Doctor implements Serializable {
     
     //@OneToMany(mappedBy= "doctor",fetch = FetchType.EAGER)//SAA OVIMEEEE
     //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "doctor")
-    @OneToMany(cascade= {ALL}, mappedBy= "doctor",fetch = FetchType.EAGER)
+    @OneToMany(cascade= {ALL}, mappedBy="doctor",fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Appointment> appointments = new HashSet<Appointment>();
     
     
-    public void add(Appointment a) {
+    /*public void add(Appointment a) {
         if (a.getDoctor() != null)
             a.getDoctor().getAppointments().remove(a);
         a.setDoctor(this);
         getAppointments().add(a);
-    }
+    }*/
 	
 	public Doctor() {
 		

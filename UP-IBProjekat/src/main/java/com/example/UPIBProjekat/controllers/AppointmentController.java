@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.UPIBProjekat.model.dto.AppointmentDTO;
 import com.example.UPIBProjekat.payload.AddAppointmentRequest;
 import com.example.UPIBProjekat.payload.MessageResponse;
+
 import com.example.UPIBProjekat.Repository.DoctorRepository;
 import com.example.UPIBProjekat.model.Appointment;
 import com.example.UPIBProjekat.model.Doctor;
@@ -30,7 +31,6 @@ import com.example.UPIBProjekat.model.Nurse;
 import com.example.UPIBProjekat.service.AppointmentService;
 import com.example.UPIBProjekat.service.DoctorService;
 import com.example.UPIBProjekat.service.NurseService;
-
 
 
 @CrossOrigin(origins="http://localhost:3000")
@@ -51,14 +51,7 @@ public class AppointmentController {
 		return appointmentService.listAll();
 	}
 	
-	
 	/*@PostMapping("/pregledi")
-	public void add(@RequestBody Appointment appointment) {
-		appointmentService.save(appointment);
-
-	}*/
-	
-	@PostMapping("/pregledi")
 	public ResponseEntity<?> addAppointment(@Valid @RequestBody AddAppointmentRequest addAppointment) {
 		
         Appointment appointment = new Appointment(addAppointment.getDateAndTime(), addAppointment.getAppointmentLenght(),addAppointment.getPrice());
@@ -71,7 +64,21 @@ public class AppointmentController {
         
 		return ResponseEntity.ok(new MessageResponse("Uspesno dodat pregled!"));
 
-   }
+    }
+	*/
+	 @PostMapping("/pregledi")
+	 @Produces("MediaType.APPLICATION_JSON")
+	    public ResponseEntity<AppointmentDTO> saveArtikal(@RequestBody AddAppointmentRequest addAppointment) {
+	        Appointment appointment = new Appointment();
+	        appointment.setDateAndTime(addAppointment.getDateAndTime());
+	        appointment.setAppointmentLenght(addAppointment.getAppointmentLenght());
+	        appointment.setDoctor(this.doctorService.findOne(addAppointment.getDoctorId()));
+	        appointment.setNurse(this.nurseService.get(addAppointment.getNurseId()));
+	        appointment.setPrice(addAppointment.getPrice());
+
+	        appointment = appointmentService.save(appointment);
+	        return new ResponseEntity<>(new AppointmentDTO(appointment), HttpStatus.CREATED);
+	    }
 	
 	
 	/*@PostMapping("/pregledi")
@@ -91,7 +98,7 @@ public class AppointmentController {
 	@GetMapping("/pregledi/{id1}")
 	public ResponseEntity<Appointment> get(@PathVariable Integer id1){
 		try {
-			Appointment pregled = appointmentService.get(id1);
+			Appointment pregled = appointmentService.findOne(id1);
 			return new ResponseEntity<Appointment>(pregled, HttpStatus.OK);
 			
 		} catch(NoSuchElementException e) {
@@ -108,14 +115,14 @@ public class AppointmentController {
 		
 	}
 	
-	@DeleteMapping("/pregledi/{id}")
+	/*@DeleteMapping("/pregledi/{id}")
 	public void delete(@PathVariable Integer id) {
 		appointmentService.delete(id);
-	}
+	}*/
 	
-	@DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> deleteAppointment(@PathVariable("id") Integer id) {
-        Appointment appointment = appointmentService.get(id);
+	@DeleteMapping(value = "/pregledi/{id2}")
+    public ResponseEntity<?> deleteAppointment(@PathVariable("id2") Integer id) {
+        Appointment appointment = appointmentService.findOne(id);
         if (appointment != null) {
         	appointmentService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);

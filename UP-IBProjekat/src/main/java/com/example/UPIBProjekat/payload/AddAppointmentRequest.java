@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class AddAppointmentRequest {
 
+	private Integer id;
 	@NotBlank
 	private LocalDateTime DateAndTime;
 	
@@ -13,10 +14,10 @@ public class AddAppointmentRequest {
 	private String appointmentLenght;
 	
 	@NotBlank
-	private Integer doctor;
+	private Integer doctorId;
 	
 	@NotBlank
-	private Integer nurse;
+	private Integer nurseId;
 	
 	@NotBlank
 	private float price;
@@ -38,21 +39,30 @@ public class AddAppointmentRequest {
 	}
 
 	
+	
 
-	public Integer getDoctor_Id() {
-		return doctor;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setDoctor_Id(Integer doctor) {
-		this.doctor = doctor;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getNurse_Id() {
-		return nurse;
+	public Integer getDoctorId() {
+		return doctorId;
 	}
 
-	public void setNurse_Id(Integer nurse) {
-		this.nurse = nurse;
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public Integer getNurseId() {
+		return nurseId;
+	}
+
+	public void setNurseId(Integer nurseId) {
+		this.nurseId = nurseId;
 	}
 
 	public float getPrice() {

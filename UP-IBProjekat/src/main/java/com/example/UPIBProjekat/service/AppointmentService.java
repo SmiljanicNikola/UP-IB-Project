@@ -23,8 +23,8 @@ public class AppointmentService {
 		return appointmentRepo.save(appointment);
 	}
 	
-	public Appointment get(Integer id) {
-		return appointmentRepo.findById(id).get();
+	public Appointment findOne(Integer id) {
+		return appointmentRepo.findById(id).orElse(null);
 	}
 	
 	public void delete(Integer id) {

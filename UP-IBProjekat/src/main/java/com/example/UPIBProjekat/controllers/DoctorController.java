@@ -41,7 +41,7 @@ public class DoctorController {
 	@GetMapping("/doktori/{id}")
 	public ResponseEntity<Doctor> get(@PathVariable Integer id){
 		try {
-			Doctor doctor = doctorService.get(id);
+			Doctor doctor = doctorService.findOne(id);
 			return new ResponseEntity<Doctor>(doctor, HttpStatus.OK);
 			
 		} catch(NoSuchElementException e) {

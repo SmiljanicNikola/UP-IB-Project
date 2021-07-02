@@ -24,7 +24,7 @@ public class DoctorService {
 		return doctorRepo.save(doctor);
 	}
 	
-	public Doctor get(Integer id) {
+	public Doctor findOne(Integer id) {
 		return doctorRepo.findById(id).orElse(null);
 	}
 	
