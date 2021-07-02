@@ -50,7 +50,7 @@ export default class Profile extends Component {
 
       const user1 = this.state.user;
     //   var json1 = JSON.stringify(user);
-      console.log(user1);
+      console.log(user1.email);
 
       
   
@@ -59,7 +59,7 @@ export default class Profile extends Component {
             <div className="profileBox">
                 <strong>Ime: </strong>{this.state.user.firstname}<br/>
                 <strong>Prezime: </strong>{this.state.user.lastname}<br/>
-                <strong>Email: </strong>{this.state.user.email}<br/>
+                <strong>Email: </strong>{this.state.user.username}<br/>
                 <strong>Adresa: </strong>{this.state.user.adress}<br/>
                 <strong>Grad: </strong>{this.state.user.city}<br/>
                 <strong>Drzava: </strong>{this.state.user.country}<br/>
