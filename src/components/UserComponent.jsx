@@ -1,6 +1,6 @@
 import React from 'react'
 import UserService from '../services/UserService'
-
+import RolesService from '../services/RolesService'
 
 class UserComponent extends React.Component{
 
@@ -11,23 +11,31 @@ class UserComponent extends React.Component{
         }
 
         this.addUser = this.addUser.bind(this);
+        this.blockUser = this.blockUser.bind(this);
+
     }
 
     componentDidMount(){
         UserService.getUsers().then((response) =>{
             this.setState({users:response.data})
         });
+        RolesService.getRoles().then((response)=>{
+            this.setState({roles:response.data})
+        });
     }
 
     addUser(){
         this.props.history.push('/register');
+    }
+    blockUser(){
+        
     }
 
 
     render(){
         return (
             <div>
-                <h1 className="text-center"> Lista korisnika</h1>
+                <h1 className="text-center"> Users List</h1>
                 {/* <button className="btn btn-primary" >Login</button>
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
@@ -66,7 +74,10 @@ class UserComponent extends React.Component{
                                     <td>{user.city}</td>
                                     <td>{user.country}</td>
                                     <td>{user.phone}</td>
-                                    <td>{user.roles.id}</td>
+                                    <td>{user.roles.naziv}</td>
+                                    <td>          
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.blockUser(user.id)} className="btn btn-danger">Block</button>
+                                    </td>
                                 </tr>
                             )
 

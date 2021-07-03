@@ -19,6 +19,12 @@ import DodavanjePregleda from './components/AddEditViewAppointmentComp/Dodavanje
 import ViewAppointmentComponent from './components/AddEditViewAppointmentComp/ViewAppointmentComponent';
 import UpdateAppointmentComponent from './components/AddEditViewAppointmentComp/UpdateAppointmentComponent';
 import Home from './components/Home';
+import UpdateClinicComponent from './components/AddEditViewClinicComp/UpdateClinicComponent';
+import AddClinic from './components/AddEditViewClinicComp/AddClinic';
+import ViewClinicComponent from './components/AddEditViewClinicComp/ViewClinicComponent';
+import ViewPatientComponent from './components/ViewPatientComponent';
+
+
 
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
@@ -137,16 +143,28 @@ class App extends Component {
                           <Route path="/klinike" exact component={ClinicComponent}></Route>
                           <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/pregledi" component={PregledComponent}></Route>
-                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/pacijenti" component={PatientComponent}></Route>
+                          <Route path="/header" component={HeaderComponent}></Route>
+
+
+                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
+                          <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
+
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/profile" component={ Profile }></Route>
                           <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
+
+
                           <Route path="/addAppointment" component={DodavanjePregleda}></Route>
+                          <Route path="/addClinic" component={AddClinic}></Route>
+
                           <Route path="/home" component={Home}></Route>
-                          <Route path="/header" component={HeaderComponent}></Route>
+                          
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
+                          <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
+                          <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>
+
 
 
                     </Switch>

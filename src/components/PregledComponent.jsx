@@ -73,6 +73,12 @@ class PregledComponent extends React.Component{
                                     <td>{appointment.appointmentLenght}</td>
                                     {/* <td>{appointment.doctor.id}</td>
                                     <td>{appointment.nurse.id}</td> */}
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
                                     <td>{appointment.price}</td>
                                     <td>
                                         <button onClick={ () => this.editAppointment(appointment.id)} className="btn btn-info">Update</button>
