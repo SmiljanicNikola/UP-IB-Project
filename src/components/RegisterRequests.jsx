@@ -2,7 +2,7 @@ import React from 'react'
 import PacijentService from '../services/PacijentService'
 
 
-class PatientComponent extends React.Component{
+class RegisterRequests extends React.Component{
 
     constructor(props){
         super(props)
@@ -71,5 +71,5 @@ class PatientComponent extends React.Component{
 
 }
 
-export default PatientComponent
+export default RegisterRequests
 

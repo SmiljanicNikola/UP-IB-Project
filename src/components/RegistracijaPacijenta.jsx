@@ -13,6 +13,7 @@ class RegistracijaPacijenta extends React.Component {
             username: '',
             adress: '',
             password: '',
+            repeatPassword: '',
             city: '',
             country: '',
             phone: '',
@@ -24,6 +25,8 @@ class RegistracijaPacijenta extends React.Component {
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
         this.changeAdressHandler = this.changeAdressHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
+        this.changerepeatPasswordHandler = this.changerepeatPasswordHandler.bind(this);
+
         this.changeCityHandler = this.changeCityHandler.bind(this);
         this.changeCountryHandler = this.changeCountryHandler.bind(this);
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
@@ -37,16 +40,27 @@ class RegistracijaPacijenta extends React.Component {
 
 savePatient = (e) =>{
     e.preventDefault();
+    let test={repeatPassword:this.state.repeatPassword, password:this.state.password}
+    
+    if(test.repeatPassword != test.password){
+        console.log('Lozinke se ne podudaraju!');
+    }
+    else if(test.password.length < 5){
+        console.log('Lozinka je previse kratka!')
+    }
+    else{
     let pacijent = {firstname: this.state.firstname, lastname: this.state.lastname, username: this.state.username,
         adress: this.state.adress, password: this.state.password, city: this.state.city,
         country: this.state.country, phone: this.state.phone, active: this.state.active,
         lbo: this.state.lbo
         }
         console.log('Pacijent => ' + JSON.stringify(pacijent));
-
+        
         PacijentService.createPacijent(pacijent).then(res=>{
             this.props.history.push('/api/auth/patient/signup')
         });
+    }
+
 }
 
 changeFirstNameHandler= (event) =>{
@@ -83,6 +97,9 @@ changeActiveHandler= (event) =>{
 }
 changeLboHandler= (event) =>{
     this.setState({lbo: event.target.value});
+}
+changerepeatPasswordHandler= (event) =>{
+    this.setState({repeatPassword: event.target.value});
 }
 cancel(){
     this.props.history.push('/korisnici');
@@ -135,6 +152,13 @@ cancel(){
                                     </div>
 
                                     <div className="form-group">
+                                        <label>Ponovljen password:</label>
+                                        <input placeholder="Ponovljen password" name="repeatPassword" className="form-control"
+                                            value={this.state.repeatPassword} onChange={this.changerepeatPasswordHandler}/>
+    
+                                    </div>
+
+                                    <div className="form-group">
                                         <label>City</label>
                                         <input placeholder="City" name="city" className="form-control"
                                             value={this.state.city} onChange={this.changeCityHandler}/>
@@ -169,7 +193,6 @@ cancel(){
                                     </div>
                                     <button className="btn btn-success" onClick={this.savePatient}>Save    </button>
                                     <button className="btn btn-danger" onClick={this.cancel}>   Cancel</button>
-
                                 </form>
                             </div>
                         </div>

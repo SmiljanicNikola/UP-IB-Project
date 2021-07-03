@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
-const PACIJENTI_REST_API_URL = 'http://localhost:8097/pacijenti';
-const PACIJENT_REST_API_URL = 'http://localhost:8097/api/auth/patient/signup';
+const USERS_REST_API_URL = 'http://localhost:8080/korisnici';
+const PACIJENTI_REST_API_URL = 'http://localhost:8080/pacijenti';
+const PACIJENT_REST_API_URL = 'http://localhost:8080/api/auth/patient/signup';
 
 class PacijentService{
     getUsers(){
@@ -15,6 +15,10 @@ class PacijentService{
 
     getPacijente(){
         return axios.get(PACIJENTI_REST_API_URL);
+    }
+
+    getPatientById(patientId){
+        return axios.get(PACIJENTI_REST_API_URL + '/' + patientId)
     }
 
 }
