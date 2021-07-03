@@ -223,6 +223,7 @@ public class JwtAuthenticationController {
 				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive() == true);
 		Set<Role> roles = new HashSet<>();
 		
+		
 		Role userRole = roleRepository.findByName("PACIJENT")
 		.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		roles.add(userRole);

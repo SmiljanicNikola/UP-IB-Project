@@ -27,6 +27,8 @@ public class PatientSignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+    
+    private String repeatPassword;
 	
 	@NotBlank
 	private String city;
@@ -131,6 +133,14 @@ public class PatientSignupRequest {
 
 	public void setLbo(String lbo) {
 		this.lbo = lbo;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
 	}
 	
 	
