@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,6 +35,11 @@ public class Nurse implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
+    @ManyToOne//Brisem FetchType.LAZY
+    @JoinColumn(name = "clinic_id", referencedColumnName = "clinic_id")
+    private Clinic clinic;
+    
+    
     //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "nurse")
     //@OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = FetchType.EAGER) //SAAAA OVIMEEE
     @OneToMany(cascade= {ALL}, mappedBy= "nurse",fetch = FetchType.EAGER)
@@ -79,6 +85,12 @@ public class Nurse implements Serializable {
 
 	public void setAppointments(Set<Appointment> appointments) {
 		this.appointments = appointments;
+	}
+	public Clinic getClinic() {
+		return clinic;
+	}
+	public void setClinic(Clinic clinic) {
+		this.clinic = clinic;
 	}
 
 	

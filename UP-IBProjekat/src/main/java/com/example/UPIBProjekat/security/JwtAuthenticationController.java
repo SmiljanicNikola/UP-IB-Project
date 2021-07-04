@@ -201,6 +201,7 @@ public class JwtAuthenticationController {
 		
 		Nurse nurse = new Nurse();
 		nurse.setUser(user);
+		nurse.setClinic(clinicRepository.getOne(signUpRequest.getClinic_id()));
 		nurseRepository.save(nurse);
 
 		
