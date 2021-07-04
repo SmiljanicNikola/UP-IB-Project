@@ -27,6 +27,7 @@ import DoctorComponent from './components/DoctorNurseComponents/DoctorComponent'
 import CreateDoctor from './components/DoctorNurseComponents/CreateDoctor';
 import NurseComponent from './components/DoctorNurseComponents/NurseComponent';
 import CreateNurse from './components/DoctorNurseComponents/CreateNurse';
+import UpdateDoctorComponent from './components/DoctorNurseComponents/UpdateDoctorComponent';
 
 
 // import { Link } from 'react-router-dom';
@@ -155,6 +156,8 @@ class App extends Component {
 
                           <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
+                          <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
+
 
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/profile" component={ Profile }></Route>

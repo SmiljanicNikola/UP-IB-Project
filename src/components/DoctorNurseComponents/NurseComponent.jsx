@@ -29,7 +29,7 @@ class NurseComponent extends React.Component{
     }
 
     editNurse(id){
-        this.props.history.push(`updateDoctor/${id}`);
+        this.props.history.push(`updateNurse/${id}`);
     }
    
     render(){

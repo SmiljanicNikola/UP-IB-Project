@@ -68,7 +68,7 @@ class DoctorComponent extends React.Component{
                                     <td>{doctor.user.adress}</td>
                                     <td>{doctor.clinic.naziv}</td>
                                     <td>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.editDoctor(doctor.id)} className="btn btn-info">Update</button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.editDoctor(doctor.user.id)} className="btn btn-info">Update</button>
                                     </td>
                                 </tr>
                             )
