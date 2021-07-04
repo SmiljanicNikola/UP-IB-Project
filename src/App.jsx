@@ -13,6 +13,7 @@ import RegisterUser from './components/RegisterUser';
 import Profile from './components/ProfileComponent';
 import ClinicComponent from './components/ClinicComponent';
 import Login from './components/Login';
+import {PrivateRoute}  from "./components/PrivateRoute";
 import LoginComponent from './components/LoginComponent';
 import RegistracijaPacijenta from './components/RegistracijaPacijenta';
 import DodavanjePregleda from './components/AddEditViewAppointmentComp/DodavanjePregleda';
@@ -144,7 +145,7 @@ class App extends Component {
         <div className="container">
                 <BrowserRouter>
                     <Switch> 
-                          <Route path="/klinike" exact component={ClinicComponent}></Route>
+                          {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
                           <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/pregledi" component={PregledComponent}></Route>
                           <Route path="/doktori" component={DoctorComponent}></Route>
@@ -176,6 +177,13 @@ class App extends Component {
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
                           <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
                           <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>
+
+                          <PrivateRoute
+                            exact
+                            path="/klinike"
+                            component={ClinicComponent}
+                            roles={["LEKAR"]}
+                          />
 
 
 

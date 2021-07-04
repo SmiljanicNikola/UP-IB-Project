@@ -47,10 +47,20 @@ private static final long serialVersionUID = -2550185165626007488L;
 		return expiration.before(new Date());
 	}
 	
-	public String generateToken(UserDetails userDetails) {
-		Map<String, Object> claims = new HashMap<>();
-		return doGenerateToken(claims, userDetails.getUsername());
-	}
+//	public String generateToken(UserDetails userDetails) {
+//		Map<String, Object> claims = new HashMap<>();
+//		return doGenerateToken(claims, userDetails.getUsername());
+//	}
+	
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<String, Object>();
+        claims.put("sub", userDetails.getUsername());
+        claims.put("role", userDetails.getAuthorities().toArray()[0]);
+        claims.put("created", new Date(System.currentTimeMillis()));
+        return Jwts.builder().setClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
 	
 
 	private String doGenerateToken(Map<String, Object> claims, String subject) {

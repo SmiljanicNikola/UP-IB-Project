@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const NURSES_REST_API_URL = 'http://localhost:8080/medicinskesestre';
-const USERS_REST_API_URL = 'http://localhost:8080/korisnici';
-const ADD_NURSE_REST_API_URL = 'http://localhost:8080/api/auth/nurse/signup';
+const NURSES_REST_API_URL = 'http://localhost:8097/medicinskesestre';
+const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
+const ADD_NURSE_REST_API_URL = 'http://localhost:8097/api/auth/nurse/signup';
 
 class NurseService{
     getUsers(){

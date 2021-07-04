@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const DOCTORS_REST_API_URL = 'http://localhost:8080/doktori';
-const USERS_REST_API_URL = 'http://localhost:8080/korisnici';
-const ADD_DOCTOR_REST_API_URL = 'http://localhost:8080/api/auth/doctor/signup';
+const DOCTORS_REST_API_URL = 'http://localhost:8097/doktori';
+const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
+const ADD_DOCTOR_REST_API_URL = 'http://localhost:8097/api/auth/doctor/signup';
 
 class DoctorService{
     getUsers(){
