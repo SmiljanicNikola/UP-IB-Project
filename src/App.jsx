@@ -23,7 +23,10 @@ import UpdateClinicComponent from './components/AddEditViewClinicComp/UpdateClin
 import AddClinic from './components/AddEditViewClinicComp/AddClinic';
 import ViewClinicComponent from './components/AddEditViewClinicComp/ViewClinicComponent';
 import ViewPatientComponent from './components/ViewPatientComponent';
-
+import DoctorComponent from './components/DoctorNurseComponents/DoctorComponent';
+import CreateDoctor from './components/DoctorNurseComponents/CreateDoctor';
+import NurseComponent from './components/DoctorNurseComponents/NurseComponent';
+import CreateNurse from './components/DoctorNurseComponents/CreateNurse';
 
 
 // import { Link } from 'react-router-dom';
@@ -143,6 +146,9 @@ class App extends Component {
                           <Route path="/klinike" exact component={ClinicComponent}></Route>
                           <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/pregledi" component={PregledComponent}></Route>
+                          <Route path="/doktori" component={DoctorComponent}></Route>
+                          <Route path="/medicinskesestre" component={NurseComponent}></Route>
+
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>
 
@@ -158,6 +164,9 @@ class App extends Component {
 
                           <Route path="/addAppointment" component={DodavanjePregleda}></Route>
                           <Route path="/addClinic" component={AddClinic}></Route>
+                          <Route path="/addDoctor" component={CreateDoctor}></Route>
+                          <Route path="/addNurse" component={CreateNurse}></Route>
+
 
                           <Route path="/home" component={Home}></Route>
                           

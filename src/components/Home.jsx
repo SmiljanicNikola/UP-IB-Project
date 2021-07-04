@@ -13,7 +13,7 @@ class Home extends React.Component{
         };
 
         const id=12;
-        axios.get('http://localhost:8080/korisnik/id', config).then(
+        axios.get('http://localhost:8080/korisnici/12', config).then(
             res => {
                 this.setState({
                     username: res.data
