@@ -50,8 +50,7 @@ componentDidMount(){
 updateProfile = (e) =>{
         e.preventDefault();
         let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
-            adress: this.state.adress, city: this.state.city,  country: this.state.country, phone:this.state.phone,
-        }
+            adress: this.state.adress, city: this.state.city,  country: this.state.country, phone:this.state.phone}
         console.log('korisnik => ' + JSON.stringify(korisnik));
         KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
             this.props.history.push('/profile');

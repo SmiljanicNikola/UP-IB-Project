@@ -176,24 +176,18 @@ class App extends Component {
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
                           <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
                           <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>
-
                           <PrivateRoute
                             exact
                             path="/klinike"
                             component={ClinicComponent}
-                            roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
-                          />
-                          <PrivateRoute
-                            exact
-                            path="/pregledi"
-                            component={PregledComponent}
-                            roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
-                          />
-                          
-                          
-
-
-
+                            roles={["ADMINISTRATOR KLINIKE", "LEKAR"]}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/pregledi"
+                          component={PregledComponent}
+                          roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
+                        />
                     </Switch>
                 </BrowserRouter>
               </div>
@@ -202,29 +196,5 @@ class App extends Component {
   }
 }
 
-
-
-// function App() {
-//   return (
-//     <div>
-//         <Router>
-//               <HeaderComponent/>
-//                 <div className="container">
-//                     <Switch> 
-//                           <Route path="/klinike" exact component={ClinicComponent}></Route>
-//                           <Route path="/korisnici" component={UserComponent}></Route>
-//                           <Route path="/pacijenti" component={PatientComponent}></Route>
-//                           <Route path="/register" component={ RegisterUser }></Route>
-//                           <Route path="/login" component={Login}></Route>
-//                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
-//                           <Route path="/dodavanjePregleda" component={DodavanjePregleda}></Route>
-//                           <Route path="/home" component={Home}></Route>
-//                     </Switch>
-//                 </div>
-//               <FooterComponent/>
-//         </Router>
-//     </div>
-//   );
-// } 
 
 export default App;

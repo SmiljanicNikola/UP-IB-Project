@@ -37,6 +37,18 @@ class UserService{
                  });
    }
 
+   deleteUser(articleId){
+    let user = localStorage.getItem("user")
+    var json = JSON.parse(user);
+    return axios.delete(USERS_REST_API_URL + '/' + articleId, {headers: {
+        'Authorization': `Bearer ${json.accessToken}`,
+        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Methods":"DELETE, POST, GET, OPTIONS",
+        'Access-Control-Allow-Credentials': 'true',
+        'Content-Type':  'application/json'
+      }});
+}
+
 }
 
 

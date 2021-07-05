@@ -27,15 +27,17 @@ class UserComponent extends React.Component{
     addUser(){
         this.props.history.push('/register');
     }
-    blockUser(){
-        
+    blockUser(id){
+        UserService.deleteUser(id).then(res => {
+            this.setState({korisnik: this.state.users.filter(users => users.id !== id)})
+        })
     }
 
 
     render(){
         return (
             <div>
-                <h1 className="text-center"> Users List</h1>
+                <h1 className="text-center"> Korisnici</h1>
                 {/* <button className="btn btn-primary" >Login</button>
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
@@ -53,7 +55,7 @@ class UserComponent extends React.Component{
                             <td>Grad</td>
                             <td>Drzava</td>
                             <td>Telefon</td>
-                            <td>Uloga</td>
+                            {/* <td>Uloga</td> */}
                             <td>Actions</td>
 
                            
@@ -74,7 +76,7 @@ class UserComponent extends React.Component{
                                     <td>{user.city}</td>
                                     <td>{user.country}</td>
                                     <td>{user.phone}</td>
-                                    <td>{user.roles.naziv}</td>
+                                    {/* <td>{user.roles.naziv}</td> */}
                                     <td>          
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.blockUser(user.id)} className="btn btn-danger">Block</button>
                                     </td>
