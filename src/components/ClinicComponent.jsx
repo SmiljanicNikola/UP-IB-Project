@@ -8,7 +8,8 @@ class ClinicComponent extends React.Component{
         super(props)
         this.state = {
             clinics:[]
-        }
+        };
+        this.onSort = this.onSort.bind(this)
 
         this.addClinic = this.addClinic.bind(this);
         this.editClinic = this.editClinic.bind(this);
@@ -39,6 +40,18 @@ class ClinicComponent extends React.Component{
         this.props.history.push(`/updateClinic/${id}`);
     }
 
+    onSort(event, sortKey){
+        const data = this.state.clinics;
+        data.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
+        this.setState({data})
+      }
+
+    onSort2(event, sortKey){
+    const data = this.state.clinics;
+    data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
+    this.setState({data})
+    }
+
     render(){
         return (
             <div>
@@ -51,10 +64,10 @@ class ClinicComponent extends React.Component{
                 <table className = "table table-striped">
                     <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>Naziv</td>
-                            <td>Adresa</td>
-                            <td>Prosecna Ocena</td>
+                            <th>Id</th>
+                            <th onClick={e => this.onSort(e, 'naziv')}>Naziv</th>
+                            <th onClick={e => this.onSort(e, 'adresa')}>Adresa</th>
+                            <th onClick={e => this.onSort2(e, 'prosecnaOcena')}>Prosecna Ocena</th>
                             <td></td>
                         </tr>
                     </thead>
