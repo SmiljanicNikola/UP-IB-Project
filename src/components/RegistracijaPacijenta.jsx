@@ -146,14 +146,14 @@ cancel(){
 
                                     <div className="form-group">
                                         <label>Password:</label>
-                                        <input placeholder="Password" name="password" className="form-control"
+                                        <input placeholder="Password" name="password" type="password" className="form-control"
                                             value={this.state.password} onChange={this.changePasswordHandler}/>
     
                                     </div>
 
                                     <div className="form-group">
                                         <label>Ponovljen password:</label>
-                                        <input placeholder="Ponovljen password" name="repeatPassword" className="form-control"
+                                        <input placeholder="Ponovljen password" name="repeatPassword" type="password" className="form-control"
                                             value={this.state.repeatPassword} onChange={this.changerepeatPasswordHandler}/>
     
                                     </div>

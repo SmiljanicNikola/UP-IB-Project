@@ -40,6 +40,10 @@ export default class Profile extends Component {
       this.setState({ currentUser: currentUser, userReady: true })
       this.setState({ user: user, userReady: true })
     }
+
+    editProfile(id){
+      this.props.history.push(`/updateProfile/${id}`);
+    }
   
     render() {
       if (this.state.redirect) {
@@ -56,7 +60,7 @@ export default class Profile extends Component {
   
       return (
         <div className="container">
-            <div className="profileBox">
+            {/*<div className="profileBox">
                 <strong>Ime: </strong>{this.state.user.firstname}<br/>
                 <strong>Prezime: </strong>{this.state.user.lastname}<br/>
                 <strong>Email: </strong>{this.state.user.username}<br/>
@@ -64,16 +68,48 @@ export default class Profile extends Component {
                 <strong>Grad: </strong>{this.state.user.city}<br/>
                 <strong>Drzava: </strong>{this.state.user.country}<br/>
                 <strong>Telefon: </strong>{this.state.user.phone}<br/>
-                {/* <strong>Uloga: </strong>{this.state.user.roles}<br/> */}
+                {/* <strong>Uloga: </strong>{this.state.user.roles}<br/> 
                 <a href="editProfile">Izmeni</a>
+            </div>*/}
+
+
+
+
+
+
+    <div>
+        <div className="card col-md-6 offset-md-3">
+                 <h2 className="text-center"><i>Logged user details:</i></h2><br></br>
+                <div className="card-body">
+                  <center>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Ime:</strong> : {this.state.user.firstname}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Prezime:</strong> {this.state.user.lastname}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Email:</strong> {this.state.user.username}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Adresa:</strong> {this.state.user.adress}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Grad:</strong> {this.state.user.grad}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Drzava:</strong> {this.state.user.country}</label>
+                </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Telefon:</strong> {this.state.user.phone}</label>
+                </div><br></br>
+                </center>
+               
+                <br></br>
+               <center><button onClick={ () => this.editProfile(this.state.user.id)} className="btn btn-info">Update</button></center>
             </div>
-
-
-
-
-
-
-
+        </div>
+    </div>    
 
 
 
@@ -101,6 +137,8 @@ export default class Profile extends Component {
           </ul>
         </div>: null} */}
         </div>
+
+        
       );
     }
   }

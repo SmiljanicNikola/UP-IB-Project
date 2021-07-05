@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+import * as jwt_decode from 'jwt-decode';
 
 
 export const TokenService = {
@@ -12,7 +13,7 @@ export const TokenService = {
 function getToken() {
   let user = localStorage.getItem("user")
   var json = JSON.parse(user);
-  console.log('getToken: ' + json.accessToken)
+  //console.log('getToken: ' + json.accessToken)
   return json.accessToken;
   
 }

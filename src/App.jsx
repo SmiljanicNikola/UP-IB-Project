@@ -29,7 +29,7 @@ import CreateDoctor from './components/DoctorNurseComponents/CreateDoctor';
 import NurseComponent from './components/DoctorNurseComponents/NurseComponent';
 import CreateNurse from './components/DoctorNurseComponents/CreateNurse';
 import UpdateDoctorComponent from './components/DoctorNurseComponents/UpdateDoctorComponent';
-
+import EditProfileComponent from './components/EditProfileComponent';
 
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
@@ -173,7 +173,7 @@ class App extends Component {
 
 
                           <Route path="/home" component={Home}></Route>
-                          
+                          <Route path="/updateProfile/:id" component={EditProfileComponent}></Route>
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
                           <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
                           <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>

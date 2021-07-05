@@ -15,6 +15,10 @@ class KorisnikService{
         return axios.put(USERS_REST_API_URL + '/' + korisnikId, korisnik);
     }
 
+    getKorisnikById(korisnikId){
+        return axios.get(USERS_REST_API_URL + '/' + korisnikId)
+    }
+
 
 }
 
