@@ -73,7 +73,10 @@ class App extends Component {
     const { currentUser } = this.state;
 
     return (
+
+      
       <div>
+
         <nav className="navbar navbar-expand navbar-dark bg-dark">
         <BrowserRouter>
 
@@ -99,6 +102,8 @@ class App extends Component {
               </li>
             )}
           </div>
+
+          
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
