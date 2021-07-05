@@ -17,7 +17,7 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
 
       if (roles && !roles.includes(role)) {
         // Ako je korisnik ulogovan ali nema dozvolu pristupa zaštićenoj stranici - vrati ga na glavnu stranicu
-        return <Redirect to={{ pathname: "/articles" }} />;
+        return <Redirect to={{ pathname: "/home" }} />;
       }
 
       // Vrati stranicu koja se traži

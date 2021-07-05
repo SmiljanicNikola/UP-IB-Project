@@ -147,7 +147,6 @@ class App extends Component {
                     <Switch> 
                           {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
                           <Route path="/korisnici" component={UserComponent}></Route>
-                          <Route path="/pregledi" component={PregledComponent}></Route>
                           <Route path="/doktori" component={DoctorComponent}></Route>
                           <Route path="/medicinskesestre" component={NurseComponent}></Route>
 
@@ -182,8 +181,16 @@ class App extends Component {
                             exact
                             path="/klinike"
                             component={ClinicComponent}
-                            roles={["LEKAR"]}
+                            roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
                           />
+                          <PrivateRoute
+                            exact
+                            path="/pregledi"
+                            component={PregledComponent}
+                            roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
+                          />
+                          
+                          
 
 
 

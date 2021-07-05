@@ -14,7 +14,7 @@ function getToken() {
   let user = localStorage.getItem("user")
   var json = JSON.parse(user);
   //console.log('getToken: ' + json.accessToken)
-  return json.accessToken;
+  return json.accessToken;//ZAKOMENTARISAO SAM OVO ZA TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
   
 }
 
