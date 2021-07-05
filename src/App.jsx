@@ -12,6 +12,7 @@ import FooterComponent from './components/FooterComponent';
 import RegisterUser from './components/RegisterUser';
 import Profile from './components/ProfileComponent';
 import ClinicComponent from './components/ClinicComponent';
+import AddPatient from './components/AddPatient';
 import Login from './components/Login';
 import {PrivateRoute}  from "./components/PrivateRoute";
 import LoginComponent from './components/LoginComponent';
@@ -20,6 +21,7 @@ import DodavanjePregleda from './components/AddEditViewAppointmentComp/Dodavanje
 import ViewAppointmentComponent from './components/AddEditViewAppointmentComp/ViewAppointmentComponent';
 import UpdateAppointmentComponent from './components/AddEditViewAppointmentComp/UpdateAppointmentComponent';
 import Home from './components/Home';
+import HomePagePatient from './components/HomePagePatient';
 import UpdateClinicComponent from './components/AddEditViewClinicComp/UpdateClinicComponent';
 import AddClinic from './components/AddEditViewClinicComp/AddClinic';
 import ViewClinicComponent from './components/AddEditViewClinicComp/ViewClinicComponent';
@@ -169,9 +171,13 @@ class App extends Component {
                           <Route path="/addClinic" component={AddClinic}></Route>
                           <Route path="/addDoctor" component={CreateDoctor}></Route>
                           <Route path="/addNurse" component={CreateNurse}></Route>
+                          <Route path="/addPatient" component={AddPatient}></Route>
+
 
 
                           <Route path="/home" component={Home}></Route>
+                          <Route path="/homePatient" component={HomePagePatient}></Route>
+
                           <Route path="/updateProfile/:id" component={EditProfileComponent}></Route>
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
                           <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
