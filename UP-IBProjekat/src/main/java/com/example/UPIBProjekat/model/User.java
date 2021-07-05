@@ -62,6 +62,9 @@ public class User implements Serializable {
 	@Column(name = "active", unique = false, nullable = false)
 	private boolean active;
 	
+	/*@Column(name="enabled",nullable=true)
+	private boolean enabled;*/
+	
     @OneToOne(mappedBy = "user")
     private Doctor doctor;
     
@@ -76,6 +79,9 @@ public class User implements Serializable {
     
     @OneToOne(mappedBy = "user")
     private ClinicAdministrator clinicadmins;
+    
+    @OneToOne(mappedBy = "user")
+    private VerificationToken verificationToken;
 	
     @ManyToMany( cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)

@@ -4,8 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +42,8 @@ import com.example.UPIBProjekat.payload.MessageResponse;
 import com.example.UPIBProjekat.payload.PatientSignupRequest;
 import com.example.UPIBProjekat.payload.SignupRequest;
 import com.example.UPIBProjekat.service.ClinicAdministratorService;
+import com.example.UPIBProjekat.service.EmailService;
+import com.example.UPIBProjekat.service.VerificationTokenService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -78,6 +83,13 @@ public class JwtAuthenticationController {
 	
 	@Autowired
 	private ClinicAdministratorService clinicAdminService;
+	
+	@Autowired
+	private VerificationTokenService verificationTokenService;
+	
+
+	@Autowired
+	private EmailService emailService;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -208,10 +220,12 @@ public class JwtAuthenticationController {
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
+	@Transactional
+	public User save(User user) {return userRepository.save(user);}
 	
 
 	@PostMapping("patient/signup")
-	public ResponseEntity<?> registerPatient(@Valid @RequestBody PatientSignupRequest signUpRequest) {
+	public ResponseEntity<?> registerPatient(@Valid @RequestBody PatientSignupRequest signUpRequest) throws MessagingException {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -230,8 +244,25 @@ public class JwtAuthenticationController {
 		roles.add(userRole);
 		
 		user.setRoles(roles);
-
+		//Odavde
+		/*User saved = userRepository.save(user);
+		saved.ifPresent( u ->{
+			try {
+				String token = UUID.randomUUID().toString();
+				verificationTokenService.save(saved.get(),token);
+				
+				emailService.sendHtmlMail(u);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		});*/
+		
+		
 		userRepository.save(user);
+		String token = UUID.randomUUID().toString();
+		verificationTokenService.save(user,token);
+		
+		emailService.sendHtmlMail(user);
 		
 		Patient patient = new Patient(signUpRequest.getLbo());
 		patient.setUser(user);
