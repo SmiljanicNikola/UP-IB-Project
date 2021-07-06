@@ -112,7 +112,7 @@ class App extends Component {
 
           
             {currentUser && (
-              <li style={{marginRight: 300+'px'}} className="nav-item">
+              <li style={{marginBottom: '17px'}} className="nav-item">
                 <a style={{color:'red'}} href="/login" className="nav-link" onClick={this.logOut}>
                   <strong>Log out</strong>
                 </a>
@@ -126,8 +126,8 @@ class App extends Component {
           {currentUser && userRole=="LEKAR" ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-              <a href="/profile" className="nav-link">
-                <strong>{currentUser.username }</strong>
+                <a href="/profile" className="nav-link">
+                <p>Profil</p>
                 </a>
               </li>
               
@@ -153,6 +153,12 @@ class App extends Component {
               <li className="nav-item">
               <a href="/pacijenti" className="nav-link">
                 <p>Pacijenti</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/addAppointment" className="nav-link">
+                <p>Dodaj Pregled</p>
                 </a>
               </li>
 
@@ -198,11 +204,55 @@ class App extends Component {
                 </a>
               </li>
 
-              {/* <li style={{marginRight: 300+'px'}} className="nav-item">
-                <a style={{color: 'red'}} href="/login" className="nav-link" onClick={this.logOut}>
-                  <strong>Log out</strong>
+            </div>
+
+
+
+
+
+          ) 
+          : (
+            <div className="navbar-nav ml-auto">
+             
+            </div>
+          )}
+
+
+
+          {/* ADMINISTRATOR KLINIKE */}
+          {currentUser && userRole=="ADMINISTRATOR KLINIKE" ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/profile" className="nav-link">
+                <p>Profil</p>
                 </a>
-              </li> */}
+              </li>
+              
+
+              <li className="nav-item">
+              <a href="/korisnici" className="nav-link">
+                <p>Korisici</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/zahtevi" className="nav-link">
+                <p>Zahtevi</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/doktori" className="nav-link">
+                <p>Doktori</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/medicinskesestre" className="nav-link">
+                <p>Medicinske Sestre</p>
+                </a>
+              </li>
+
             </div>
 
 
@@ -262,13 +312,13 @@ class App extends Component {
                             exact
                             path="/klinike"
                             component={ClinicComponent}
-                            roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT"]}
+                            roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "MEDICINSKA SESTRA"]}
                           />
                           <PrivateRoute
                           exact
                           path="/pregledi"
                           component={PregledComponent}
-                          roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
+                          roles={["LEKAR","ADMINISTRATOR KLINIKE", "PACIJENT"]}
                           />
 
                           <PrivateRoute

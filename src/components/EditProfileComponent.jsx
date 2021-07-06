@@ -109,7 +109,7 @@ cancel(){
                                     <div className="form-group">
                                         <label>Username</label>
                                         <input placeholder="Username" name="username" className="form-control"
-                                            value={this.state.username} onChange={this.changeUsernameHandler}/>
+                                            value={this.state.username} onChange={this.changeUsernameHandler} disabled/>
                                     </div>
                                     <div className="form-group">
                                         <label>Adress</label>
