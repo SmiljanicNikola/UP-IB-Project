@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import PregledService from '../../services/PregledService';
+import DoctorService from '../../services/DoctorService';
+import NurseService from '../../services/NurseService';
 
 
-class DodavanjePregleda extends Component {
+class DodavanjePregleda extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
+            doctors:[],
+            nurses:[],
             appointmentLenght: '',
             DateAndTime: '',
             price: '',
@@ -20,6 +24,19 @@ class DodavanjePregleda extends Component {
         this.changeNurseId = this.changeNurseId.bind(this);
 
         this.saveAppointment = this.saveAppointment.bind(this);
+    
+}
+
+
+componentDidMount(){
+    DoctorService.getDoctors().then((response) =>{
+        this.setState({doctors:response.data})
+    });
+
+    NurseService.getNurses().then((response) =>{
+        this.setState({nurses:response.data})
+    });
+
     
 }
 
@@ -72,7 +89,7 @@ changeNurseId= (event) =>{
 
                                     <div className="form-group">
                                         <label>Date and time</label>
-                                        <input placeholder="DateAndTime" name="DateAndTime" className="form-control"
+                                        <input placeholder="DateAndTime" name="DateAndTime" type="DateTime" className="form-control"
                                             value={this.state.DateAndTime} onChange={this.changeDateAndTime}/>
                                     </div>
                                     <div className="form-group">
@@ -103,7 +120,119 @@ changeNurseId= (event) =>{
                             </div>
                         </div>
                     </div>
+                </div><br></br>
+                <hr></hr>
+
+                <center>
+
+                <div style={{width:700+'px'}}>
+                <h1 className="text-center">Doctors List</h1>
+                {/* <button className="btn btn-primary" >Login</button>
+                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+                <div className="row">
+                
                 </div>
+                <center>
+                <table className = "table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Firstname</td>
+                            <td>Lastname</td>
+                            <td>Username</td>
+                            <td>Adress</td>
+                            <td>Clinic name</td>  
+                            <td>Actions</td>                      
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        {
+                            this.state.doctors.map(
+                                doctor=>
+                                <tr key = {doctor.id}>
+                                    <td style={{backgroundColor:'red'}}><strong>{doctor.id}</strong></td>
+                                    <td>{doctor.user.firstname}</td>
+                                    <td>{doctor.user.lastname}</td>
+                                    <td>{doctor.user.username}</td>
+                                    <td>{doctor.user.adress}</td>
+                                    <td>{doctor.clinic.naziv}</td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            )
+
+                        }
+                    </tbody>
+
+                </table> </center>
+                <br></br>
+                <center>
+                </center>
+            </div>
+            </center>
+            <br></br><br></br>
+            <hr></hr>
+
+
+
+            <br></br>
+            <center>
+            <div style={{width:700+'px'}}>
+                <h1 className="text-center">Nurse List</h1>
+                {/* <button className="btn btn-primary" >Login</button>
+                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+                <div className="row">
+                    
+
+                </div>
+                <center>
+                <table className = "table table-striped">
+                    <thead>
+                        <tr>
+                            <td >Id</td>
+                            <td>Firstname</td>
+                            <td>Lastname</td>
+                            <td>Username</td>
+                            <td>Adress</td>
+                            <td>Clinic name</td>  
+                            <td>Actions</td>                         
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        {
+                            this.state.nurses.map(
+                                nurse=>
+                                <tr key = {nurse.id}>
+                                    <td style={{backgroundColor:'red'}}><strong>{nurse.id}</strong></td>
+                                    <td>{nurse.user.firstname}</td>
+                                    <td>{nurse.user.lastname}</td>
+                                    <td>{nurse.user.username}</td>
+                                    <td>{nurse.user.adress}</td>
+                                    <td>{nurse.clinic.naziv}</td>
+                                    <td>
+                                                                               
+                                    </td>
+                                </tr>
+                            )
+
+                        }
+                    </tbody>
+
+                </table>
+                </center>
+                <br></br>
+                <center>
+                </center>
+                <br></br>
+                <hr></hr>
+
+            </div>
+            </center>
             </div>
         )
     }

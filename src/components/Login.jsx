@@ -45,7 +45,7 @@ export default class Login extends Component {
 
   handleLogin(e) {
     e.preventDefault();
-    console.log("BLA BLA BLAAA")
+    console.log("Nemate mogucnost pristupa!")
     this.setState({
       message: "",
       loading: true

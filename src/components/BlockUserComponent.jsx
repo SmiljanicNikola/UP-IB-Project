@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import ClinicService from '../services/ClinicService';
 import KorisnikService from '../services/KorisnikService';
 
 
-class EditProfileComponent extends Component {
+class BlockUserComponent extends Component {
     constructor(props){
         super(props)
 
@@ -26,13 +25,13 @@ class EditProfileComponent extends Component {
         this.changeCountryHandler = this.changeCountryHandler.bind(this);
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
 
-        this.updateProfile = this.updateProfile.bind(this);
+        this.blockUser = this.blockUser.bind(this);
 }
 
 componentDidMount(){
-    KorisnikService.getKorisnikById(this.state.id).then( (res) =>{
+    KorisnikService.getUserById(this.state.id).then( (res) =>{
         let korisnik = res.data;
-        this.setState({
+        this.setState({ime: korisnik.ime,
             firstname: korisnik.firstname,
             lastname: korisnik.lastname,
             username: korisnik.username,
@@ -41,22 +40,20 @@ componentDidMount(){
             city: korisnik.city,
             country: korisnik.country,
             phone: korisnik.phone,
-            
         });
 
     });
 }
 
-updateProfile = (e) =>{
+blockUser = (e) =>{
         e.preventDefault();
         let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
-            adress: this.state.adress, city: this.state.city,  country: this.state.country, phone:this.state.phone}
-        console.log('korisnik => ' + JSON.stringify(korisnik));
-        KorisnikService.updateeKorisnik(korisnik, this.state.id).then(res => {
-            this.props.history.push('/profile');
+            adress: this.state.adress, city: this.state.city, country: this.state.country, phone:this.state.phone, active:false
+        }
+        KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
+            this.props.history.push('/svikorisnici');
         });
-   
-}
+    }
 
 changeFirstnameHandler= (event) =>{
     this.setState({firstname: event.target.value});
@@ -81,10 +78,8 @@ changePhoneHandler= (event) =>{
 }
 
 cancel(){
-    this.props.history.push('/profile');
+    this.props.history.push('/korisnici');
 }
-
-
 
     render(){
         return(
@@ -92,7 +87,7 @@ cancel(){
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Edit profile</h3>
+                            <h3 className="text-center">Block Confirm</h3>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -109,26 +104,12 @@ cancel(){
                                     <div className="form-group">
                                         <label>Username</label>
                                         <input placeholder="Username" name="username" className="form-control"
-                                            value={this.state.username} onChange={this.changeUsernameHandler} disabled/>
+                                            value={this.state.username} onChange={this.changeUsernameHandler}/>      
                                     </div>
-                                    <div className="form-group">
-                                        <label>Adress</label>
-                                        <input placeholder="Adress" name="adress" className="form-control"
-                                            value={this.state.adress} onChange={this.changeAdressHandler}/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>City</label>
-                                        <input placeholder="City" name="city" className="form-control"
-                                            value={this.state.city} onChange={this.changeCityHandler}/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>County</label>
-                                        <input placeholder="Country" name="country" className="form-control"
-                                            value={this.state.country} onChange={this.changeCountryHandler}/>
-                                    </div>
-                                    <br></br>
-                                    <button className="btn btn-success" onClick={this.updateProfile}>Edit</button>
                                     
+                                    <center>
+                                    <button className="btn btn-danger" onClick={this.blockUser}>Blokiraj</button>
+                                    </center>
                                 </form>
                             </div>
                         </div>
@@ -139,5 +120,4 @@ cancel(){
     }
 
 }
-
-export default EditProfileComponent
+export default BlockUserComponent

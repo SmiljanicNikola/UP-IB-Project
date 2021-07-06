@@ -59,7 +59,7 @@ updateNurse = (e) =>{
 
         }
         console.log('korisnik => ' + JSON.stringify(korisnik));
-        KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
+        KorisnikService.updateeKorisnik(korisnik, this.state.id).then(res => {
             this.props.history.push('/doktori');
         });
    

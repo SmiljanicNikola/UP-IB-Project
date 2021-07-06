@@ -8,10 +8,9 @@ class UserComponent extends React.Component{
         super(props)
         this.state = {
             users:[],
-            roles:[]
+            roles:[],
         }
 
-        this.addUser = this.addUser.bind(this);
         this.blockUser = this.blockUser.bind(this);
 
     }
@@ -25,13 +24,9 @@ class UserComponent extends React.Component{
         });
     }
 
-    addUser(){
-        this.props.history.push('/register');
-    }
+    
     blockUser(id){
-        UserService.deleteUser(id).then(res => {
-            this.setState({korisnik: this.state.users.filter(users => users.id !== id)})
-        })
+        this.props.history.push(`/blockUser/${id}`);
     }
 
 

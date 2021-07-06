@@ -38,6 +38,7 @@ import RegistracijeZahtevi from './components/RegistracijeZahtevi';
 import AuthService from "./services/AuthService";
 import PregledComponent from './components/PregledComponent';
 import UpdateNurseComponent from './components/DoctorNurseComponents/UpdateNurseComponent';
+import BlockUserComponent from './components/BlockUserComponent';
 
 
 
@@ -231,7 +232,7 @@ class App extends Component {
 
               <li className="nav-item">
               <a href="/korisnici" className="nav-link">
-                <p>Korisici</p>
+                <p>Korisnici</p>
                 </a>
               </li>
 
@@ -250,6 +251,12 @@ class App extends Component {
               <li className="nav-item">
               <a href="/medicinskesestre" className="nav-link">
                 <p>Medicinske Sestre</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/pregledi" className="nav-link">
+                <p>Pregledi</p>
                 </a>
               </li>
 
@@ -284,6 +291,7 @@ class App extends Component {
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
                           <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
                           <Route path="/updateNurse/:id" component={UpdateNurseComponent}></Route>
+                          <Route path="/blockUser/:id" component={BlockUserComponent}></Route>
 
                           <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
 

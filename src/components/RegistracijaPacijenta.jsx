@@ -178,12 +178,7 @@ cancel(){
     
                                     </div>
 
-                                    <div className="form-group">
-                                        <label>Active</label>
-                                        <input placeholder="Active" name="active" className="form-control"
-                                            value={this.state.active} onChange={this.changeActiveHandler}/>
-    
-                                    </div>
+                                    
 
                                     <div className="form-group">
                                         <label>Lbo</label>
