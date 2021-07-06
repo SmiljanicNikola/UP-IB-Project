@@ -13,8 +13,8 @@ export default class Profile extends Component {
         redirect: null,
         userReady: false,
         currentUser: { username: "" },
-        user:{}
-
+        user:{},
+        uloga:AuthService.getRole(),
       };
     }
   
@@ -43,6 +43,10 @@ export default class Profile extends Component {
 
     editProfile(id){
       this.props.history.push(`/updateProfile/${id}`);
+    }
+
+    changePassword(id){
+      this.props.history.push(`/changePassword/${id}`);
     }
   
     render() {
@@ -103,10 +107,13 @@ export default class Profile extends Component {
                 <div className="row">
                     <label style={{color:"black"}}><strong>Telefon:</strong> {this.state.user.phone}</label>
                 </div><br></br>
+                <div className="row">
+                    <label style={{color:"black"}}><strong>Uloga:</strong> {this.state.uloga}</label>
+                </div><br></br>
                 </center>
                
                 <br></br>
-               <center><button onClick={ () => this.editProfile(this.state.user.id)} className="btn btn-info">Update</button></center>
+               <center><button onClick={ () => this.editProfile(this.state.user.id)} className="btn btn-info">Update</button> <button onClick={ () => this.changePassword(this.state.user.id)} className="btn btn-danger">Change Password</button></center>
             </div>
         </div>
     </div>    

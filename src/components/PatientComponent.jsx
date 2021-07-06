@@ -23,7 +23,20 @@ class PatientComponent extends React.Component{
     viewPatient(id){
         this.props.history.push(`viewPatient/${id}`);
     }
-   
+
+    onSort(event, sortKey){
+        const data = this.state.patients;
+        data.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
+        this.setState({data})
+      }
+
+    onSort2(event, sortKey){
+    const data = this.state.patients;
+    data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
+    this.setState({data})
+    }
+
+
     render(){
         return (
             <div>
@@ -37,10 +50,12 @@ class PatientComponent extends React.Component{
                 <table className = "table table-striped">
                     <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>User</td>
-                            <td>LBO</td>  
-                            <td></td>                         
+                            <th>Id</th>
+                            <th onClick={e => this.onSort('ASC')}>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Adresa</th>
+                            <th onClick={e => this.onSort2(e, 'lbo')}>LBO</th>  
+                            <th></th>                         
                         </tr>
                     </thead>
 
@@ -51,7 +66,9 @@ class PatientComponent extends React.Component{
                                 patient=>
                                 <tr key = {patient.id}>
                                     <td>{patient.id}</td>
-                                    <td> {patient.user.id} | {patient.user.firstname} | {patient.user.firstname} | {patient.user.username} </td>
+                                    <td> {patient.user.firstname} </td>
+                                    <td> {patient.user.lastname} </td>
+                                    <td> {patient.user.adress} </td>
                                     <td>{patient.lbo}</td>
                                     <td>
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.viewPatient(patient.id)} className="btn btn-info">View</button>
