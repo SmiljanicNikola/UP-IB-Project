@@ -14,7 +14,7 @@ import com.example.UPIBProjekat.Repository.UserRepository;
 @Service
 public class RefreshTokenService {
 	
-	  @Value("1500000")
+	  @Value("360000")
 	  private Long refreshTokenDurationMs;
 
 	  
