@@ -55,12 +55,14 @@ class ClinicComponent extends React.Component{
     render(){
         return (
             <div>
+                <br></br>
                 <h1 className="text-center"> Clinic List </h1>
             
                 <div className="row">
                     
 
                 </div>
+                <br></br>
                 <table className = "table table-striped">
                     <thead>
                         <tr>
@@ -94,9 +96,14 @@ class ClinicComponent extends React.Component{
                     </tbody>
 
                 </table>
-
+                <br>
+                </br>
+                <center>
                 <button className="btn btn-success" onClick={this.addClinic}>Add clinic</button>
-
+                </center>
+                <br>
+                </br>
+                <hr></hr>
 
             </div>
         )

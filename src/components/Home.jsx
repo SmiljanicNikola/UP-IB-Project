@@ -38,12 +38,21 @@ class Home extends React.Component{
     render(){
         if(this.state.user){
             return(
+                <center>
+                <br></br><br></br><br></br>
+
+
                 <h2> Pozdrav {this.state.user.firstname} {this.state.user.lastname}</h2>
+                </center>
+                
             )
         }
 
         return (
+            <center>
+            <br></br><br></br><br></br>
             <h2> You are not logged in</h2>
+            </center>
             )
         }
 

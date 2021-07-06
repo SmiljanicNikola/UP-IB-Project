@@ -102,7 +102,7 @@ class PatientComponent extends React.Component{
                 <div className="row">
                     
 
-                </div>
+                </div><br></br><br></br>
                 <table className = "table table-striped">
                     <thead>
                         <tr>

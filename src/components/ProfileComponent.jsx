@@ -99,7 +99,7 @@ export default class Profile extends Component {
                     <label style={{color:"black"}}><strong>Adresa:</strong> {this.state.user.adress}</label>
                 </div><br></br>
                 <div className="row">
-                    <label style={{color:"black"}}><strong>Grad:</strong> {this.state.user.grad}</label>
+                    <label style={{color:"black"}}><strong>Grad:</strong> {this.state.user.city}</label>
                 </div><br></br>
                 <div className="row">
                     <label style={{color:"black"}}><strong>Drzava:</strong> {this.state.user.country}</label>

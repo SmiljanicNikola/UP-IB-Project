@@ -80,7 +80,11 @@ class NurseComponent extends React.Component{
 
                 </table>
                 <br></br>
+                <center>
                 <button className="btn btn-success" onClick={this.addNurse}>Add Nurse</button>
+                </center>
+                <br></br>
+                <hr></hr>
 
             </div>
         )

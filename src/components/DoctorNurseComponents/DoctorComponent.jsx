@@ -40,7 +40,7 @@ class DoctorComponent extends React.Component{
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
                     
-
+                <br></br><br></br>
                 </div>
                 <table className = "table table-striped">
                     <thead>
@@ -78,8 +78,11 @@ class DoctorComponent extends React.Component{
 
                 </table>
                 <br></br>
+                <center>
                 <button className="btn btn-success" onClick={this.addDoctor}>Add doctor</button>
-
+                </center>
+                <br></br>
+                <hr></hr>
             </div>
         )
     }

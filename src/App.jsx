@@ -33,7 +33,7 @@ import CreateNurse from './components/DoctorNurseComponents/CreateNurse';
 import UpdateDoctorComponent from './components/DoctorNurseComponents/UpdateDoctorComponent';
 import EditProfileComponent from './components/EditProfileComponent';
 import ChangePasswordComponent from './components/ChangePasswordComponent';
-
+import RegistracijeZahtevi from './components/RegistracijeZahtevi';
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
 import PregledComponent from './components/PregledComponent';
@@ -180,6 +180,7 @@ class App extends Component {
                           {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
                           <Route path="/doktori" component={DoctorComponent}></Route>
                           <Route path="/medicinskesestre" component={NurseComponent}></Route>
+                          <Route path="/zahtevi" component={RegistracijeZahtevi}></Route>
 
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>

@@ -47,15 +47,18 @@ class PregledComponent extends React.Component{
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
                     
-
+<br></br>
                 </div>
                 <table className = "table table-striped">
                     <thead>
                         <tr>
                             <td>Date And Time</td>
                             <td>Appointment Lenght</td>
-                            <td>Doctor ID</td>
-                            <td>Nurse ID</td>
+                            <td>Doctor name</td>
+                            <td>Doctor lastname</td>
+                            <td>Nurse name</td>
+                            <td>Nurse lastname</td>
+
                             <td>Price</td>
                             <td>Actions</td>
 
@@ -71,14 +74,10 @@ class PregledComponent extends React.Component{
                                 <tr key = {appointment.id}>
                                     <td> {appointment.dateAndTime}</td>
                                     <td>{appointment.appointmentLenght}</td>
-                                    {/* <td>{appointment.doctor.id}</td>
-                                    <td>{appointment.nurse.id}</td> */}
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
+                                    <td>{appointment.doctor.user.firstname}</td>
+                                    <td>{appointment.doctor.user.lastname}</td>
+                                    <td>{appointment.nurse.user.firstname}</td>
+                                    <td>{appointment.nurse.user.lastname}</td>
                                     <td>{appointment.price}</td>
                                     <td>
                                         <button onClick={ () => this.editAppointment(appointment.id)} className="btn btn-info">Update</button>
@@ -93,9 +92,12 @@ class PregledComponent extends React.Component{
                     </tbody>
 
                 </table>
-
+                <br></br>
+            <center>
             <button className="btn btn-success" onClick={this.addAppointment}>Add appointment</button>
-
+            </center>
+            <br></br>
+            <hr></hr>
             </div>
         )
     }
