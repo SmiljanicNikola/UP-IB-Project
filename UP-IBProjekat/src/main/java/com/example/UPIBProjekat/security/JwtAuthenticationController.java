@@ -259,10 +259,10 @@ public class JwtAuthenticationController {
 		
 		
 		userRepository.save(user);
-		String token = UUID.randomUUID().toString();
+		/*String token = UUID.randomUUID().toString();
 		verificationTokenService.save(user,token);
 		
-		emailService.sendHtmlMail(user);
+		emailService.sendHtmlMail(user);*/
 		
 		Patient patient = new Patient(signUpRequest.getLbo());
 		patient.setUser(user);

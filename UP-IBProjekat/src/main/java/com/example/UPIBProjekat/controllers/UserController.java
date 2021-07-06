@@ -105,6 +105,30 @@ public class UserController {
 		}
 	}
 	
+	
+	@PutMapping("/korisnicii/{id}")
+	public ResponseEntity<?> update2(@RequestBody User korisnik, 
+			@PathVariable Integer id) {
+		try {
+			User existKorisnik = korisnikService.get(id);
+			if(existKorisnik != null) {
+				existKorisnik.setFirstname(korisnik.getFirstname());
+				existKorisnik.setLastname(korisnik.getLastname());
+				existKorisnik.setUsername(korisnik.getUsername());
+				existKorisnik.setAdress(korisnik.getAdress());
+				//existKorisnik.setPassword(encoder.encode(korisnik.getPassword()));
+				existKorisnik.setCity(korisnik.getCity());
+				existKorisnik.setCountry(korisnik.getCountry());
+				existKorisnik.setPhone(korisnik.getPhone());
+				existKorisnik.setActive(korisnik.isActive());
+				korisnikService.save(existKorisnik);
+			}
+		return new ResponseEntity<>(HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@DeleteMapping("/korisnici/{id}")
 	public void delete(@PathVariable Integer id) {
 		korisnikService.delete(id);
