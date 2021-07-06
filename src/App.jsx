@@ -51,7 +51,7 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
-      uloga: AuthService.getRole,
+      userRole:'',
     };
   }
 
@@ -59,10 +59,13 @@ class App extends Component {
     const user = AuthService.getCurrentUser();
 
     if (user) {
+      let user = localStorage.getItem("user")
+      let json = JSON.parse(user);
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("PACIJENT"),
-        showAdminBoard: user.roles.includes("LEAKR"),
+        userRole: json.roles[0]
+        // showModeratorBoard: user.roles.includes("PACIJENT"),
+        // showAdminBoard: user.roles.includes("LEAKR"),
       });
     }
   }
@@ -74,13 +77,16 @@ class App extends Component {
 
   render() {
     const { currentUser } = this.state;
+    const { userRole } = this.state;
+
 
     return (
 
       
       <div>
-
+        
         <nav className="navbar navbar-expand navbar-dark bg-dark">
+        
         <li className="">
             <a href="/home" className="navbar-brand">
                 <strong>Home</strong>
@@ -89,25 +95,26 @@ class App extends Component {
             </li>
 
           <div className="navbar-nav mr-auto">
-
+          {!currentUser && (
             <li className="nav-item">
 
             <a href="/login" className="nav-link">
             <p>Login</p>
             </a>
-            </li>
-            <li className="nav-item">
+            </li>)}
 
+            {!currentUser && (
+            <li className="nav-item">
             <a href="/registerPacijenta" className="nav-link">
             <p>Registracija</p>
             </a>
-            </li>
+            </li>)}
 
           
             {currentUser && (
-              <li className="nav-item">
-                <a href="/korisnici" className="nav-link">
-                  Users
+              <li style={{marginRight: 300+'px'}} className="nav-item">
+                <a style={{color:'red'}} href="/login" className="nav-link" onClick={this.logOut}>
+                  <strong>Log out</strong>
                 </a>
               </li>
             )}
@@ -115,7 +122,8 @@ class App extends Component {
 
           
           {/*ODVAJANJE/////////////////////////////////////////*/}
-          {currentUser ? (
+          {/* LEKAAAR */}
+          {currentUser && userRole=="LEKAR" ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
               <a href="/profile" className="nav-link">
@@ -154,11 +162,47 @@ class App extends Component {
                 </a>
               </li>
 
-              <li style={{marginRight: 300+'px'}} className="nav-item">
+            </div>
+
+
+
+
+
+          ) 
+          : (
+            <div className="navbar-nav ml-auto">
+             
+            </div>
+          )}
+
+
+{/* PACIJENT */}
+          {currentUser && userRole=="PACIJENT" ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/profile" className="nav-link">
+                <p>Profil</p>
+                </a>
+              </li>
+              
+
+              <li className="nav-item">
+              <a href="/klinike" className="nav-link">
+                <p>Klinike</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/pregledi" className="nav-link">
+                <p>Pregledi</p>
+                </a>
+              </li>
+
+              {/* <li style={{marginRight: 300+'px'}} className="nav-item">
                 <a style={{color: 'red'}} href="/login" className="nav-link" onClick={this.logOut}>
                   <strong>Log out</strong>
                 </a>
-              </li>
+              </li> */}
             </div>
 
 
@@ -218,7 +262,7 @@ class App extends Component {
                             exact
                             path="/klinike"
                             component={ClinicComponent}
-                            roles={["ADMINISTRATOR KLINIKE", "LEKAR"]}
+                            roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT"]}
                           />
                           <PrivateRoute
                           exact
