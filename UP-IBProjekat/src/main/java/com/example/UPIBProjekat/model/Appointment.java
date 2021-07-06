@@ -3,6 +3,7 @@ package com.example.UPIBProjekat.model;
 import static javax.persistence.CascadeType.ALL;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -17,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import org.hibernate.annotations.Proxy;
@@ -93,6 +96,9 @@ public class Appointment implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	
+
 
 	public LocalDateTime getDateAndTime() {
 		return DateAndTime;

@@ -1,5 +1,7 @@
 package com.example.UPIBProjekat.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -28,6 +30,7 @@ import com.example.UPIBProjekat.Repository.DoctorRepository;
 import com.example.UPIBProjekat.model.Appointment;
 import com.example.UPIBProjekat.model.Doctor;
 import com.example.UPIBProjekat.model.Nurse;
+import com.example.UPIBProjekat.model.User;
 import com.example.UPIBProjekat.service.AppointmentService;
 import com.example.UPIBProjekat.service.DoctorService;
 import com.example.UPIBProjekat.service.NurseService;
@@ -50,6 +53,7 @@ public class AppointmentController {
 	public List<Appointment> list(){
 		return appointmentService.listAll();
 	}
+	
 	
 	/*@PostMapping("/pregledi")
 	public ResponseEntity<?> addAppointment(@Valid @RequestBody AddAppointmentRequest addAppointment) {
@@ -81,6 +85,12 @@ public class AppointmentController {
 	    }
 	
 	
+	private LocalDateTime convert(LocalDateTime dateAndTime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	/*@PostMapping("/pregledi")
 	public ResponseEntity<AppointmentDTO> saveAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         Appointment appointment = new Appointment();
@@ -107,12 +117,21 @@ public class AppointmentController {
 	}
 	
 	
-	@PutMapping("/pregledi/{id1}")
-	public void update(@RequestBody Appointment pregled,
+	@PutMapping("/pregledi/{id}")
+	public ResponseEntity<?> update(@RequestBody Appointment pregled, 
 			@PathVariable Integer id) {
-		
-		appointmentService.save(pregled);
-		
+		try {
+			Appointment existPregled = appointmentService.findOne(id);
+			if(existPregled != null) {
+				existPregled.setDateAndTime(pregled.getDateAndTime());
+				existPregled.setAppointmentLenght(pregled.getAppointmentLenght());
+				existPregled.setPrice(pregled.getPrice());
+				appointmentService.save(existPregled);
+			}
+		return new ResponseEntity<>(HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	/*@DeleteMapping("/pregledi/{id}")
