@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.UPIBProjekat.model.User;
+import com.example.UPIBProjekat.model.dto.UserDTO;
 import com.example.UPIBProjekat.service.UserService;
 
 @CrossOrigin(origins="http://localhost:3000")
@@ -34,6 +37,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService korisnikService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@GetMapping("/korisnici")
 	public List<User> list(){
@@ -47,6 +53,19 @@ public class UserController {
 		korisnikService.save(korisnik);
 
 	}
+	
+	/*@GetMapping
+	public ResponseEntity<List<UserDTO>> getKorisnike(){
+		List<UserDTO> korisnici = korisnikService.listSve();
+		
+		List<UserDTO> korisniciDTO = new ArrayList<>();
+		for(User k : korisnici) {
+			korisniciDTO.add(new UserDTO(k));
+		}
+		
+		return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
+		
+	}*/
 	
 	
 	
@@ -73,7 +92,7 @@ public class UserController {
 				existKorisnik.setLastname(korisnik.getLastname());
 				existKorisnik.setUsername(korisnik.getUsername());
 				existKorisnik.setAdress(korisnik.getAdress());
-				existKorisnik.setPassword(korisnik.getPassword());
+				existKorisnik.setPassword(encoder.encode(korisnik.getPassword()));
 				existKorisnik.setCity(korisnik.getCity());
 				existKorisnik.setCountry(korisnik.getCountry());
 				existKorisnik.setPhone(korisnik.getPhone());
