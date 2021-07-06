@@ -8,7 +8,7 @@ class UpdateAppointmentComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            DateAndTime: '',
+            dateAndTime: '',
             appointmentLenght: '',
             doctor: '',
             nurse:'',
@@ -27,7 +27,7 @@ componentDidMount(){
     PregledService.getAppointmentById(this.state.id).then( (res) =>{
         let appointment = res.data;
         this.setState({
-            DateAndTime: appointment.dateAndTime,
+            dateAndTime: appointment.dateAndTime,
             appointmentLenght: appointment.appointmentLenght,
             doctor: appointment.doctor,
             nurse: appointment.nurse,
@@ -40,7 +40,7 @@ componentDidMount(){
 
 updateAppointment = (e) =>{
         e.preventDefault();
-        let appointment = {DateAndTime: this.state.DateAndTime, appointmentLenght: this.state.appointmentLenght, doctor: this.state.doctor,
+        let appointment = {dateAndTime: this.state.dateAndTime, appointmentLenght: this.state.appointmentLenght, doctor: this.state.doctor,
         nurse: this.state.nurse, price: this.state.price
         }
         console.log('appointment => ' + JSON.stringify(appointment));
@@ -86,8 +86,8 @@ cancel(){
                                 <form>
                                     <div className="form-group">
                                         <label>Date And Time</label>
-                                        <input placeholder="Date And Time" name="DateAndTime" className="form-control"
-                                            value={this.state.DateAndTime} onChange={this.changeDateAndTime}/>
+                                        <input placeholder="Date And Time" name="dateAndTime" className="form-control"
+                                            value={this.state.dateAndTime} onChange={this.changeDateAndTime}/>
                                     </div>
 
                                     <div className="form-group">

@@ -12,7 +12,7 @@ class DodavanjePregleda extends React.Component {
             doctors:[],
             nurses:[],
             appointmentLenght: '',
-            DateAndTime: '',
+            dateAndTime: '',
             price: '',
             doctorId:'',
             nurseId:''
@@ -42,7 +42,7 @@ componentDidMount(){
 
 saveAppointment = (e) =>{
     e.preventDefault();
-    let appointment = {appointmentLenght: this.state.appointmentLenght, DateAndTime: this.state.DateAndTime, price: this.state.price,
+    let appointment = {appointmentLenght: this.state.appointmentLenght, dateAndTime: this.state.dateAndTime, price: this.state.price,
         doctorId: this.state.doctorId, nurseId: this.state.nurseId
         }
         console.log('appointment => ' + JSON.stringify(appointment));
@@ -57,7 +57,7 @@ changeAppointmentLenght= (event) =>{
 }
 
 changeDateAndTime= (event) =>{
-    this.setState({DateAndTime: event.target.value});
+    this.setState({dateAndTime: event.target.value});
 }
 
 changePrice= (event) =>{
@@ -89,8 +89,8 @@ changeNurseId= (event) =>{
 
                                     <div className="form-group">
                                         <label>Date and time</label>
-                                        <input placeholder="DateAndTime" name="DateAndTime" type="DateTime" className="form-control"
-                                            value={this.state.DateAndTime} onChange={this.changeDateAndTime}/>
+                                        <input placeholder="DateAndTime" name="dateAndTime" type="datetime-local" className="form-control"
+                                            value={this.state.dateAndTime} onChange={this.changeDateAndTime}/>
                                     </div>
                                     <div className="form-group">
                                         <label>Price</label>
