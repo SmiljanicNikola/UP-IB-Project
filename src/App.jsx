@@ -32,6 +32,7 @@ import NurseComponent from './components/DoctorNurseComponents/NurseComponent';
 import CreateNurse from './components/DoctorNurseComponents/CreateNurse';
 import UpdateDoctorComponent from './components/DoctorNurseComponents/UpdateDoctorComponent';
 import EditProfileComponent from './components/EditProfileComponent';
+import ChangePasswordComponent from './components/ChangePasswordComponent';
 
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
@@ -49,6 +50,7 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+      uloga: AuthService.getRole,
     };
   }
 
@@ -78,22 +80,29 @@ class App extends Component {
       <div>
 
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <BrowserRouter>
-
-          <Link to={"/home"} className="navbar-brand">
-            Medic
-          </Link>
-        </BrowserRouter>
-
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-            <a href="/home" className="nav-link">
-                  Home
+        <li className="">
+            <a href="/home" className="navbar-brand">
+                <strong>Home</strong>
                 </a>
 
             </li>
 
+          <div className="navbar-nav mr-auto">
 
+            <li className="nav-item">
+
+            <a href="/login" className="nav-link">
+            <p>Login</p>
+            </a>
+            </li>
+            <li className="nav-item">
+
+            <a href="/registerPacijenta" className="nav-link">
+            <p>Registracija</p>
+            </a>
+            </li>
+
+          
             {currentUser && (
               <li className="nav-item">
                 <a href="/korisnici" className="nav-link">
@@ -104,46 +113,61 @@ class App extends Component {
           </div>
 
           
-
+          {/*ODVAJANJE/////////////////////////////////////////*/}
           {currentUser ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-
               <a href="/profile" className="nav-link">
-                {currentUser.username}
+                <strong>{currentUser.username }</strong>
                 </a>
- 
-
-
               </li>
+              
+
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  Log out
+              <a href="/klinike" className="nav-link">
+                <p>Klinike</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/doktori" className="nav-link">
+                <p>Doktori</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/medicinskesestre" className="nav-link">
+                <p>Sestre</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/pacijenti" className="nav-link">
+                <p>Pacijenti</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/pregledi" className="nav-link">
+                <p>Pregledi</p>
+                </a>
+              </li>
+
+              <li style={{marginRight: 300+'px'}} className="nav-item">
+                <a style={{color: 'red'}} href="/login" className="nav-link" onClick={this.logOut}>
+                  <strong>Log out</strong>
                 </a>
               </li>
             </div>
-          ) : (
+
+
+
+
+
+          ) 
+          : (
             <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-              <BrowserRouter>
-
-                <Link to={"/login"} className="nav-link">
-                  
-                  Login
-                </Link>
-              </BrowserRouter>
-
-              </li>
-
-              <li className="nav-item">
-              <BrowserRouter>
-
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </BrowserRouter>
-
-              </li>
+             
             </div>
           )}
           
@@ -153,7 +177,6 @@ class App extends Component {
                 <BrowserRouter>
                     <Switch> 
                           {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
-                          <Route path="/korisnici" component={UserComponent}></Route>
                           <Route path="/doktori" component={DoctorComponent}></Route>
                           <Route path="/medicinskesestre" component={NurseComponent}></Route>
 
@@ -164,7 +187,7 @@ class App extends Component {
                           <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
                           <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
-
+                          <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
 
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/profile" component={ Profile }></Route>
@@ -192,13 +215,21 @@ class App extends Component {
                             path="/klinike"
                             component={ClinicComponent}
                             roles={["ADMINISTRATOR KLINIKE", "LEKAR"]}
-                        />
-                        <PrivateRoute
+                          />
+                          <PrivateRoute
                           exact
                           path="/pregledi"
                           component={PregledComponent}
                           roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
-                        />
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/korisnici"
+                          component={UserComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
                     </Switch>
                 </BrowserRouter>
               </div>

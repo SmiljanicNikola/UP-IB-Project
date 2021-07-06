@@ -7,7 +7,8 @@ class UserComponent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            users:[]
+            users:[],
+            roles:[]
         }
 
         this.addUser = this.addUser.bind(this);
@@ -55,7 +56,7 @@ class UserComponent extends React.Component{
                             <td>Grad</td>
                             <td>Drzava</td>
                             <td>Telefon</td>
-                            {/* <td>Uloga</td> */}
+                            {<td>Uloga</td>}
                             <td>Actions</td>
 
                            
@@ -76,7 +77,8 @@ class UserComponent extends React.Component{
                                     <td>{user.city}</td>
                                     <td>{user.country}</td>
                                     <td>{user.phone}</td>
-                                    {/* <td>{user.roles.naziv}</td> */}
+
+                                     <td>{user.roles.naziv}</td> 
                                     <td>          
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.blockUser(user.id)} className="btn btn-danger">Block</button>
                                     </td>
