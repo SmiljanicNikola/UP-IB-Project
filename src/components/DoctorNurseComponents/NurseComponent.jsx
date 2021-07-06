@@ -68,7 +68,9 @@ class NurseComponent extends React.Component{
                                     <td>{nurse.user.adress}</td>
                                     <td>{nurse.clinic.naziv}</td>
                                     <td>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.editNurse(nurse.id)} className="btn btn-info">Update</button>
+                                       
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.editNurse(nurse.user.id)} className="btn btn-info">Update</button>
+                                        
                                     </td>
                                 </tr>
                             )

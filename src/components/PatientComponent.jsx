@@ -10,6 +10,46 @@ class PatientComponent extends React.Component{
             patients:[]
         }
         this.viewPatient = this.viewPatient.bind(this);
+        this.sortByLBOAsc=()=>{
+
+            let sortedPatientsAsc;
+            sortedPatientsAsc= this.state.patients.sort((a,b)=>{
+               return parseInt(a.lbo)  - parseInt(b.lbo);
+            })
+  
+            this.setState({
+                patients:sortedPatientsAsc
+            })
+
+        }
+
+
+        this.sortByLBODsc=()=>{
+
+            let sortedPatientsDsc;
+            sortedPatientsDsc= this.state.patients.sort((a,b)=>{
+               return parseInt(b.lbo)  - parseInt(a.lbo);
+            })
+  
+            this.setState({
+                patients:sortedPatientsDsc
+            })
+        }
+
+
+        this.sortByAdresaAsc=()=>{
+
+            let sortByAdresaAsc;
+            sortByAdresaAsc= this.state.patients.sort((a,b)=>{
+               return (a.user.adress)  - (b.user.adress);
+            })
+  
+            this.setState({
+                patients:sortByAdresaAsc
+            })
+
+        }
+
 
     }
 
@@ -17,16 +57,19 @@ class PatientComponent extends React.Component{
         PacijentService.getPacijente().then((response) =>{
             this.setState({patients:response.data})
         });
+      
 
         
     }
+
+    
     viewPatient(id){
         this.props.history.push(`viewPatient/${id}`);
     }
 
     onSort(event, sortKey){
         const data = this.state.patients;
-        data.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
+        data.sort((ASC) => [sortKey].localeCompare([sortKey]))
         this.setState({data})
       }
 
@@ -36,6 +79,19 @@ class PatientComponent extends React.Component{
     this.setState({data})
     }
 
+
+    sortAscending = () => {
+        const { lastnames } = this.state;
+        lastnames.sort((a, b) => a - b)    
+        this.setState({ lastnames })
+      }
+    
+      sortDescending = () => {
+        const { prices } = this.state;
+        prices.sort((a, b) => a - b).reverse()
+        this.setState({ prices })
+      }
+    
 
     render(){
         return (
@@ -51,10 +107,10 @@ class PatientComponent extends React.Component{
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th onClick={e => this.onSort('ASC')}>Firstname</th>
+                            <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Adresa</th>
-                            <th onClick={e => this.onSort2(e, 'lbo')}>LBO</th>  
+                            <th>LBO <button onClick={this.sortByLBOAsc}>ASC</button> <button onClick={this.sortByLBODsc}>DESC</button></th>  
                             <th></th>                         
                         </tr>
                     </thead>

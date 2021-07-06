@@ -37,6 +37,7 @@ import ChangePasswordComponent from './components/ChangePasswordComponent';
 // import { Link } from 'react-router-dom';
 import AuthService from "./services/AuthService";
 import PregledComponent from './components/PregledComponent';
+import UpdateNurseComponent from './components/DoctorNurseComponents/UpdateNurseComponent';
 
 
 
@@ -187,6 +188,8 @@ class App extends Component {
                           <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
                           <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
+                          <Route path="/updateNurse/:id" component={UpdateNurseComponent}></Route>
+
                           <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
 
                           <Route path="/register" component={ RegisterUser }></Route>

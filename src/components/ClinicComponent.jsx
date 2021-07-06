@@ -68,6 +68,7 @@ class ClinicComponent extends React.Component{
                             <th onClick={e => this.onSort(e, 'naziv')}>Naziv</th>
                             <th onClick={e => this.onSort(e, 'adresa')}>Adresa</th>
                             <th onClick={e => this.onSort2(e, 'prosecnaOcena')}>Prosecna Ocena</th>
+
                             <td></td>
                         </tr>
                     </thead>
