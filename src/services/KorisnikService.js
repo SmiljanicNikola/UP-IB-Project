@@ -2,6 +2,8 @@ import axios from 'axios'
 const USERSZAIZMENUBEZPASS_REST_API_URL = 'http://localhost:8097/korisnicii';
 const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
 const KORISNIKBLOCK_REST_API_URL = 'http://localhost:8097/korisnici/blokiraj';
+const KORISNIKUNBLOCK_REST_API_URL = 'http://localhost:8097/korisnici/odblokiraj';
+
 
 
 class KorisnikService{
@@ -29,7 +31,10 @@ class KorisnikService{
         return axios.get(USERS_REST_API_URL + '/' + korisnikId)
     }
 
+    unblockUser(korisnikId){
+        return axios.put(KORISNIKUNBLOCK_REST_API_URL + '/' + korisnikId);
 
+    }
 }
 
 
