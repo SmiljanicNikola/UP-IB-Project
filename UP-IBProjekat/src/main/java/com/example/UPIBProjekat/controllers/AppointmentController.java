@@ -118,14 +118,14 @@ public class AppointmentController {
 	
 	
 	@PutMapping("/pregledi/{id}")
-	public ResponseEntity<?> update(@RequestBody Appointment pregled, 
+	public ResponseEntity<?> update(@RequestBody AddAppointmentRequest addAppointment, 
 			@PathVariable Integer id) {
 		try {
 			Appointment existPregled = appointmentService.findOne(id);
 			if(existPregled != null) {
-				existPregled.setDateAndTime(pregled.getDateAndTime());
-				existPregled.setAppointmentLenght(pregled.getAppointmentLenght());
-				existPregled.setPrice(pregled.getPrice());
+				existPregled.setDateAndTime(addAppointment.getDateAndTime());
+				existPregled.setAppointmentLenght(addAppointment.getAppointmentLenght());
+				existPregled.setPrice(addAppointment.getPrice());
 				appointmentService.save(existPregled);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -134,12 +134,13 @@ public class AppointmentController {
 		}
 	}
 	
-	/*@DeleteMapping("/pregledi/{id}")
+	@DeleteMapping("/pregledi/{id}")
 	public void delete(@PathVariable Integer id) {
 		appointmentService.delete(id);
-	}*/
+	}
+
 	
-	@DeleteMapping(value = "/pregledi/{id2}")
+	/*@DeleteMapping(value = "/pregledi/{id2}")
     public ResponseEntity<?> deleteAppointment(@PathVariable("id2") Integer id) {
         Appointment appointment = appointmentService.findOne(id);
         if (appointment != null) {
@@ -148,7 +149,7 @@ public class AppointmentController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 	
 	
 	
