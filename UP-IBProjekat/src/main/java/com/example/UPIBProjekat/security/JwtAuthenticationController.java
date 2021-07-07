@@ -32,6 +32,7 @@ import com.example.UPIBProjekat.Repository.RoleRepository;
 import com.example.UPIBProjekat.Repository.UserRepository;
 import com.example.UPIBProjekat.model.Clinic;
 import com.example.UPIBProjekat.model.ClinicAdministrator;
+import com.example.UPIBProjekat.model.ClinicCentarAdministrator;
 import com.example.UPIBProjekat.model.Doctor;
 import com.example.UPIBProjekat.model.Nurse;
 import com.example.UPIBProjekat.model.Patient;
@@ -42,6 +43,7 @@ import com.example.UPIBProjekat.payload.MessageResponse;
 import com.example.UPIBProjekat.payload.PatientSignupRequest;
 import com.example.UPIBProjekat.payload.SignupRequest;
 import com.example.UPIBProjekat.service.ClinicAdministratorService;
+import com.example.UPIBProjekat.service.ClinicCentarAdministratorService;
 import com.example.UPIBProjekat.service.EmailService;
 import com.example.UPIBProjekat.service.UserService;
 import com.example.UPIBProjekat.service.VerificationTokenService;
@@ -84,6 +86,9 @@ public class JwtAuthenticationController {
 	
 	@Autowired
 	private ClinicAdministratorService clinicAdminService;
+	
+	@Autowired
+	private ClinicCentarAdministratorService clinicCentarAdminService;
 	
 	@Autowired
 	private UserService userService;
@@ -195,6 +200,36 @@ public class JwtAuthenticationController {
 		clinicAdmin.setUser(user);
 		clinicAdmin.setClinic(clinicRepository.getOne(signUpRequest.getClinic_id()));
 		clinicAdminService.save(clinicAdmin);
+
+		
+
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+	
+	@PostMapping("cliniccentaradmin/signup")
+	public ResponseEntity<?> registerClinicCenterAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
+		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username is already taken!"));
+		}
+		
+		User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getAdress(), encoder.encode(signUpRequest.getPassword()),
+				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive() == true);
+		
+		Set<Role> roles = new HashSet<>();
+		
+		Role userRole = roleRepository.findByName("ADMINISTRATOR CENTRA")
+		.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(userRole);
+
+		user.setRoles(roles);
+
+		userRepository.save(user);
+		
+		ClinicCentarAdministrator centarAdmin = new ClinicCentarAdministrator();
+		centarAdmin.setUser(user);
+		clinicCentarAdminService.save(centarAdmin);
 
 		
 

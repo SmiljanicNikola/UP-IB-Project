@@ -81,6 +81,9 @@ public class User implements Serializable {
     private ClinicAdministrator clinicadmins;
     
     @OneToOne(mappedBy = "user")
+    private ClinicCentarAdministrator cliniccenteradmins;
+    
+    @OneToOne(mappedBy = "user")
     private VerificationToken verificationToken;
 	
     @ManyToMany( cascade = CascadeType.MERGE)
