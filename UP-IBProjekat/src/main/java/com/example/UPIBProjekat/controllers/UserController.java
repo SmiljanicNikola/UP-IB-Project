@@ -97,6 +97,8 @@ public class UserController {
 				existKorisnik.setCountry(korisnik.getCountry());
 				existKorisnik.setPhone(korisnik.getPhone());
 				existKorisnik.setActive(true);
+				existKorisnik.setPrviput(korisnik.isPrviput());
+
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -112,6 +114,24 @@ public class UserController {
 			User existKorisnik = korisnikService.get(id);
 			if(existKorisnik != null) {
 				existKorisnik.setActive(true);
+				existKorisnik.setPrviput(true);
+
+				korisnikService.save(existKorisnik);
+			}
+		return new ResponseEntity<>(HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping("/korisnici/blokiraj/{id}")
+	public ResponseEntity<?> blokiraj(@PathVariable Integer id) {
+		try {
+			User existKorisnik = korisnikService.get(id);
+			if(existKorisnik != null) {
+				existKorisnik.setActive(false);
+				existKorisnik.setPrviput(false);
+
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);

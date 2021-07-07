@@ -45,6 +45,9 @@ public class PatientSignupRequest {
 	private boolean active;
 	
 	@NotBlank
+	private boolean prviput;
+	
+	@NotBlank
 	private String lbo;
 
 	public String getFirstname() {
@@ -141,6 +144,14 @@ public class PatientSignupRequest {
 
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
+	}
+
+	public boolean isPrviput() {
+		return prviput;
+	}
+
+	public void setPrviput(boolean prviput) {
+		this.prviput = prviput;
 	}
 	
 	

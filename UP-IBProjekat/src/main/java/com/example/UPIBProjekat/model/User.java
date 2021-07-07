@@ -62,6 +62,9 @@ public class User implements Serializable {
 	@Column(name = "active", unique = false, nullable = false)
 	private boolean active;
 	
+	@Column(name = "prviput", unique = false, nullable = false)
+	private boolean prviput;
+	
 	/*@Column(name="enabled",nullable=true)
 	private boolean enabled;*/
 	
@@ -112,8 +115,36 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.active = active;
 	}
+	
+	
 
 
+
+
+	public User(String firstname, String lastname, String username, String adress, String password,
+			String city, String country, String phone, boolean active, boolean prviput) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.adress = adress;
+		this.password = password;
+		this.city = city;
+		this.country = country;
+		this.phone = phone;
+		this.active = active;
+		this.prviput = prviput;
+	}
+
+
+	public boolean isPrviput() {
+		return prviput;
+	}
+
+
+	public void setPrviput(boolean prviput) {
+		this.prviput = prviput;
+	}
 
 
 	public Integer getId() {
