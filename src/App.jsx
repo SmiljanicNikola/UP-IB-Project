@@ -39,8 +39,7 @@ import AuthService from "./services/AuthService";
 import PregledComponent from './components/PregledComponent';
 import UpdateNurseComponent from './components/DoctorNurseComponents/UpdateNurseComponent';
 import BlockUserComponent from './components/BlockUserComponent';
-
-
+import MyAppointments from './components/MyAppointments';
 
 
 class App extends Component {
@@ -154,6 +153,12 @@ class App extends Component {
               <li className="nav-item">
               <a href="/pacijenti" className="nav-link">
                 <p>Pacijenti</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+              <a href="/workcalendar" className="nav-link">
+                <p>WorkCalendar</p>
                 </a>
               </li>
 
@@ -320,11 +325,13 @@ class App extends Component {
                           <Route path="/register" component={ RegisterUser }></Route>
                           <Route path="/addAppointment" component={DodavanjePregleda}></Route>
                           <Route path="/addClinic" component={AddClinic}></Route>
+                          <Route path="/workcalendar" component={MyAppointments}></Route>
                           */}
 
                           <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
 
                           
+
                           <Route path="/profile" component={ Profile }></Route>
                           <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
@@ -348,8 +355,12 @@ class App extends Component {
                             component={ClinicComponent}
                             roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "MEDICINSKA SESTRA"]}
                           />
-
-                          
+                            <PrivateRoute
+                            exact
+                            path="/workcalendar"
+                            component={MyAppointments}
+                            roles={["LEKAR"]}
+                          />
                           <PrivateRoute
                           exact
                           path="/addAppointment"
