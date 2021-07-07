@@ -183,7 +183,7 @@ class App extends Component {
           )}
 
 
-{/* PACIJENT */}
+        {/* PACIJENT */}
           {currentUser && userRole=="PACIJENT" ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -272,6 +272,25 @@ class App extends Component {
              
             </div>
           )}
+
+
+          {/* MEDICINSKA SESTRA */}
+          {currentUser && userRole=="MEDICINSKA SESTRA" ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/profile" className="nav-link">
+                <p>Profil</p>
+                </a>
+              </li>
+            </div>
+
+          ) 
+          : (
+            <div className="navbar-nav ml-auto">
+             
+            </div>
+          )}
+
           
         </nav>
 
@@ -281,47 +300,63 @@ class App extends Component {
                           {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
                           <Route path="/doktori" component={DoctorComponent}></Route>
                           <Route path="/medicinskesestre" component={NurseComponent}></Route>
-                          <Route path="/zahtevi" component={RegistracijeZahtevi}></Route>
+                          
 
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>
 
 
                           <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
+
+                          {/*
+                          <Route path="/zahtevi" component={RegistracijeZahtevi}></Route>
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
                           <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
                           <Route path="/updateNurse/:id" component={UpdateNurseComponent}></Route>
                           <Route path="/blockUser/:id" component={BlockUserComponent}></Route>
+                          <Route path="/addDoctor" component={CreateDoctor}></Route>
+                          <Route path="/addNurse" component={CreateNurse}></Route>
+                          <Route path="/addPatient" component={AddPatient}></Route>
+                          <Route path="/register" component={ RegisterUser }></Route>
+                          <Route path="/addAppointment" component={DodavanjePregleda}></Route>
+                          <Route path="/addClinic" component={AddClinic}></Route>
+                          */}
 
                           <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
 
-                          <Route path="/register" component={ RegisterUser }></Route>
+                          
                           <Route path="/profile" component={ Profile }></Route>
                           <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
 
-
-                          <Route path="/addAppointment" component={DodavanjePregleda}></Route>
-                          <Route path="/addClinic" component={AddClinic}></Route>
-                          <Route path="/addDoctor" component={CreateDoctor}></Route>
-                          <Route path="/addNurse" component={CreateNurse}></Route>
-                          <Route path="/addPatient" component={AddPatient}></Route>
-
-
-
                           <Route path="/home" component={Home}></Route>
                           <Route path="/homePatient" component={HomePagePatient}></Route>
-
                           <Route path="/updateProfile/:id" component={EditProfileComponent}></Route>
                           <Route path="/viewAppointment/:id" component={ViewAppointmentComponent}></Route>
                           <Route path="/viewClinic/:id" component={ViewClinicComponent}></Route>
                           <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>
+
+                          <PrivateRoute
+                          exact
+                          path="/zahtevi"
+                          component={RegistracijeZahtevi}
+                          roles={["ADMINISTRATOR KLINIKE"]}/>
+
                           <PrivateRoute
                             exact
                             path="/klinike"
                             component={ClinicComponent}
                             roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "MEDICINSKA SESTRA"]}
                           />
+
+                          
+                          <PrivateRoute
+                          exact
+                          path="/addAppointment"
+                          component={DodavanjePregleda}
+                          roles={["LEKAR","ADMINISTRATOR KLINIKE"]}
+                          />
+
                           <PrivateRoute
                           exact
                           path="/pregledi"
@@ -333,6 +368,61 @@ class App extends Component {
                           exact
                           path="/korisnici"
                           component={UserComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/updateClinic/:id"
+                          component={UpdateClinicComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}/>
+
+                          <PrivateRoute
+                          exact
+                          path="/updateDoctor/:id"
+                          component={UpdateDoctorComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/addClinic"
+                          component={AddClinic}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/blockUser/:id"
+                          component={BlockUserComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/updateNurse/:id"
+                          component={UpdateNurseComponent}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/addNurse"
+                          component={CreateNurse}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/addPatient"
+                          component={AddPatient}
+                          roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/addDoctor"
+                          component={CreateDoctor}
                           roles={["ADMINISTRATOR KLINIKE"]}
                           />
 
