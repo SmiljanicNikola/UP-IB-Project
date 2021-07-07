@@ -20,7 +20,7 @@ class PacijentService{
     getPatientById(patientId){
         return axios.get(PACIJENTI_REST_API_URL + '/' + patientId)
     }
-
+    
 }
 
 

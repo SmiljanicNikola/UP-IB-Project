@@ -1,5 +1,6 @@
-import React from 'react'
+//import React from 'react'
 import PacijentService from '../services/PacijentService'
+import React, { useEffect, useState } from "react";
 
 
 class PatientComponent extends React.Component{
@@ -24,6 +25,7 @@ class PatientComponent extends React.Component{
         }
 
 
+
         this.sortByLBODsc=()=>{
 
             let sortedPatientsDsc;
@@ -35,8 +37,6 @@ class PatientComponent extends React.Component{
                 patients:sortedPatientsDsc
             })
         }
-
-
         this.sortByAdresaAsc=()=>{
 
             let sortByAdresaAsc;
@@ -80,6 +80,11 @@ class PatientComponent extends React.Component{
     }
 
 
+
+
+
+
+
     sortAscending = () => {
         const { lastnames } = this.state;
         lastnames.sort((a, b) => a - b)    
@@ -99,6 +104,8 @@ class PatientComponent extends React.Component{
                 <h1 className="text-center"> Lista pacijenata</h1>
                 {/* <button className="btn btn-primary" >Login</button>
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+
+        
                 <div className="row">
                     
 

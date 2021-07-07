@@ -40,8 +40,6 @@ import PregledComponent from './components/PregledComponent';
 import UpdateNurseComponent from './components/DoctorNurseComponents/UpdateNurseComponent';
 import BlockUserComponent from './components/BlockUserComponent';
 import MyAppointments from './components/MyAppointments';
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -132,11 +130,7 @@ class App extends Component {
               </li>
               
 
-              <li className="nav-item">
-              <a href="/klinike" className="nav-link">
-                <p>Klinike</p>
-                </a>
-              </li>
+            
 
               <li className="nav-item">
               <a href="/doktori" className="nav-link">
@@ -234,7 +228,11 @@ class App extends Component {
                 </a>
               </li>
               
-
+              <li className="nav-item">
+              <a href="/klinike" className="nav-link">
+                <p>Klinike</p>
+                </a>
+              </li>
               <li className="nav-item">
               <a href="/korisnici" className="nav-link">
                 <p>Korisnici</p>
@@ -296,6 +294,29 @@ class App extends Component {
             </div>
           )}
 
+           {/* ADMINISTRATOR CENTRA */}
+           {currentUser && userRole=="ADMINISTRATOR CENTRA" ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/profile" className="nav-link">
+                <p>Profil</p>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href="/klinike" className="nav-link">
+                <p>Klinike</p>
+                </a>
+              </li>
+            </div>
+
+          ) 
+          : (
+            <div className="navbar-nav ml-auto">
+             
+            </div>
+          )}
+
           
         </nav>
 
@@ -309,7 +330,6 @@ class App extends Component {
 
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>
-
 
                           <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
 
@@ -353,7 +373,7 @@ class App extends Component {
                             exact
                             path="/klinike"
                             component={ClinicComponent}
-                            roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "MEDICINSKA SESTRA"]}
+                            roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "ADMINISTRATOR CENTRA"]}
                           />
                             <PrivateRoute
                             exact
@@ -399,7 +419,7 @@ class App extends Component {
                           exact
                           path="/addClinic"
                           component={AddClinic}
-                          roles={["ADMINISTRATOR KLINIKE"]}
+                          roles={["ADMINISTRATOR CENTRA"]}
                           />
 
                           <PrivateRoute
