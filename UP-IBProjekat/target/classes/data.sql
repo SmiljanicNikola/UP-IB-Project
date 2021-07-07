@@ -109,14 +109,14 @@ DROP TABLE IF EXISTS `doctor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `doctor` (
   `doctor_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
-  `clinic_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `clinic_id` int DEFAULT NULL,
   PRIMARY KEY (`doctor_id`),
   KEY `doctor_fk_idx` (`user_id`),
   KEY `clinic_doctor_fk_idx` (`clinic_id`),
   CONSTRAINT `clinic_fk` FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`clinic_id`),
-  CONSTRAINT `doctor_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `doctor_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (1,8,1),(2,9,8),(4,37,8),(7,43,2),(8,44,2);
+INSERT INTO `doctor` VALUES (1,8,1),(2,9,8),(4,37,8),(7,43,2),(8,44,2),(11,50,2);
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (82);
+INSERT INTO `hibernate_sequence` VALUES (87);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `nurse` (
   KEY `FK1alq931t4pb73cqbrfm4e7lsa` (`clinic_id`),
   CONSTRAINT `FK1alq931t4pb73cqbrfm4e7lsa` FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`clinic_id`),
   CONSTRAINT `nurse_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +176,7 @@ CREATE TABLE `nurse` (
 
 LOCK TABLES `nurse` WRITE;
 /*!40000 ALTER TABLE `nurse` DISABLE KEYS */;
-INSERT INTO `nurse` VALUES (1,24,1);
+INSERT INTO `nurse` VALUES (1,24,1),(2,48,2);
 /*!40000 ALTER TABLE `nurse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +230,7 @@ CREATE TABLE `refreshtoken` (
 
 LOCK TABLES `refreshtoken` WRITE;
 /*!40000 ALTER TABLE `refreshtoken` DISABLE KEYS */;
-INSERT INTO `refreshtoken` VALUES (1,'2021-06-30 18:44:00','336246e9-c292-4921-a598-91a9015d0d6f',8),(2,'2021-06-30 18:54:01','11711604-247c-4910-9110-5e1da5d819c2',8),(3,'2021-06-30 18:54:13','23cd734b-7b84-442f-8da8-b9ca821eb251',8),(4,'2021-06-30 18:54:16','13866750-efdc-4ea0-ad21-9e8702971f1d',8),(5,'2021-06-30 19:04:50','bc338b49-69ea-41b3-bae4-158c93d013db',8),(6,'2021-06-30 19:07:15','2feb1f64-914c-4136-b301-c8b9ec341ced',8),(7,'2021-06-30 19:07:55','0060d1ac-400e-461b-b610-64c4b7162334',8),(8,'2021-06-30 19:08:03','b6609940-f390-4b98-baf7-dd24e27a8588',8),(9,'2021-06-30 19:09:25','c7f170ff-0135-4b27-bdb1-c7fc170ce6ae',8),(10,'2021-06-30 19:10:41','08c01f69-b6e3-472e-bee7-01727296d80c',44),(11,'2021-06-30 19:11:32','daced8e4-9486-4e83-83af-18bbe6750bfb',44),(12,'2021-06-30 19:16:37','da8cfcbc-8ef0-4f30-b6e3-db9403b336a8',44),(13,'2021-06-30 19:17:25','2f5e1854-bc96-4455-9f27-2135a28be090',8),(14,'2021-06-30 19:18:23','d5dd2997-f8a7-4e82-aca1-a0e28122ce87',8),(15,'2021-06-30 19:18:38','226fe76f-af0d-49c5-859f-ef6fb979bef8',39),(16,'2021-06-30 19:19:32','08616202-ffe0-42cf-819f-979523673ba2',20),(17,'2021-06-30 19:21:30','ed67bf70-e74c-48aa-98da-103b0a0266f5',20),(18,'2021-06-30 19:21:50','1d24587c-ec4c-49b9-8e8c-0e2bffb19a39',8),(19,'2021-06-30 19:22:44','edf33c6a-7550-4a28-aeed-3e570cafc9c6',8),(20,'2021-06-30 19:25:47','176cc7b7-cf3c-4f4f-94f2-76c01c61592c',20),(21,'2021-06-30 19:26:14','58813eb3-a164-440c-bab4-ae48dbac39e3',8),(22,'2021-06-30 19:29:35','4b1bda45-4951-40f3-9f4f-7ec6f88b3688',8),(23,'2021-06-30 19:30:01','8bca077b-c929-4601-9628-2e9afb731020',20),(24,'2021-06-30 19:31:46','4b885a64-bb69-4abc-9c1e-a01e8c6a5f91',8),(25,'2021-06-30 19:32:08','b9bed224-e1b7-4c57-9dbb-cf38617fa2e8',20),(26,'2021-06-30 19:33:27','72b69b11-60be-404c-9253-2d40f6395e73',20),(27,'2021-06-30 19:35:19','849944aa-a29d-4cd7-987d-f304f39823db',8),(28,'2021-06-30 19:37:29','18b1c08f-a92e-4a3d-b9af-d5d357ddf97c',8),(29,'2021-06-30 19:37:56','abb7c682-4180-432f-8846-bcc269502435',20),(30,'2021-06-30 19:39:16','6226e4ae-091b-457f-95d7-a3107acce35f',20),(31,'2021-06-30 19:40:26','fa97bdba-d96f-4efb-8682-02a8ac7ad430',20),(32,'2021-06-30 19:41:28','a8285677-46e1-4b41-8203-edbb41e41c66',20),(33,'2021-06-30 19:42:22','3b03d99e-0cd3-4d48-a242-f37ce1d35c8c',20),(34,'2021-06-30 19:44:13','cf8b4ba0-c891-48f0-b486-b870edfb4a39',20),(35,'2021-06-30 19:44:35','c3d53812-f560-4b68-b6af-626edf05ba01',8),(36,'2021-06-30 19:45:33','bda01f25-6544-4254-8775-dd218118024f',8),(37,'2021-06-30 19:49:03','c31e64fd-0cde-4b92-849d-f21de88baf03',8),(38,'2021-06-30 19:49:25','9ad1c185-98be-469e-b1ce-4dd60152a53b',20),(39,'2021-07-01 13:40:14','4fa7b2cd-b82f-4cd1-b4ca-70092e5b5a1e',8),(40,'2021-07-01 13:42:05','cbdcbdfc-403a-4145-9673-e77bf72c5a88',8),(41,'2021-07-01 13:46:40','92a02919-b0e7-4713-86b2-fe903bcd4f28',8),(42,'2021-07-01 13:51:06','4a258d86-1660-4f75-9f86-d5c780b611ef',8),(43,'2021-07-01 13:51:48','f614713f-098e-4f37-891f-203c189d0610',20),(44,'2021-07-01 14:01:00','d08b9aef-84e6-4689-883d-9e0f4ef92dc2',8),(45,'2021-07-01 14:14:48','6eb0ce51-e68a-409a-b43b-95d873b68e16',8),(46,'2021-07-01 14:20:30','659d2507-b9d8-4aee-8d9a-2add86755e4a',8),(47,'2021-07-01 14:30:06','30400b5a-4a82-4d0f-9401-9dde0fbfa7ba',8),(48,'2021-07-01 14:34:32','c89ef180-03a3-4347-99dc-bab52b99b066',8),(49,'2021-07-01 14:37:12','d51bbe15-f86b-44cf-8671-d43693007c4f',8),(50,'2021-07-01 14:38:04','b4999422-553b-451a-bc2c-9981933a9601',8),(51,'2021-07-01 14:40:06','7af20126-d01e-4115-bd30-e80be0490791',20),(52,'2021-07-01 14:50:11','95ff945b-ec80-46e8-9e70-d6c5066fec06',20),(53,'2021-07-01 14:50:46','b74e60bd-033d-4725-8c5d-bcdadc981bbb',8),(54,'2021-07-01 14:52:45','b22bb456-ef79-4500-9f89-7c937cc7fc38',8),(55,'2021-07-01 14:54:47','9cd94941-7280-4460-8978-59c2eef39ad0',8),(56,'2021-07-01 15:01:28','064cc9e6-473f-47cc-a5ce-6c1289c6513f',8),(57,'2021-07-01 15:30:26','05cc9a70-4f6a-4aeb-9d87-66589278b953',8),(58,'2021-07-01 15:30:45','5b9866b9-65dc-4927-a186-f5f4425e3bd4',8),(59,'2021-07-01 15:31:16','6b84ae40-5f96-4cde-b299-b5826e70dd59',20),(60,'2021-07-01 15:38:47','00b6daa6-cb40-40fe-b484-9ca757e966ba',8),(61,'2021-07-01 16:25:18','85498223-0370-4716-94ad-eb5d041b69ec',8),(62,'2021-07-01 22:20:06','9eddf0d6-6d33-4107-9bfd-3dff68cf66a1',8),(63,'2021-07-01 22:29:53','eab0eabd-40b5-419c-808d-98e514186bf4',8),(64,'2021-07-04 22:55:06','c2337647-f51a-4942-8b67-16e921515daf',8),(65,'2021-07-04 23:13:52','e835ee50-9212-453d-b2f5-aae6f7ba5737',20),(66,'2021-07-05 19:34:18','f29061d9-96ed-4110-bc69-8246870b0722',8),(67,'2021-07-06 12:44:58','32b21bc5-d44c-47cc-bb33-ab47387d21f6',8),(68,'2021-07-06 13:03:59','87dbfc2f-8d75-41e4-af04-645893b3a1b0',20),(69,'2021-07-06 13:05:33','28561396-00e4-4bc8-8f3f-fc31a79a12b0',8),(70,'2021-07-06 13:08:30','05e1d66f-b822-4330-b10d-8367d9b1c1bc',20),(71,'2021-07-06 14:29:21','0ca02f42-31ef-4926-8baa-f1dbf6ad2cee',8),(72,'2021-07-06 14:32:47','ed356844-6ebf-410a-9ec3-a759620d16ba',8),(73,'2021-07-06 14:59:32','7a64fa3a-b804-41b9-a005-b143fdc385d1',8),(74,'2021-07-06 15:05:27','b5f8b7f9-0bc9-4386-8455-612fcef0e094',8),(75,'2021-07-06 15:06:28','09a64bd3-baa4-490c-b543-0d961d09dcb5',20),(76,'2021-07-06 15:08:32','d1b7f75c-ba28-49e8-9f0a-a77f8995258b',8),(77,'2021-07-06 15:18:51','e02f46c2-25a6-45c7-ba3b-a8efa4a953ec',20),(78,'2021-07-06 15:20:51','cf2fea5d-7d77-4f12-b49f-64122130d3b9',8),(79,'2021-07-06 15:35:23','3c121b70-8103-4de0-86e6-f4f3dcd8ab6d',46),(80,'2021-07-06 15:36:14','06a8dee2-07f2-472b-9211-e4eba80e37f6',8),(81,'2021-07-06 15:42:00','d52d66ca-bc1f-49ef-9d4e-8140dd522ae4',46);
+INSERT INTO `refreshtoken` VALUES (1,'2021-06-30 18:44:00','336246e9-c292-4921-a598-91a9015d0d6f',8),(2,'2021-06-30 18:54:01','11711604-247c-4910-9110-5e1da5d819c2',8),(3,'2021-06-30 18:54:13','23cd734b-7b84-442f-8da8-b9ca821eb251',8),(4,'2021-06-30 18:54:16','13866750-efdc-4ea0-ad21-9e8702971f1d',8),(5,'2021-06-30 19:04:50','bc338b49-69ea-41b3-bae4-158c93d013db',8),(6,'2021-06-30 19:07:15','2feb1f64-914c-4136-b301-c8b9ec341ced',8),(7,'2021-06-30 19:07:55','0060d1ac-400e-461b-b610-64c4b7162334',8),(8,'2021-06-30 19:08:03','b6609940-f390-4b98-baf7-dd24e27a8588',8),(9,'2021-06-30 19:09:25','c7f170ff-0135-4b27-bdb1-c7fc170ce6ae',8),(10,'2021-06-30 19:10:41','08c01f69-b6e3-472e-bee7-01727296d80c',44),(11,'2021-06-30 19:11:32','daced8e4-9486-4e83-83af-18bbe6750bfb',44),(12,'2021-06-30 19:16:37','da8cfcbc-8ef0-4f30-b6e3-db9403b336a8',44),(13,'2021-06-30 19:17:25','2f5e1854-bc96-4455-9f27-2135a28be090',8),(14,'2021-06-30 19:18:23','d5dd2997-f8a7-4e82-aca1-a0e28122ce87',8),(15,'2021-06-30 19:18:38','226fe76f-af0d-49c5-859f-ef6fb979bef8',39),(16,'2021-06-30 19:19:32','08616202-ffe0-42cf-819f-979523673ba2',20),(17,'2021-06-30 19:21:30','ed67bf70-e74c-48aa-98da-103b0a0266f5',20),(18,'2021-06-30 19:21:50','1d24587c-ec4c-49b9-8e8c-0e2bffb19a39',8),(19,'2021-06-30 19:22:44','edf33c6a-7550-4a28-aeed-3e570cafc9c6',8),(20,'2021-06-30 19:25:47','176cc7b7-cf3c-4f4f-94f2-76c01c61592c',20),(21,'2021-06-30 19:26:14','58813eb3-a164-440c-bab4-ae48dbac39e3',8),(22,'2021-06-30 19:29:35','4b1bda45-4951-40f3-9f4f-7ec6f88b3688',8),(23,'2021-06-30 19:30:01','8bca077b-c929-4601-9628-2e9afb731020',20),(24,'2021-06-30 19:31:46','4b885a64-bb69-4abc-9c1e-a01e8c6a5f91',8),(25,'2021-06-30 19:32:08','b9bed224-e1b7-4c57-9dbb-cf38617fa2e8',20),(26,'2021-06-30 19:33:27','72b69b11-60be-404c-9253-2d40f6395e73',20),(27,'2021-06-30 19:35:19','849944aa-a29d-4cd7-987d-f304f39823db',8),(28,'2021-06-30 19:37:29','18b1c08f-a92e-4a3d-b9af-d5d357ddf97c',8),(29,'2021-06-30 19:37:56','abb7c682-4180-432f-8846-bcc269502435',20),(30,'2021-06-30 19:39:16','6226e4ae-091b-457f-95d7-a3107acce35f',20),(31,'2021-06-30 19:40:26','fa97bdba-d96f-4efb-8682-02a8ac7ad430',20),(32,'2021-06-30 19:41:28','a8285677-46e1-4b41-8203-edbb41e41c66',20),(33,'2021-06-30 19:42:22','3b03d99e-0cd3-4d48-a242-f37ce1d35c8c',20),(34,'2021-06-30 19:44:13','cf8b4ba0-c891-48f0-b486-b870edfb4a39',20),(35,'2021-06-30 19:44:35','c3d53812-f560-4b68-b6af-626edf05ba01',8),(36,'2021-06-30 19:45:33','bda01f25-6544-4254-8775-dd218118024f',8),(37,'2021-06-30 19:49:03','c31e64fd-0cde-4b92-849d-f21de88baf03',8),(38,'2021-06-30 19:49:25','9ad1c185-98be-469e-b1ce-4dd60152a53b',20),(39,'2021-07-01 13:40:14','4fa7b2cd-b82f-4cd1-b4ca-70092e5b5a1e',8),(40,'2021-07-01 13:42:05','cbdcbdfc-403a-4145-9673-e77bf72c5a88',8),(41,'2021-07-01 13:46:40','92a02919-b0e7-4713-86b2-fe903bcd4f28',8),(42,'2021-07-01 13:51:06','4a258d86-1660-4f75-9f86-d5c780b611ef',8),(43,'2021-07-01 13:51:48','f614713f-098e-4f37-891f-203c189d0610',20),(44,'2021-07-01 14:01:00','d08b9aef-84e6-4689-883d-9e0f4ef92dc2',8),(45,'2021-07-01 14:14:48','6eb0ce51-e68a-409a-b43b-95d873b68e16',8),(46,'2021-07-01 14:20:30','659d2507-b9d8-4aee-8d9a-2add86755e4a',8),(47,'2021-07-01 14:30:06','30400b5a-4a82-4d0f-9401-9dde0fbfa7ba',8),(48,'2021-07-01 14:34:32','c89ef180-03a3-4347-99dc-bab52b99b066',8),(49,'2021-07-01 14:37:12','d51bbe15-f86b-44cf-8671-d43693007c4f',8),(50,'2021-07-01 14:38:04','b4999422-553b-451a-bc2c-9981933a9601',8),(51,'2021-07-01 14:40:06','7af20126-d01e-4115-bd30-e80be0490791',20),(52,'2021-07-01 14:50:11','95ff945b-ec80-46e8-9e70-d6c5066fec06',20),(53,'2021-07-01 14:50:46','b74e60bd-033d-4725-8c5d-bcdadc981bbb',8),(54,'2021-07-01 14:52:45','b22bb456-ef79-4500-9f89-7c937cc7fc38',8),(55,'2021-07-01 14:54:47','9cd94941-7280-4460-8978-59c2eef39ad0',8),(56,'2021-07-01 15:01:28','064cc9e6-473f-47cc-a5ce-6c1289c6513f',8),(57,'2021-07-01 15:30:26','05cc9a70-4f6a-4aeb-9d87-66589278b953',8),(58,'2021-07-01 15:30:45','5b9866b9-65dc-4927-a186-f5f4425e3bd4',8),(59,'2021-07-01 15:31:16','6b84ae40-5f96-4cde-b299-b5826e70dd59',20),(60,'2021-07-01 15:38:47','00b6daa6-cb40-40fe-b484-9ca757e966ba',8),(61,'2021-07-01 16:25:18','85498223-0370-4716-94ad-eb5d041b69ec',8),(62,'2021-07-01 22:20:06','9eddf0d6-6d33-4107-9bfd-3dff68cf66a1',8),(63,'2021-07-01 22:29:53','eab0eabd-40b5-419c-808d-98e514186bf4',8),(64,'2021-07-04 22:55:06','c2337647-f51a-4942-8b67-16e921515daf',8),(65,'2021-07-04 23:13:52','e835ee50-9212-453d-b2f5-aae6f7ba5737',20),(66,'2021-07-05 19:34:18','f29061d9-96ed-4110-bc69-8246870b0722',8),(67,'2021-07-06 12:44:58','32b21bc5-d44c-47cc-bb33-ab47387d21f6',8),(68,'2021-07-06 13:03:59','87dbfc2f-8d75-41e4-af04-645893b3a1b0',20),(69,'2021-07-06 13:05:33','28561396-00e4-4bc8-8f3f-fc31a79a12b0',8),(70,'2021-07-06 13:08:30','05e1d66f-b822-4330-b10d-8367d9b1c1bc',20),(71,'2021-07-06 14:29:21','0ca02f42-31ef-4926-8baa-f1dbf6ad2cee',8),(72,'2021-07-06 14:32:47','ed356844-6ebf-410a-9ec3-a759620d16ba',8),(73,'2021-07-06 14:59:32','7a64fa3a-b804-41b9-a005-b143fdc385d1',8),(74,'2021-07-06 15:05:27','b5f8b7f9-0bc9-4386-8455-612fcef0e094',8),(75,'2021-07-06 15:06:28','09a64bd3-baa4-490c-b543-0d961d09dcb5',20),(76,'2021-07-06 15:08:32','d1b7f75c-ba28-49e8-9f0a-a77f8995258b',8),(77,'2021-07-06 15:18:51','e02f46c2-25a6-45c7-ba3b-a8efa4a953ec',20),(78,'2021-07-06 15:20:51','cf2fea5d-7d77-4f12-b49f-64122130d3b9',8),(79,'2021-07-06 15:35:23','3c121b70-8103-4de0-86e6-f4f3dcd8ab6d',46),(80,'2021-07-06 15:36:14','06a8dee2-07f2-472b-9211-e4eba80e37f6',8),(81,'2021-07-06 15:42:00','d52d66ca-bc1f-49ef-9d4e-8140dd522ae4',46),(82,'2021-07-07 13:57:17','9896817d-bad1-437f-aa29-9644188d76ab',20),(83,'2021-07-07 14:01:24','9564ad54-4853-4949-9aff-6a25447cc01e',8),(84,'2021-07-07 14:03:11','96d6a83f-0dae-4294-8207-72d2e49aacb9',46),(85,'2021-07-07 14:23:56','939bdb42-d5d9-47dd-b0d4-a39e8f4e9e75',46),(86,'2021-07-07 14:26:56','803df701-fc5d-4eed-8d2d-7fdf98f8f964',8);
 /*!40000 ALTER TABLE `refreshtoken` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +278,7 @@ CREATE TABLE `users` (
   `active` tinyint NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +287,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (8,'Ivan','Ivankovic','ivan@gmail.com','Pupinova 22','$2a$10$hSt8FjlbCAiAXopQXaY/..41jJIfpBPoxmCJlFeDUd32QIWSCyMOq','Novi Sad','Srbija','012121',0),(9,'Slavko','Milic','slavko@gmail.com','Njegoseva 21','$2a$10$HalcBrrcxf77zdfE6zHnyegXc3qK/NbXlvwtjVZi6WB2pLE7/gej6','Loznica','Srbija','01212321',1),(20,'Milena','Dravic','milena@gmail.com','Pop Lukina 1','$2a$10$kqg/Quu9a7BQ90CPdV7RRey9tQcM0xlKrZx8c1vYXwqpmyXRYUGCW','Pozarevac','Srbija','012123211',1),(21,'Pera','Peric','pera@gmail.com','Banjski 2','$2a$10$26sk6WCOfkGDp9nWRaVwxOJjk16QKvI5.K9YL9TVNwOd5C/YhNtl.','Lazarevac','Srbija','06312123211',0),(24,'Marija','Tomic','marija@gmail.com','Decanski 21','$2a$10$gO1jFzoQ/FaYC3VVwpAubeHPi0cPD9tjDtvwyBubnMZGVnkGbzQA.','Prizren','Srbija','06432163211',1),(37,'Milenko','Marin','milenko@gmail.com','Decanski 21','$2a$10$oZ2XokwdI55NKM0898Zkz.yeAVGb2XxzGIvdKLLRbbrG7PmdsyEiS','Ivanjica','Srbija','06432163211',1),(43,'Milivoje','Pesic','milivoje@gmail.com','Decanski 21','$2a$10$cYD2XiVNfDfCNr.HgeyMquEAh7FyhuFKNK3Xi8cyW0DjwHy13nDQi','Srdulice','Srbija','06432163211',1),(44,'Pedja','Pesic','pedja@gmail.com','Decanski 21','$2a$10$tT0sQI9n43liawLvmhtxVOZuXvgdz2tbK8SwENC0YFdO3e/Me.6B.','Srdulice','Srbija','06432163211',0),(45,'Ivica','ivica','ivica@gmail.com','Ivina 21','$2a$10$PHG0RVsG1vooHZBHF.4aau6T6a8lFETQAwtUj.3aDA02AqYH2b7o6','Subotica','Srbija','066443',0),(46,'admin','adminovic','adminklinike','adminovska','$2a$10$jETPwcdlGQAZhriCqlzjSu3BzP.2xbIxlg5v4LiXHMfe9LDUscpcO','admingrad','Adminija','063-219/312',0);
+INSERT INTO `users` VALUES (8,'Ivan','Ivankovic','ivan@gmail.com','Pupinova 22','$2a$10$hSt8FjlbCAiAXopQXaY/..41jJIfpBPoxmCJlFeDUd32QIWSCyMOq','Novi Sad','Srbija','012121',1),(9,'Slavko','Milic','slavko@gmail.com','Njegoseva 21','$2a$10$HalcBrrcxf77zdfE6zHnyegXc3qK/NbXlvwtjVZi6WB2pLE7/gej6','Loznica','Srbija','01212321',1),(20,'Milena','Dravic','milena@gmail.com','Pop Lukina 1','$2a$10$kqg/Quu9a7BQ90CPdV7RRey9tQcM0xlKrZx8c1vYXwqpmyXRYUGCW','Pozarevac','Srbija','012123211',1),(21,'Pera','Peric','pera@gmail.com','Banjski 2','$2a$10$26sk6WCOfkGDp9nWRaVwxOJjk16QKvI5.K9YL9TVNwOd5C/YhNtl.','Lazarevac','Srbija','06312123211',0),(24,'Marija','Tomic','marija@gmail.com','Decanski 21','$2a$10$gO1jFzoQ/FaYC3VVwpAubeHPi0cPD9tjDtvwyBubnMZGVnkGbzQA.','Prizren','Srbija','06432163211',1),(37,'Milenko','Marin','milenko@gmail.com','Decanski 21','$2a$10$oZ2XokwdI55NKM0898Zkz.yeAVGb2XxzGIvdKLLRbbrG7PmdsyEiS','Ivanjica','Srbija','06432163211',1),(43,'Milivoje','Pesic','milivoje@gmail.com','Decanski 21','$2a$10$cYD2XiVNfDfCNr.HgeyMquEAh7FyhuFKNK3Xi8cyW0DjwHy13nDQi','Srdulice','Srbija','06432163211',1),(44,'Pedja','Pesic','pedja@gmail.com','Decanski 21','$2a$10$tT0sQI9n43liawLvmhtxVOZuXvgdz2tbK8SwENC0YFdO3e/Me.6B.','Srdulice','Srbija','06432163211',0),(45,'Ivica','ivica','ivica@gmail.com','Ivina 21','$2a$10$PHG0RVsG1vooHZBHF.4aau6T6a8lFETQAwtUj.3aDA02AqYH2b7o6','Subotica','Srbija','066443',0),(46,'admin','adminovic','adminklinike','adminovska','$2a$10$jETPwcdlGQAZhriCqlzjSu3BzP.2xbIxlg5v4LiXHMfe9LDUscpcO','admingrad','Adminija','063-219/312',1),(47,'Miloran','Mirkovic','milorad@gmail.com','Pupinova 21','$2a$10$N3QCRip57FIBVeEubyl9BeqCB3kSKJHbk1bf3BBJ9UQcFherGVO6O','Beograd','Srbija','063111212',1),(48,'Dragana','Dobrilovic','dragana@gmail.com','Drinska 21','$2a$10$CdiKC/4A6uzdqsdAjoredOTXdITLIJ2tZQOMYKvBdoJTrROw4usfy','Beograd','Србија','0622224232',1),(49,'Dragan','Ivanovic','dragan@gmail.com','Teslina 24','$2a$10$dXOhs5ghbA4bnuSMwVYSLelEi0M5T5Eq0HQaOPPEr/7wlq1HMxGu2','Pozarevac','Srbija','06322255543',1),(50,'Dalibor','Manojlovic','dalibor@gmai.com','Postaja 21','$2a$10$6WKBprUULFLYFJDosTjwx.SRzQAvE6J7J9VzAwtVQjQbDfGCR/D5K','Beograd','Srbija','066555444',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +315,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1),(7,1),(8,1),(9,1),(10,1),(11,5),(12,5),(13,5),(14,5),(15,5),(16,5),(17,5),(18,5),(19,5),(20,5),(21,5),(22,5),(23,5),(24,2),(25,1),(26,1),(27,1),(28,1),(29,1),(30,1),(31,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(43,1),(44,1),(45,5),(46,3);
+INSERT INTO `users_roles` VALUES (1,1),(7,1),(8,1),(9,1),(10,1),(11,5),(12,5),(13,5),(14,5),(15,5),(16,5),(17,5),(18,5),(19,5),(20,5),(21,5),(22,5),(23,5),(24,2),(25,1),(26,1),(27,1),(28,1),(29,1),(30,1),(31,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(43,1),(44,1),(45,5),(46,3),(47,1),(48,2),(49,1),(50,1);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-06 18:03:05
+-- Dump completed on 2021-07-07 16:04:47
