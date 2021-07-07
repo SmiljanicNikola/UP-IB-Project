@@ -97,7 +97,7 @@ public class UserController {
 				existKorisnik.setCountry(korisnik.getCountry());
 				existKorisnik.setPhone(korisnik.getPhone());
 				existKorisnik.setActive(true);
-				existKorisnik.setPrviput(korisnik.isPrviput());
+				existKorisnik.setPrviput(true);
 
 				korisnikService.save(existKorisnik);
 			}
