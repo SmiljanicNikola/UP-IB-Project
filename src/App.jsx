@@ -40,6 +40,8 @@ import PregledComponent from './components/PregledComponent';
 import UpdateNurseComponent from './components/DoctorNurseComponents/UpdateNurseComponent';
 import BlockUserComponent from './components/BlockUserComponent';
 import MyAppointments from './components/MyAppointments';
+import MyAppointmentsSestra from './components/MyAppointmentsSestra';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -162,11 +164,7 @@ class App extends Component {
                 </a>
               </li>
 
-              <li className="nav-item">
-              <a href="/pregledi" className="nav-link">
-                <p>Pregledi</p>
-                </a>
-              </li>
+            
 
             </div>
 
@@ -285,7 +283,14 @@ class App extends Component {
                 <p>Profil</p>
                 </a>
               </li>
+              <li className="nav-item">
+              <a href="/workcalendarsestra" className="nav-link">
+                <p>WorkCalendar</p>
+                </a>
+              </li>
+
             </div>
+            
 
           ) 
           : (
@@ -413,6 +418,13 @@ class App extends Component {
                           path="/updateDoctor/:id"
                           component={UpdateDoctorComponent}
                           roles={["ADMINISTRATOR KLINIKE"]}
+                          />
+
+                          <PrivateRoute
+                          exact
+                          path="/workcalendarsestra"
+                          component={MyAppointmentsSestra}
+                          roles={["MEDICINSKA SESTRA"]}
                           />
 
                           <PrivateRoute

@@ -134,7 +134,7 @@ class PatientComponent extends React.Component{
                                     <td> {patient.user.adress} </td>
                                     <td>{patient.lbo}</td>
                                     <td>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewPatient(patient.id)} className="btn btn-info">View</button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewPatient(patient.user.id)} className="btn btn-info">View</button>
                                     </td>
                                 </tr>
                             )

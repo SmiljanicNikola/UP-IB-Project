@@ -51,7 +51,7 @@ updateAppointment = (e) =>{
 }
 
 changeDateAndTime= (event) =>{
-    this.setState({DateAndTime: event.target.value});
+    this.setState({dateAndTime: event.target.value});
 }
 
 changeAppointmentLenght= (event) =>{
@@ -63,11 +63,11 @@ changeDoctorHandler= (event) =>{
 }
 
 changeNurseHandler= (event) =>{
-    this.setState({putanjaSlike: event.target.value});
+    this.setState({nurse: event.target.value});
 }
 
 changePriceHandler= (event) =>{
-    this.setState({putanjaSlike: event.target.value});
+    this.setState({price: event.target.value});
 }
 
 
