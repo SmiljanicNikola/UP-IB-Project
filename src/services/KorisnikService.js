@@ -22,8 +22,8 @@ class KorisnikService{
         return axios.put(USERSZAIZMENUBEZPASS_REST_API_URL + '/' + korisnikId, korisnik);
     }
 
-    blockUserById(user, korisnikId){
-        return axios.put(KORISNIKBLOCK_REST_API_URL + '/' + korisnikId, user);
+    blockUserById(korisnikId){
+        return axios.put(KORISNIKBLOCK_REST_API_URL + '/' + korisnikId);
 
     }
 

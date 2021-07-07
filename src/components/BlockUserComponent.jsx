@@ -40,6 +40,7 @@ componentDidMount(){
             city: korisnik.city,
             country: korisnik.country,
             phone: korisnik.phone,
+            prviput:korisnik.prviput,
         });
 
     });
@@ -48,9 +49,9 @@ componentDidMount(){
 blockUser = (e) =>{
         e.preventDefault();
         let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
-            adress: this.state.adress, city: this.state.city, country: this.state.country, phone:this.state.phone, active:false
+            adress: this.state.adress, city: this.state.city, country: this.state.country, phone:this.state.phone, active:false, prviput:this.state.prviput
         }
-        KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
+        KorisnikService.blockUserById(this.state.id).then(res => {
             this.props.history.push('/svikorisnici');
         });
     }

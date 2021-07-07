@@ -17,7 +17,7 @@ class RegistracijaPacijenta extends React.Component {
             city: '',
             country: '',
             phone: '',
-            active: '',
+            active: false,
             lbo: ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
@@ -51,7 +51,7 @@ savePatient = (e) =>{
     else{
     let pacijent = {firstname: this.state.firstname, lastname: this.state.lastname, username: this.state.username,
         adress: this.state.adress, password: this.state.password, city: this.state.city,
-        country: this.state.country, phone: this.state.phone, active: this.state.active,
+        country: this.state.country, phone: this.state.phone, active: false,
         lbo: this.state.lbo
         }
         console.log('Pacijent => ' + JSON.stringify(pacijent));
@@ -93,7 +93,7 @@ changePhoneHandler= (event) =>{
     this.setState({phone: event.target.value});
 }
 changeActiveHandler= (event) =>{
-    this.setState({active: event.target.value});
+    this.setState({active: false});
 }
 changeLboHandler= (event) =>{
     this.setState({lbo: event.target.value});

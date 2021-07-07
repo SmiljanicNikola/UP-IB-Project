@@ -50,11 +50,18 @@ export default class Profile extends Component {
     }
   
     render() {
+
+      if(this.state.user.prviput == false){
+        this.changePassword(this.state.user.id)
+      }
       if (this.state.redirect) {
         return <Redirect to={this.state.redirect} />
       }
+      
   
       const { currentUser } = this.state;
+
+  
 
       const user1 = this.state.user;
     //   var json1 = JSON.stringify(user);
