@@ -43,6 +43,7 @@ import com.example.UPIBProjekat.payload.PatientSignupRequest;
 import com.example.UPIBProjekat.payload.SignupRequest;
 import com.example.UPIBProjekat.service.ClinicAdministratorService;
 import com.example.UPIBProjekat.service.EmailService;
+import com.example.UPIBProjekat.service.UserService;
 import com.example.UPIBProjekat.service.VerificationTokenService;
 
 @RestController
@@ -85,6 +86,9 @@ public class JwtAuthenticationController {
 	private ClinicAdministratorService clinicAdminService;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private VerificationTokenService verificationTokenService;
 	
 
@@ -98,12 +102,18 @@ public class JwtAuthenticationController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
 
+		
+		User user = userService.get(loginRequest.getUsername());
+		if(user.isActive() != false) {
+		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		MyUserDetails userDetails =  (MyUserDetails) authentication.getPrincipal();
+		
 		
 		String jwt = jwtTokenUtil.generateToken(userDetails);
 		
@@ -121,6 +131,9 @@ public class JwtAuthenticationController {
 				 roles,
 				refreshToken.getToken(),
 				"Bearer"));
+		}
+		System.out.println("Blokirani ste!");
+		return null;
 }
 	
 	@PostMapping("doctor/signup")

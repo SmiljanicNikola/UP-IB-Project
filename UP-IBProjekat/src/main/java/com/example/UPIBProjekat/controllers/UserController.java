@@ -96,7 +96,7 @@ public class UserController {
 				existKorisnik.setCity(korisnik.getCity());
 				existKorisnik.setCountry(korisnik.getCountry());
 				existKorisnik.setPhone(korisnik.getPhone());
-				existKorisnik.setActive(korisnik.isActive());
+				existKorisnik.setActive(true);
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -105,6 +105,20 @@ public class UserController {
 		}
 	}
 	
+	
+	@PutMapping("/korisnici/odblokiraj/{id}")
+	public ResponseEntity<?> odblokiraj(@PathVariable Integer id) {
+		try {
+			User existKorisnik = korisnikService.get(id);
+			if(existKorisnik != null) {
+				existKorisnik.setActive(true);
+				korisnikService.save(existKorisnik);
+			}
+		return new ResponseEntity<>(HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	@PutMapping("/korisnicii/{id}")
 	public ResponseEntity<?> update2(@RequestBody User korisnik, 
@@ -120,7 +134,7 @@ public class UserController {
 				existKorisnik.setCity(korisnik.getCity());
 				existKorisnik.setCountry(korisnik.getCountry());
 				existKorisnik.setPhone(korisnik.getPhone());
-				existKorisnik.setActive(korisnik.isActive());
+				existKorisnik.setActive(true);
 				korisnikService.save(existKorisnik);
 			}
 		return new ResponseEntity<>(HttpStatus.OK);

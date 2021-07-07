@@ -30,6 +30,10 @@ public class UserService {
 		return korisnikRepo.findById(id).orElse(null);
 	}
 	
+	public User get(String username) {
+		return korisnikRepo.findByUsername(username);
+	}
+	
 	public void delete(Integer id) {
 		korisnikRepo.deleteById(id);
 	}
