@@ -2,6 +2,7 @@ import React from 'react'
 import UserService from '../services/UserService'
 import RolesService from '../services/RolesService'
 import PacijentService from '../services/PacijentService'
+import KorisnikService from '../services/KorisnikService'
 
 class RegistracijeZahtevi extends React.Component{
 
@@ -13,6 +14,7 @@ class RegistracijeZahtevi extends React.Component{
             pacijenti:PacijentService.getPacijente(),
         }
         this.odbij = this.odbij.bind(this);
+        this.prihvati = this.prihvati.bind(this);
 
     }
 
@@ -24,13 +26,10 @@ class RegistracijeZahtevi extends React.Component{
 
         UserService.getUsers().then((response) =>{
 
-
-            PacijentService.getPacijente().then((response)=>{
-                this.setState({pacijenti:response.data})
             
 
             this.setState({users:response.data})
-            this.setState({users: this.state.users.filter(users => ((users.active == true) && (users.id == this.state.pacijenti.user.id)))})});})
+            this.setState({users: this.state.users.filter(users => (users.active ==false))})});
         RolesService.getRoles().then((response)=>{
             this.setState({roles:response.data})
         });
@@ -38,8 +37,12 @@ class RegistracijeZahtevi extends React.Component{
 
     
     odbij(id){
-        UserService.deleteUser(id).then(res => {
-            this.setState({korisnik: this.state.users.filter(users => users.id !== id)})
+        this.setState({users: this.state.users.filter(users => users.id !== id)})
+    }
+
+    prihvati(id){
+        KorisnikService.unblockUser(id).then(res => {
+            this.setState({users : this.state.users.filter(users => users.id !== id)})
         })
     }
 
@@ -47,13 +50,15 @@ class RegistracijeZahtevi extends React.Component{
     render(){
         return (
             <div>
-                <h1 className="text-center"> Korisnici</h1>
+                <br></br>
+                <h1 className="text-center"> Zahtevi za registraciju(I Blokirani) </h1>
                 {/* <button className="btn btn-primary" >Login</button>
                 <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
                     
 
                 </div>
+                <br></br><br></br>
                 <table className = "table table-striped">
                     <thead>
                         <tr>
@@ -65,7 +70,6 @@ class RegistracijeZahtevi extends React.Component{
                             <td>Grad</td>
                             <td>Drzava</td>
                             <td>Telefon</td>
-                            <td>Active</td>
                             <td>Actions</td>
 
                            
@@ -86,10 +90,9 @@ class RegistracijeZahtevi extends React.Component{
                                     <td>{user.city}</td>
                                     <td>{user.country}</td>
                                     <td>{user.phone}</td>
-                                    <td>{user.active}</td>
                                     <td>          
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.odbij(user.id)} className="btn btn-danger">Odbij</button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.odbij(user.id)} className="btn btn-success">Prihvati</button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.prihvati(user.id)} className="btn btn-success">Prihvati</button>
 
                                     </td>
                                 </tr>
