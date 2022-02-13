@@ -163,15 +163,7 @@ class App extends Component {
                 <p>Dodaj Pregled</p>
                 </a>
               </li>
-
-            
-
             </div>
-
-
-
-
-
           ) 
           : (
             <div className="navbar-nav ml-auto">
@@ -336,9 +328,10 @@ class App extends Component {
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>
 
-                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
+                          
 
                           {/*
+                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
                           <Route path="/zahtevi" component={RegistracijeZahtevi}></Route>
                           <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
                           <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
@@ -372,6 +365,12 @@ class App extends Component {
                           exact
                           path="/zahtevi"
                           component={RegistracijeZahtevi}
+                          roles={["ADMINISTRATOR KLINIKE"]}/>
+
+                          <PrivateRoute
+                          exact
+                          path="/updateAppointment/:id"
+                          component={UpdateAppointmentComponent}
                           roles={["ADMINISTRATOR KLINIKE"]}/>
 
                           <PrivateRoute

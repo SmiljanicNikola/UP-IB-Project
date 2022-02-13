@@ -7,7 +7,8 @@ class ClinicComponent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            clinics:[]
+            clinics:[],
+            user:{},
         };
         this.onSort = this.onSort.bind(this)
 
@@ -86,7 +87,6 @@ class ClinicComponent extends React.Component{
                                     <td>{clinic.prosecnaOcena}</td>
                                     <td>
                                         <button onClick={ () => this.editClinic(clinic.id)} className="btn btn-info">Update</button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.deleteClinic(clinic.id)} className="btn btn-danger">Delete</button>
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.viewClinic(clinic.id)} className="btn btn-info">View</button>
                                     </td>
                                 </tr>
@@ -99,7 +99,6 @@ class ClinicComponent extends React.Component{
                 <br>
                 </br>
                 <center>
-                <button className="btn btn-success" onClick={this.addClinic}>Add clinic</button>
                 </center>
                 <br>
                 </br>
@@ -112,3 +111,4 @@ class ClinicComponent extends React.Component{
 }
 
 export default ClinicComponent
+
