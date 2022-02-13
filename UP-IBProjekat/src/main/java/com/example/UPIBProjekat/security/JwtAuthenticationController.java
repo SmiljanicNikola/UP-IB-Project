@@ -283,7 +283,7 @@ public class JwtAuthenticationController {
 
 
 		User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getAdress(), encoder.encode(signUpRequest.getPassword()),
-				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive() == false, signUpRequest.isPrviput() == true);
+				signUpRequest.getCity(), signUpRequest.getCountry(), signUpRequest.getPhone(), signUpRequest.isActive(), signUpRequest.isPrviput());
 		Set<Role> roles = new HashSet<>();
 		
 		
