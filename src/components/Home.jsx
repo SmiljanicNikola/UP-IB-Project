@@ -36,6 +36,7 @@ class Home extends React.Component{
     }
 
     render(){
+        
         if(this.state.user){
             return(
                 <center>
