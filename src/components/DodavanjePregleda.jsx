@@ -13,6 +13,7 @@ class DodavanjePregleda extends Component {
             doctorId:'',
             nurseId:''
         }
+
         this.changeAppointmentLenght = this.changeAppointmentLenght.bind(this);
         this.changeDateAndTime = this.changeDateAndTime.bind(this);
         this.changePrice = this.changePrice.bind(this);
@@ -21,39 +22,39 @@ class DodavanjePregleda extends Component {
 
         this.saveAppointment = this.saveAppointment.bind(this);
     
-}
+    }
 
-saveAppointment = (e) =>{
-    e.preventDefault();
-    let appointment = {appointmentLenght: this.state.appointmentLenght, DateAndTime: this.state.DateAndTime, price: this.state.price,
-        doctorId: this.state.doctorId, nurseId: this.state.nurseId
-        }
-        console.log('appointment => ' + JSON.stringify(appointment));
+    saveAppointment = (e) =>{
+        e.preventDefault();
+        let appointment = {appointmentLenght: this.state.appointmentLenght, DateAndTime: this.state.DateAndTime, price: this.state.price,
+            doctorId: this.state.doctorId, nurseId: this.state.nurseId
+            }
+            console.log('appointment => ' + JSON.stringify(appointment));
 
-        PregledService.createAppointment(appointment).then(res=>{
-            this.props.history.push('/pregledi')
-        });
-}
+            PregledService.createAppointment(appointment).then(res=>{
+                this.props.history.push('/pregledi')
+            });
+    }
 
-changeAppointmentLenght= (event) =>{
-    this.setState({appointmentLenght: event.target.value});
-}
+    changeAppointmentLenght= (event) =>{
+        this.setState({appointmentLenght: event.target.value});
+    }
 
-changeDateAndTime= (event) =>{
-    this.setState({DateAndTime: event.target.value});
-}
+    changeDateAndTime= (event) =>{
+        this.setState({DateAndTime: event.target.value});
+    }
 
-changePrice= (event) =>{
-    this.setState({price: event.target.value});
-}
+    changePrice= (event) =>{
+        this.setState({price: event.target.value});
+    }
 
-changeDoctorId= (event) =>{
-    this.setState({doctorId: event.target.value});
-}
+    changeDoctorId= (event) =>{
+        this.setState({doctorId: event.target.value});
+    }
 
-changeNurseId= (event) =>{
-    this.setState({nurseId: event.target.value});
-}
+    changeNurseId= (event) =>{
+        this.setState({nurseId: event.target.value});
+    }
 
     render(){
         return(
@@ -75,27 +76,23 @@ changeNurseId= (event) =>{
                                         <input placeholder="DateAndTime" name="DateAndTime" className="form-control"
                                             value={this.state.DateAndTime} onChange={this.changeDateAndTime}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Price</label>
                                         <input placeholder="Price" name="price" className="form-control"
-                                            value={this.state.price} onChange={this.changePrice}/>
-
-                                            
+                                            value={this.state.price} onChange={this.changePrice}/>    
                                     </div>
 
                                     <div className="form-group">
                                         <label>Doctor Id</label>
                                         <input placeholder="Doctor Id" name="doctorId" className="form-control"
-                                            value={this.state.doctorId} onChange={this.changeDoctorId}/>
-
-                                            
+                                            value={this.state.doctorId} onChange={this.changeDoctorId}/>   
                                     </div>
 
                                     <div className="form-group">
                                         <label>Nurse Id</label>
                                         <input placeholder="Nurse Id" name="nurseId" className="form-control"
                                             value={this.state.nurseId} onChange={this.changeNurseId}/>
-    
                                     </div>
         
                                     <button className="btn btn-success" onClick={this.saveAppointment}>Save</button>
@@ -107,7 +104,6 @@ changeNurseId= (event) =>{
             </div>
         )
     }
-
 }
 
 export default DodavanjePregleda

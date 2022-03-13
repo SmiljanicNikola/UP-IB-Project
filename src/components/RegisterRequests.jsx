@@ -17,9 +17,8 @@ class RegisterRequests extends React.Component{
         PacijentService.getPacijente().then((response) =>{
             this.setState({patients:response.data})
         });
-
-        
     }
+
     viewPatient(id){
         this.props.history.push(`viewPatient/${id}`);
     }
@@ -28,11 +27,9 @@ class RegisterRequests extends React.Component{
         return (
             <div>
                 <h1 className="text-center"> Lista pacijenata</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+
                 <div className="row">
                     
-
                 </div>
                 <table className = "table table-striped">
                     <thead>
@@ -58,17 +55,12 @@ class RegisterRequests extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
-
-
             </div>
         )
     }
-
 }
 
 export default RegisterRequests

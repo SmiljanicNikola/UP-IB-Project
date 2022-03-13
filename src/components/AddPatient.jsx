@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import UserService from '../services/UserService';
 import PacijentService from '../services/PacijentService';
 
 
@@ -21,13 +20,13 @@ class AddPatient extends React.Component {
             clinic_id: '',
             lbo: ''
         }
+
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
         this.changeAdressHandler = this.changeAdressHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.changerepeatPasswordHandler = this.changerepeatPasswordHandler.bind(this);
-
         this.changeCityHandler = this.changeCityHandler.bind(this);
         this.changeCountryHandler = this.changeCountryHandler.bind(this);
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
@@ -35,81 +34,85 @@ class AddPatient extends React.Component {
         this.changeClinicHandler = this.changeClinicHandler.bind(this);
         this.changeLboHandler = this.changeLboHandler.bind(this);
 
-
         this.saveDoctor = this.saveDoctor.bind(this);
-    
-}
+    }
 
-saveDoctor = (e) =>{
-    e.preventDefault();
-    let test={repeatPassword:this.state.repeatPassword, password:this.state.password}
-    
-    if(test.repeatPassword != test.password){
-        console.log('Lozinke se ne podudaraju!');
-    }
-    else if(test.password.length < 5){
-        console.log('Lozinka je previse kratka!')
-    }
-    else{
-    let doctor = {firstname: this.state.firstname, lastname: this.state.lastname, username: this.state.username,
-        adress: this.state.adress, password: this.state.password, city: this.state.city,
-        country: this.state.country, phone: this.state.phone, active: this.state.active,
-        clinic_id: this.state.clinic_id, lbo: this.state.lbo
-        }
-        console.log('doctor => ' + JSON.stringify(doctor));
+    saveDoctor = (e) =>{
+        e.preventDefault();
+        let test={repeatPassword:this.state.repeatPassword, password:this.state.password}
         
-        PacijentService.createPacijent(doctor).then(res=>{
-            this.props.history.push('pacijenti')
-        });
+        if(test.repeatPassword != test.password){
+            console.log('Lozinke se ne podudaraju!');
+        }
+        else if(test.password.length < 5){
+            console.log('Lozinka je previse kratka!')
+        }
+        else{
+        let doctor = {firstname: this.state.firstname, lastname: this.state.lastname, username: this.state.username,
+            adress: this.state.adress, password: this.state.password, city: this.state.city,
+            country: this.state.country, phone: this.state.phone, active: this.state.active,
+            clinic_id: this.state.clinic_id, lbo: this.state.lbo
+            }
+            console.log('doctor => ' + JSON.stringify(doctor));
+            
+            PacijentService.createPacijent(doctor).then(res=>{
+                this.props.history.push('pacijenti')
+            });
+        }
+
     }
 
-}
+    changeFirstNameHandler= (event) =>{
+        this.setState({firstname: event.target.value});
+    }
 
-changeFirstNameHandler= (event) =>{
-    this.setState({firstname: event.target.value});
-}
+    changeLastNameHandler= (event) =>{
+        this.setState({lastname: event.target.value});
+    }
 
-changeLastNameHandler= (event) =>{
-    this.setState({lastname: event.target.value});
-}
+    changeUserNameHandler= (event) =>{
+        this.setState({username: event.target.value});
+    }
 
-changeUserNameHandler= (event) =>{
-    this.setState({username: event.target.value});
-}
+    changeAdressHandler= (event) =>{
+        this.setState({adress: event.target.value});
+    }
 
-changeAdressHandler= (event) =>{
-    this.setState({adress: event.target.value});
-}
+    changePasswordHandler= (event) =>{
+        this.setState({password: event.target.value});
+    }
 
-changePasswordHandler= (event) =>{
-    this.setState({password: event.target.value});
-}
+    changeCityHandler= (event) =>{
+        this.setState({city: event.target.value});
+    }
 
-changeCityHandler= (event) =>{
-    this.setState({city: event.target.value});
-}
-changeCountryHandler= (event) =>{
-    this.setState({country: event.target.value});
-}
-changePhoneHandler= (event) =>{
-    this.setState({phone: event.target.value});
-}
-changeActiveHandler= (event) =>{
-    this.setState({active: event.target.value});
-}
-changeClinicHandler= (event) =>{
-    this.setState({clinic_id: event.target.value});
-}
-changerepeatPasswordHandler= (event) =>{
-    this.setState({repeatPassword: event.target.value});
-}
+    changeCountryHandler= (event) =>{
+        this.setState({country: event.target.value});
+    }
 
-changeLboHandler= (event) =>{
-    this.setState({lbo: event.target.value});
-}
-cancel(){
-    this.props.history.push('/korisnici');
-}
+    changePhoneHandler= (event) =>{
+        this.setState({phone: event.target.value});
+    }
+
+    changeActiveHandler= (event) =>{
+        this.setState({active: event.target.value});
+    }
+
+    changeClinicHandler= (event) =>{
+        this.setState({clinic_id: event.target.value});
+    }
+
+    changerepeatPasswordHandler= (event) =>{
+        this.setState({repeatPassword: event.target.value});
+    }
+
+    changeLboHandler= (event) =>{
+        this.setState({lbo: event.target.value});
+    }
+
+    cancel(){
+        this.props.history.push('/korisnici');
+    }
 
     render(){
         return(
@@ -154,38 +157,35 @@ cancel(){
                                         <label>Ponovljen password:</label>
                                         <input placeholder="Ponovljen password" name="repeatPassword" type="password" className="form-control"
                                             value={this.state.repeatPassword} onChange={this.changerepeatPasswordHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>City</label>
                                         <input placeholder="City" name="city" className="form-control"
                                             value={this.state.city} onChange={this.changeCityHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>Country</label>
                                         <input placeholder="Country" name="country" className="form-control"
                                             value={this.state.country} onChange={this.changeCountryHandler}/>
-    
                                     </div>
+
                                     <div className="form-group">
                                         <label>Phone number</label>
                                         <input placeholder="Phone" name="phone" className="form-control"
                                             value={this.state.phone} onChange={this.changePhoneHandler}/>
-    
                                     </div>
-
 
                                     <div className="form-group">
                                         <label>LBO</label>
                                         <input placeholder="LBO" name="lbo" className="form-control"
                                             value={this.state.lbo} onChange={this.changeLboHandler}/>
-    
                                     </div>
+
                                     <button className="btn btn-success" onClick={this.saveDoctor}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
+
                                 </form>
                             </div>
                         </div>
@@ -194,7 +194,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default AddPatient

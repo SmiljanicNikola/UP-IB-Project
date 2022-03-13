@@ -45,9 +45,7 @@ class UserService{
         'Access-Control-Allow-Credentials': 'true',
         'Content-Type':  'application/json'
       }});
+    }
 }
-
-}
-
 
 export default new UserService();

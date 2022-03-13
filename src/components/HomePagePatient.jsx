@@ -14,7 +14,6 @@ export default class HomePagePatient extends Component {
         userReady: false,
         currentUser: { username: "" },
         user:{}
-
       };
     }
 
@@ -27,9 +26,4 @@ export default class HomePagePatient extends Component {
             </div>
         )
     }
-
-
-
-
-
 }

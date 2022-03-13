@@ -95,24 +95,19 @@ changeNurseId= (event) =>{
                                     <div className="form-group">
                                         <label>Price</label>
                                         <input placeholder="Price" name="price" className="form-control"
-                                            value={this.state.price} onChange={this.changePrice}/>
-
-                                            
+                                            value={this.state.price} onChange={this.changePrice}/>        
                                     </div>
 
                                     <div className="form-group">
                                         <label>Doctor Id</label>
                                         <input placeholder="Doctor Id" name="doctorId" className="form-control"
-                                            value={this.state.doctorId} onChange={this.changeDoctorId}/>
-
-                                            
+                                            value={this.state.doctorId} onChange={this.changeDoctorId}/>         
                                     </div>
 
                                     <div className="form-group">
                                         <label>Nurse Id</label>
                                         <input placeholder="Nurse Id" name="nurseId" className="form-control"
                                             value={this.state.nurseId} onChange={this.changeNurseId}/>
-    
                                     </div>
         
                                     <button className="btn btn-success" onClick={this.saveAppointment}>Save</button>
@@ -122,116 +117,99 @@ changeNurseId= (event) =>{
                     </div>
                 </div><br></br>
                 <hr></hr>
-
                 <center>
-
-                <div style={{width:700+'px'}}>
-                <h1 className="text-center">Doctors List</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
-                <div className="row">
-                
-                </div>
-                <center>
-                <table className = "table table-striped">
-                    <thead>
-                        <tr>
-                            <td>Id</td>
-                            <td>Firstname</td>
-                            <td>Lastname</td>
-                            <td>Username</td>
-                            <td>Adress</td>
-                            <td>Clinic name</td>  
-                            <td>Actions</td>                      
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        
-                        {
-                            this.state.doctors.map(
-                                doctor=>
-                                <tr key = {doctor.id}>
-                                    <td style={{backgroundColor:'red'}}><strong>{doctor.id}</strong></td>
-                                    <td>{doctor.user.firstname}</td>
-                                    <td>{doctor.user.lastname}</td>
-                                    <td>{doctor.user.username}</td>
-                                    <td>{doctor.user.adress}</td>
-                                    <td>{doctor.clinic.naziv}</td>
-                                    <td>
-                                        
-                                    </td>
+                    <div style={{width:700+'px'}}>
+                    <h1 className="text-center">Doctors List</h1>
+                    <div className="row">
+                    
+                    </div>
+                    <center>
+                        <table className = "table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Firstname</td>
+                                    <td>Lastname</td>
+                                    <td>Username</td>
+                                    <td>Adress</td>
+                                    <td>Clinic name</td>  
+                                    <td>Actions</td>                      
                                 </tr>
-                            )
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.doctors.map(
+                                        doctor=>
+                                        <tr key = {doctor.id}>
+                                            <td style={{backgroundColor:'red'}}><strong>{doctor.id}</strong></td>
+                                            <td>{doctor.user.firstname}</td>
+                                            <td>{doctor.user.lastname}</td>
+                                            <td>{doctor.user.username}</td>
+                                            <td>{doctor.user.adress}</td>
+                                            <td>{doctor.clinic.naziv}</td>
+                                            <td>  
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
 
-                        }
-                    </tbody>
-
-                </table> </center>
-                <br></br>
-                <center>
-                </center>
-            </div>
+                        </table> 
+                    </center>
+                    <br></br>
+                </div>
             </center>
             <br></br><br></br>
             <hr></hr>
 
-
-
             <br></br>
             <center>
-            <div style={{width:700+'px'}}>
-                <h1 className="text-center">Nurse List</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
-                <div className="row">
-                    
+                <div style={{width:700+'px'}}>
+                    <h1 className="text-center">Nurse List</h1>
+                    <div className="row">
+                        
+                    </div>
+                    <center>
+                        <table className = "table table-striped">
+                            <thead>
+                                <tr>
+                                    <td >Id</td>
+                                    <td>Firstname</td>
+                                    <td>Lastname</td>
+                                    <td>Username</td>
+                                    <td>Adress</td>
+                                    <td>Clinic name</td>  
+                                    <td>Actions</td>                         
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {
+                                    this.state.nurses.map(
+                                        nurse=>
+                                        <tr key = {nurse.id}>
+                                            <td style={{backgroundColor:'red'}}><strong>{nurse.id}</strong></td>
+                                            <td>{nurse.user.firstname}</td>
+                                            <td>{nurse.user.lastname}</td>
+                                            <td>{nurse.user.username}</td>
+                                            <td>{nurse.user.adress}</td>
+                                            <td>{nurse.clinic.naziv}</td>
+                                            <td>
+                                                                                    
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+
+                        </table>
+                    </center>
+
+                    <br></br>
+                    <br></br>
+                    <hr></hr>
 
                 </div>
-                <center>
-                <table className = "table table-striped">
-                    <thead>
-                        <tr>
-                            <td >Id</td>
-                            <td>Firstname</td>
-                            <td>Lastname</td>
-                            <td>Username</td>
-                            <td>Adress</td>
-                            <td>Clinic name</td>  
-                            <td>Actions</td>                         
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        
-                        {
-                            this.state.nurses.map(
-                                nurse=>
-                                <tr key = {nurse.id}>
-                                    <td style={{backgroundColor:'red'}}><strong>{nurse.id}</strong></td>
-                                    <td>{nurse.user.firstname}</td>
-                                    <td>{nurse.user.lastname}</td>
-                                    <td>{nurse.user.username}</td>
-                                    <td>{nurse.user.adress}</td>
-                                    <td>{nurse.clinic.naziv}</td>
-                                    <td>
-                                                                               
-                                    </td>
-                                </tr>
-                            )
-
-                        }
-                    </tbody>
-
-                </table>
-                </center>
-                <br></br>
-                <center>
-                </center>
-                <br></br>
-                <hr></hr>
-
-            </div>
             </center>
             </div>
         )

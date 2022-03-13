@@ -9,7 +9,6 @@ class FooterComponent extends Component{
         }
     }
 
-
     render(){
         return(
             <div>
@@ -17,9 +16,8 @@ class FooterComponent extends Component{
                     <span className="text-muted">Contacttt us: UPIB.Projekat@gmail.com</span>
                 </footer>
             </div>
-
-
         )
     }
+}
 
-}export default FooterComponent
+export default FooterComponent

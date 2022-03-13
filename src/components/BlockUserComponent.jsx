@@ -26,61 +26,66 @@ class BlockUserComponent extends Component {
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
 
         this.blockUser = this.blockUser.bind(this);
-}
+    }
 
-componentDidMount(){
-    KorisnikService.getUserById(this.state.id).then( (res) =>{
-        let korisnik = res.data;
-        this.setState({ime: korisnik.ime,
-            firstname: korisnik.firstname,
-            lastname: korisnik.lastname,
-            username: korisnik.username,
-            adress: korisnik.adress,
-            password: korisnik.password,
-            city: korisnik.city,
-            country: korisnik.country,
-            phone: korisnik.phone,
-            prviput:korisnik.prviput,
-        });
-
-    });
-}
-
-blockUser = (e) =>{
-        e.preventDefault();
-        let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
-            adress: this.state.adress, city: this.state.city, country: this.state.country, phone:this.state.phone, active:false, prviput:this.state.prviput
-        }
-        KorisnikService.blockUserById(this.state.id).then(res => {
-            this.props.history.push('/svikorisnici');
+    componentDidMount(){
+        KorisnikService.getUserById(this.state.id).then( (res) =>{
+            let korisnik = res.data;
+            this.setState({ime: korisnik.ime,
+                firstname: korisnik.firstname,
+                lastname: korisnik.lastname,
+                username: korisnik.username,
+                adress: korisnik.adress,
+                password: korisnik.password,
+                city: korisnik.city,
+                country: korisnik.country,
+                phone: korisnik.phone,
+                prviput:korisnik.prviput,
+            });
         });
     }
 
-changeFirstnameHandler= (event) =>{
-    this.setState({firstname: event.target.value});
-}
-changeLastnameHandler= (event) =>{
-    this.setState({lastname: event.target.value});
-}
-changeUsernameHandler= (event) =>{
-    this.setState({username: event.target.value});
-}
-changeAdressHandler= (event) =>{
-    this.setState({adress: event.target.value});
-}
-changeCityHandler= (event) =>{
-    this.setState({city: event.target.value});
-}
-changeCountryHandler= (event) =>{
-    this.setState({country: event.target.value});
-}
-changePhoneHandler= (event) =>{
-    this.setState({phone: event.target.value});
-}
+    blockUser = (e) =>{
+            e.preventDefault();
+            let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
+                adress: this.state.adress, city: this.state.city, country: this.state.country, phone:this.state.phone, active:false, prviput:this.state.prviput
+            }
+            KorisnikService.blockUserById(this.state.id).then(res => {
+                this.props.history.push('/svikorisnici');
+            });
+        }
 
-cancel(){
-    this.props.history.push('/korisnici');
-}
+    changeFirstnameHandler= (event) =>{
+        this.setState({firstname: event.target.value});
+    }
+
+    changeLastnameHandler= (event) =>{
+        this.setState({lastname: event.target.value});
+    }
+
+    changeUsernameHandler= (event) =>{
+        this.setState({username: event.target.value});
+    }
+
+    changeAdressHandler= (event) =>{
+        this.setState({adress: event.target.value});
+    }
+
+    changeCityHandler= (event) =>{
+        this.setState({city: event.target.value});
+    }
+
+    changeCountryHandler= (event) =>{
+        this.setState({country: event.target.value});
+    }
+
+    changePhoneHandler= (event) =>{
+        this.setState({phone: event.target.value});
+    }
+
+    cancel(){
+        this.props.history.push('/korisnici');
+    }
 
     render(){
         return(
@@ -102,6 +107,7 @@ cancel(){
                                         <input placeholder="Lastname" name="lastname" className="form-control"
                                             value={this.state.lastname} onChange={this.changeLastnameHandler}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Username</label>
                                         <input placeholder="Username" name="username" className="form-control"
@@ -109,8 +115,9 @@ cancel(){
                                     </div>
                                     
                                     <center>
-                                    <button className="btn btn-danger" onClick={this.blockUser}>Blokiraj</button>
+                                        <button className="btn btn-danger" onClick={this.blockUser}>Blokiraj</button>
                                     </center>
+
                                 </form>
                             </div>
                         </div>
@@ -119,6 +126,5 @@ cancel(){
             </div>
         )
     }
-
 }
 export default BlockUserComponent

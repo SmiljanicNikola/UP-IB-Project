@@ -5,6 +5,7 @@ const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
 const ADD_NURSE_REST_API_URL = 'http://localhost:8097/api/auth/nurse/signup';
 
 class NurseService{
+    
     getUsers(){
         return axios.get(USERS_REST_API_URL);
     }

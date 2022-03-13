@@ -73,7 +73,8 @@ export default class Login extends Component {
           });
         }
       );
-    } else {
+    }
+    else {
       this.setState({
         loading: false
       });

@@ -19,6 +19,7 @@ class ChangePasswordComponent extends Component {
             country: '',
             phone: '',
         }
+
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.changerepeatPasswordHandler = this.changerepeatPasswordHandler.bind(this);
         this.changeFirstnameHandler = this.changeFirstnameHandler.bind(this);
@@ -30,87 +31,84 @@ class ChangePasswordComponent extends Component {
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
 
         this.updatePassword = this.updatePassword.bind(this);
-}
+    }
 
-componentDidMount(){
-    KorisnikService.getKorisnikById(this.state.id).then( (res) =>{
-        let korisnik = res.data;
-        this.setState({
-            firstname: korisnik.firstname,
-            lastname: korisnik.lastname,
-            username: korisnik.username,
-            adress: korisnik.adress,
-            city: korisnik.city,
-            country: korisnik.country,
-            phone: korisnik.phone,
-            
+    componentDidMount(){
+        KorisnikService.getKorisnikById(this.state.id).then( (res) =>{
+            let korisnik = res.data;
+            this.setState({
+                firstname: korisnik.firstname,
+                lastname: korisnik.lastname,
+                username: korisnik.username,
+                adress: korisnik.adress,
+                city: korisnik.city,
+                country: korisnik.country,
+                phone: korisnik.phone,
+                
+            });
         });
+    }
 
-    });
-}
-
-updatePassword = (e) =>{
-        e.preventDefault();
-        let test={repeatPassword:this.state.repeatPassword, password:this.state.password}
-    
-        if(test.repeatPassword != test.password){
-        console.log('Lozinke se ne podudaraju!');
-        }
-        else if(test.password.length < 5){
-        console.log('Lozinka je previse kratka!')
-        }
-        else{
-        let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
-            adress: this.state.adress, city: this.state.city,  country: this.state.country, phone:this.state.phone}
+    updatePassword = (e) =>{
+            e.preventDefault();
+            let test={repeatPassword:this.state.repeatPassword, password:this.state.password}
         
-        KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
-            this.props.history.push('/profile');
-        });
-   
-}
-}
+            if(test.repeatPassword != test.password){
+            console.log('Lozinke se ne podudaraju!');
+            }
+            else if(test.password.length < 5){
+            console.log('Lozinka je previse kratka!')
+            }
+            else{
+            let korisnik = {firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, username: this.state.username,
+                adress: this.state.adress, city: this.state.city,  country: this.state.country, phone:this.state.phone}
+            
+            KorisnikService.updateKorisnik(korisnik, this.state.id).then(res => {
+                this.props.history.push('/profile');
+            });
+    
+        }
+    }
 
-changePasswordHandler = (event) =>{
-    this.setState({password: event.target.value});
-}
+    changePasswordHandler = (event) =>{
+        this.setState({password: event.target.value});
+    }
 
-changerepeatPasswordHandler = (event) =>{
-    this.setState({repeatPassword: event.target.value});
-}
+    changerepeatPasswordHandler = (event) =>{
+        this.setState({repeatPassword: event.target.value});
+    }
 
-changeFirstnameHandler = (event) =>{
-    this.setState({firstname: event.target.value});
-}
+    changeFirstnameHandler = (event) =>{
+        this.setState({firstname: event.target.value});
+    }
 
-changeLastnameHandler = (event) =>{
-    this.setState({lastname: event.target.value});
-}
+    changeLastnameHandler = (event) =>{
+        this.setState({lastname: event.target.value});
+    }
 
-changePhoneHandler = (event) =>{
-    this.setState({phone: event.target.value});
-}
+    changePhoneHandler = (event) =>{
+        this.setState({phone: event.target.value});
+    }
 
-changeCityHandler = (event) =>{
-    this.setState({city: event.target.value});
-}
+    changeCityHandler = (event) =>{
+        this.setState({city: event.target.value});
+    }
 
-changeCountryHandler = (event) =>{
-    this.setState({city: event.target.value});
-}
+    changeCountryHandler = (event) =>{
+        this.setState({city: event.target.value});
+    }
 
-changeAdressHandler = (event) =>{
-    this.setState({adress: event.target.value});
-}
+    changeAdressHandler = (event) =>{
+        this.setState({adress: event.target.value});
+    }
 
-changeUsernameHandler = (event) =>{
-    this.setState({username: event.target.value});
-}
+    changeUsernameHandler = (event) =>{
+        this.setState({username: event.target.value});
+    }
 
-cancel(){
-    this.props.history.push('/profile');
-}
-
-
+    cancel(){
+        this.props.history.push('/profile');
+    }
 
     render(){
         return(
@@ -126,14 +124,16 @@ cancel(){
                                         <input placeholder="Password" name="password" type="password" className="form-control"
                                             value={this.state.password} onChange={this.changePasswordHandler}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Repeat password</label>
                                         <input placeholder="Repeat password" name="repeatPassword" type="password" className="form-control"
                                             value={this.state.repeatPassword} onChange={this.changerepeatPasswordHandler}/>
                                     </div>
+
                                     <br></br>
                                     <button className="btn btn-success" onClick={this.updatePassword}>Confirm change</button>
-                                    
+                                
                                 </form>
                             </div>
                         </div>
@@ -142,7 +142,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default ChangePasswordComponent

@@ -14,36 +14,32 @@ class AddClinic extends Component {
         this.changeNazivHandler = this.changeNazivHandler.bind(this);
         this.changeAdresaHandler = this.changeAdresaHandler.bind(this);
         this.changeProsecnaOcena = this.changeProsecnaOcena.bind(this);
-    
 
         this.saveClinic = this.saveClinic.bind(this);
-    
-}
+    }
 
-saveClinic = (e) =>{
-    e.preventDefault();
-    let clinic= {naziv: this.state.naziv, adresa: this.state.adresa, prosecnaOcena: this.state.prosecnaOcena
-        }
-        console.log('clinic => ' + JSON.stringify(clinic));
+    saveClinic = (e) =>{
+        e.preventDefault();
+        let clinic= {naziv: this.state.naziv, adresa: this.state.adresa, prosecnaOcena: this.state.prosecnaOcena
+            }
+            console.log('clinic => ' + JSON.stringify(clinic));
 
-        ClinicService.createClinic(clinic).then(res=>{
-            this.props.history.push('/klinike')
-        });
-}
+            ClinicService.createClinic(clinic).then(res=>{
+                this.props.history.push('/klinike')
+            });
+    }
 
-changeNazivHandler= (event) =>{
-    this.setState({naziv: event.target.value});
-}
+    changeNazivHandler= (event) =>{
+        this.setState({naziv: event.target.value});
+    }
 
-changeAdresaHandler= (event) =>{
-    this.setState({adresa: event.target.value});
-}
+    changeAdresaHandler= (event) =>{
+        this.setState({adresa: event.target.value});
+    }
 
-changeProsecnaOcena= (event) =>{
-    this.setState({prosecnaOcena: event.target.value});
-}
-
-
+    changeProsecnaOcena= (event) =>{
+        this.setState({prosecnaOcena: event.target.value});
+    }
 
     render(){
         return(
@@ -65,6 +61,7 @@ changeProsecnaOcena= (event) =>{
                                         <input placeholder="Adresa" name="adresa" className="form-control"
                                             value={this.state.adresa} onChange={this.changeAdresaHandler}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Prosecna Ocena</label>
                                         <input placeholder="Prosecna ocena" name="prosecnaOcena" className="form-control"
@@ -80,7 +77,6 @@ changeProsecnaOcena= (event) =>{
             </div>
         )
     }
-
 }
 
 export default AddClinic

@@ -19,13 +19,10 @@ class NurseComponent extends React.Component{
         NurseService.getNurses().then((response) =>{
             this.setState({nurses:response.data})
         });
-
-        
     }
 
     addNurse(){
         this.props.history.push('/addNurse');
-
     }
 
     editNurse(id){
@@ -36,8 +33,7 @@ class NurseComponent extends React.Component{
         return (
             <div>
                 <h1 className="text-center">Nurse List</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+
                 <div className="row">
                     
 
@@ -56,7 +52,6 @@ class NurseComponent extends React.Component{
                     </thead>
 
                     <tbody>
-                        
                         {
                             this.state.nurses.map(
                                 nurse=>
@@ -74,22 +69,21 @@ class NurseComponent extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
+
                 <br></br>
+
                 <center>
-                <button className="btn btn-success" onClick={this.addNurse}>Add Nurse</button>
+                    <button className="btn btn-success" onClick={this.addNurse}>Add Nurse</button>
                 </center>
+
                 <br></br>
                 <hr></hr>
-
             </div>
         )
     }
-
 }
 
 export default NurseComponent

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ClinicService from '../../services/ClinicService';
 
-
-
 class UpdateClinicComponent extends Component {
     constructor(props){
         super(props)
@@ -18,47 +16,44 @@ class UpdateClinicComponent extends Component {
         this.changeProsecnaOcena = this.changeProsecnaOcena.bind(this);
 
         this.updateClinic = this.updateClinic.bind(this);
-}
+    }
 
-componentDidMount(){
-    ClinicService.getClinicById(this.state.id).then( (res) =>{
-        let clinic = res.data;
-        this.setState({
-            naziv: clinic.naziv,
-            adresa: clinic.adresa,
-            prosecnaOcena: clinic.prosecnaOcena,
-            
+    componentDidMount(){
+        ClinicService.getClinicById(this.state.id).then( (res) =>{
+            let clinic = res.data;
+            this.setState({
+                naziv: clinic.naziv,
+                adresa: clinic.adresa,
+                prosecnaOcena: clinic.prosecnaOcena, 
+            });
         });
+    }
 
-    });
-}
+    updateClinic = (e) =>{
+            e.preventDefault();
+            let clinic = {naziv: this.state.naziv, adresa: this.state.adresa, prosecnaOcena: this.state.prosecnaOcena
+            }
+            console.log('clinic => ' + JSON.stringify(clinic));
+            ClinicService.updateClinic(clinic, this.state.id).then(res => {
+                this.props.history.push('/klinike');
+            });
+    }
 
-updateClinic = (e) =>{
-        e.preventDefault();
-        let clinic = {naziv: this.state.naziv, adresa: this.state.adresa, prosecnaOcena: this.state.prosecnaOcena
-        }
-        console.log('clinic => ' + JSON.stringify(clinic));
-        ClinicService.updateClinic(clinic, this.state.id).then(res => {
-            this.props.history.push('/klinike');
-        });
-   
-}
+    changeNazivHandler= (event) =>{
+        this.setState({naziv: event.target.value});
+    }
 
-changeNazivHandler= (event) =>{
-    this.setState({naziv: event.target.value});
-}
+    changeAdresaHandler= (event) =>{
+        this.setState({adresa: event.target.value});
+    }
 
-changeAdresaHandler= (event) =>{
-    this.setState({adresa: event.target.value});
-}
+    changeProsecnaOcena= (event) =>{
+        this.setState({prosecnaOcena: event.target.value});
+    }
 
-changeProsecnaOcena= (event) =>{
-    this.setState({prosecnaOcena: event.target.value});
-}
-
-cancel(){
-    this.props.history.push('/klinike');
-}
+    cancel(){
+        this.props.history.push('/klinike');
+    }
 
     render(){
         return(
@@ -69,7 +64,7 @@ cancel(){
                             <h3 className="text-center">Edit Clinic</h3>
                             <div className="card-body">
                                 <form>
-                                <div className="form-group">
+                                    <div className="form-group">
                                         <label>Naziv</label>
                                         <input placeholder="Naziv" name="naziv" className="form-control"
                                             value={this.state.naziv} onChange={this.changeNazivHandler}/>
@@ -80,6 +75,7 @@ cancel(){
                                         <input placeholder="Adresa" name="adresa" className="form-control"
                                             value={this.state.adresa} onChange={this.changeAdresaHandler}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Prosecna Ocena</label>
                                         <input placeholder="Prosecna ocena" name="prosecnaOcena" className="form-control"
@@ -96,7 +92,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default UpdateClinicComponent

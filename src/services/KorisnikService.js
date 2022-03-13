@@ -4,8 +4,6 @@ const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
 const KORISNIKBLOCK_REST_API_URL = 'http://localhost:8097/korisnici/blokiraj';
 const KORISNIKUNBLOCK_REST_API_URL = 'http://localhost:8097/korisnici/odblokiraj';
 
-
-
 class KorisnikService{
     getUsers(){
         return axios.get(USERS_REST_API_URL);
@@ -24,7 +22,6 @@ class KorisnikService{
 
     blockUserById(korisnikId){
         return axios.put(KORISNIKBLOCK_REST_API_URL + '/' + korisnikId);
-
     }
 
     getKorisnikById(korisnikId){
@@ -33,7 +30,6 @@ class KorisnikService{
 
     unblockUser(korisnikId){
         return axios.put(KORISNIKUNBLOCK_REST_API_URL + '/' + korisnikId);
-
     }
 }
 

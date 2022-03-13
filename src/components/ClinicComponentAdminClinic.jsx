@@ -37,6 +37,7 @@ class ClinicComponent extends React.Component{
             this.setState({clinics: this.state.clinics.filter(clinics => clinics.id !== id)});
         });
     }
+
     editClinic(id){
         this.props.history.push(`/updateClinic/${id}`);
     }
@@ -45,12 +46,12 @@ class ClinicComponent extends React.Component{
         const data = this.state.clinics;
         data.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
         this.setState({data})
-      }
+    }
 
     onSort2(event, sortKey){
-    const data = this.state.clinics;
-    data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
-    this.setState({data})
+        const data = this.state.clinics;
+        data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
+        this.setState({data})
     }
 
     render(){
@@ -60,7 +61,6 @@ class ClinicComponent extends React.Component{
                 <h1 className="text-center"> Clinic List </h1>
             
                 <div className="row">
-                    
 
                 </div>
                 <br></br>
@@ -71,7 +71,6 @@ class ClinicComponent extends React.Component{
                             <th onClick={e => this.onSort(e, 'naziv')}>Naziv</th>
                             <th onClick={e => this.onSort(e, 'adresa')}>Adresa</th>
                             <th onClick={e => this.onSort2(e, 'prosecnaOcena')}>Prosecna Ocena</th>
-
                             <td></td>
                         </tr>
                     </thead>
@@ -91,23 +90,16 @@ class ClinicComponent extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
-                <br>
-                </br>
-                <center>
-                </center>
-                <br>
-                </br>
+
+                <br></br><br></br>
                 <hr></hr>
 
             </div>
         )
     }
-
 }
 
 export default ClinicComponent

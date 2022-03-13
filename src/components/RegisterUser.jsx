@@ -28,11 +28,7 @@ class RegisterUser extends Component {
         this.changeUlogaHandler = this.changeUlogaHandler.bind(this);
 
         this.saveKorisnik = this.saveKorisnik.bind(this);
-
-
-
     }
-
 
     saveKorisnik = (e) =>{
         e.preventDefault();
@@ -77,7 +73,6 @@ class RegisterUser extends Component {
     changeUlogaHandler= (event) =>{
         this.setState({uloga:event.target.value});
     }
-
 
     cancel(){
         this.props.history.push('/korisnici');
@@ -148,8 +143,8 @@ class RegisterUser extends Component {
                                         </div>
 
                                         <center>
-                                        <button className="btn btn-success" onClick={this.saveKorisnik}>Register</button>
-                                        <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
+                                            <button className="btn btn-success" onClick={this.saveKorisnik}>Register</button>
+                                            <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
                                         </center>
                                 </form>
                             </div>
@@ -159,7 +154,6 @@ class RegisterUser extends Component {
             </div>
         )
     }
-
 }
 
 export default RegisterUser

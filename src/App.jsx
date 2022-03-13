@@ -64,8 +64,7 @@ class App extends Component {
       this.setState({
         currentUser: user,
         userRole: json.roles[0]
-        // showModeratorBoard: user.roles.includes("PACIJENT"),
-        // showAdminBoard: user.roles.includes("LEAKR"),
+
       });
     }
   }
@@ -195,18 +194,12 @@ class App extends Component {
               </li>
 
             </div>
-
-
-
-
-
           ) 
           : (
             <div className="navbar-nav ml-auto">
              
             </div>
           )}
-
 
 
           {/* ADMINISTRATOR KLINIKE */}
@@ -254,11 +247,6 @@ class App extends Component {
               </li>
 
             </div>
-
-
-
-
-
           ) 
           : (
             <div className="navbar-nav ml-auto">
@@ -282,14 +270,13 @@ class App extends Component {
               </li>
 
             </div>
-            
-
           ) 
           : (
             <div className="navbar-nav ml-auto">
              
             </div>
           )}
+
 
            {/* ADMINISTRATOR CENTRA */}
            {currentUser && userRole=="ADMINISTRATOR CENTRA" ? (
@@ -314,7 +301,6 @@ class App extends Component {
             </div>
           )}
 
-          
         </nav>
 
         <div className="container">
@@ -323,37 +309,12 @@ class App extends Component {
                           {/* <Route path="/klinike" exact component={ClinicComponent}></Route> */}
                           <Route path="/doktori" component={DoctorComponent}></Route>
                           <Route path="/medicinskesestre" component={NurseComponent}></Route>
-                          
-
                           <Route path="/pacijenti" component={PatientComponent}></Route>
                           <Route path="/header" component={HeaderComponent}></Route>
-
-                          
-
-                          {/*
-                          <Route path="/updateAppointment/:id" component={UpdateAppointmentComponent}></Route>
-                          <Route path="/zahtevi" component={RegistracijeZahtevi}></Route>
-                          <Route path="/updateClinic/:id" component={UpdateClinicComponent}></Route>
-                          <Route path="/updateDoctor/:id" component={UpdateDoctorComponent}></Route>
-                          <Route path="/updateNurse/:id" component={UpdateNurseComponent}></Route>
-                          <Route path="/blockUser/:id" component={BlockUserComponent}></Route>
-                          <Route path="/addDoctor" component={CreateDoctor}></Route>
-                          <Route path="/addNurse" component={CreateNurse}></Route>
-                          <Route path="/addPatient" component={AddPatient}></Route>
-                          <Route path="/register" component={ RegisterUser }></Route>
-                          <Route path="/addAppointment" component={DodavanjePregleda}></Route>
-                          <Route path="/addClinic" component={AddClinic}></Route>
-                          <Route path="/workcalendar" component={MyAppointments}></Route>
-                          */}
-
                           <Route path="/changePassword/:id" component={ChangePasswordComponent}></Route>
-
-                          
-
                           <Route path="/profile" component={ Profile }></Route>
                           <Route path="/login" component={Login}></Route>
                           <Route path="/registerPacijenta" component={RegistracijaPacijenta}></Route>
-
                           <Route path="/home" component={Home}></Route>
                           <Route path="/homePatient" component={HomePagePatient}></Route>
                           <Route path="/updateProfile/:id" component={EditProfileComponent}></Route>
@@ -362,16 +323,16 @@ class App extends Component {
                           <Route path="/viewPatient/:id" component={ViewPatientComponent}></Route>
 
                           <PrivateRoute
-                          exact
-                          path="/zahtevi"
-                          component={RegistracijeZahtevi}
-                          roles={["ADMINISTRATOR KLINIKE"]}/>
+                            exact
+                            path="/zahtevi"
+                            component={RegistracijeZahtevi}
+                            roles={["ADMINISTRATOR KLINIKE"]}/>
 
                           <PrivateRoute
-                          exact
-                          path="/updateAppointment/:id"
-                          component={UpdateAppointmentComponent}
-                          roles={["ADMINISTRATOR KLINIKE"]}/>
+                            exact
+                            path="/updateAppointment/:id"
+                            component={UpdateAppointmentComponent}
+                            roles={["ADMINISTRATOR KLINIKE"]}/>
 
                           <PrivateRoute
                             exact
@@ -379,12 +340,14 @@ class App extends Component {
                             component={ClinicComponent}
                             roles={["ADMINISTRATOR KLINIKE", "LEKAR", "PACIJENT", "ADMINISTRATOR CENTRA"]}
                           />
+
                             <PrivateRoute
                             exact
                             path="/workcalendar"
                             component={MyAppointments}
                             roles={["LEKAR"]}
                           />
+
                           <PrivateRoute
                           exact
                           path="/addAppointment"
@@ -467,7 +430,6 @@ class App extends Component {
                           component={CreateDoctor}
                           roles={["ADMINISTRATOR KLINIKE"]}
                           />
-
                     </Switch>
                 </BrowserRouter>
               </div>
@@ -475,6 +437,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;

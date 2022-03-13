@@ -5,6 +5,7 @@ const PACIJENTI_REST_API_URL = 'http://localhost:8097/pacijenti';
 const PACIJENT_REST_API_URL = 'http://localhost:8097/api/auth/patient/signup';
 
 class PacijentService{
+
     getUsers(){
         return axios.get(USERS_REST_API_URL);
     }
@@ -22,6 +23,5 @@ class PacijentService{
     }
     
 }
-
 
 export default new PacijentService();

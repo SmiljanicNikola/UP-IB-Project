@@ -5,6 +5,7 @@ const USERS_REST_API_URL = 'http://localhost:8097/korisnici';
 const ADD_DOCTOR_REST_API_URL = 'http://localhost:8097/api/auth/doctor/signup';
 
 class DoctorService{
+    
     getUsers(){
         return axios.get(USERS_REST_API_URL);
     }
@@ -22,6 +23,5 @@ class DoctorService{
     }
 
 }
-
 
 export default new DoctorService();

@@ -11,18 +11,18 @@ class ViewAppointmentComponent extends Component {
             pregledi: {}
         }
         
-}
+    }
 
-componentDidMount(){
-    PregledService.getAppointmentById(this.state.id).then(res => {
-        this.setState({pregledi: res.data});
-    });
-}
+    componentDidMount(){
+        PregledService.getAppointmentById(this.state.id).then(res => {
+            this.setState({pregledi: res.data});
+        });
+    }
     
 
-cancel(){
-    this.props.history.push('/pregledi');
-}
+    cancel(){
+        this.props.history.push('/pregledi');
+    }
 
     render(){
         return(
@@ -45,7 +45,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default ViewAppointmentComponent

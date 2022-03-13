@@ -19,13 +19,10 @@ class DoctorComponent extends React.Component{
         DoctorService.getDoctors().then((response) =>{
             this.setState({doctors:response.data})
         });
-
-        
     }
 
     addDoctor(){
         this.props.history.push('/addDoctor');
-
     }
 
     editDoctor(id){
@@ -36,8 +33,6 @@ class DoctorComponent extends React.Component{
         return (
             <div>
                 <h1 className="text-center">Doctors List</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
                 <div className="row">
                     
                 <br></br><br></br>
@@ -72,21 +67,22 @@ class DoctorComponent extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
+
                 <br></br>
+
                 <center>
-                <button className="btn btn-success" onClick={this.addDoctor}>Add doctor</button>
+                    <button className="btn btn-success" onClick={this.addDoctor}>Add doctor</button>
                 </center>
+
                 <br></br>
                 <hr></hr>
+
             </div>
         )
     }
-
 }
 
 export default DoctorComponent

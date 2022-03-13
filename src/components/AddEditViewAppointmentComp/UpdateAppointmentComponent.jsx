@@ -31,10 +31,8 @@ componentDidMount(){
             appointmentLenght: appointment.appointmentLenght,
             doctor: appointment.doctor,
             nurse: appointment.nurse,
-            price: appointment.price
-            
+            price: appointment.price    
         });
-
     });
 }
 
@@ -95,16 +93,19 @@ cancel(){
                                         <input placeholder="Appointment Lenght" name="appointmentLenght" className="form-control"
                                             value={this.state.appointmentLenght} onChange={this.changeAppointmentLenght}/>
                                     </div>
+
                                     <div className="form-group">
                                         <label>Doctor Id</label>
                                         <input placeholder="Doctor Id" name="doctorId" className="form-control"
                                             value={this.state.doctor.id} onChange={this.changeDoctorHandler}/>      
                                     </div>
+
                                     <div className="form-group">
                                         <label>Nurse Id</label>
                                         <input placeholder="Doctor Id" name="nurseId" className="form-control"
                                             value={this.state.nurse.id} onChange={this.changeNurseHandler}/>      
                                     </div>
+
                                     <div className="form-group">
                                         <label>Price</label>
                                         <input placeholder="Price" name="price" className="form-control"
@@ -121,7 +122,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default UpdateAppointmentComponent

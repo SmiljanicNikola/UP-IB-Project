@@ -19,14 +19,10 @@ class MyAppointments extends React.Component{
             uloga:AuthService.getRole(),
             appointments:[],
         }
-
     }
 
     componentDidMount(){
-        
-
         const currentUser = AuthService.getCurrentUser();
-
 
         var user = localStorage.getItem("user")
         var json = JSON.parse(user);
@@ -40,8 +36,6 @@ class MyAppointments extends React.Component{
                     console.log(error);
                 })
     
-          
-      
           if (!currentUser) this.setState({ redirect: "/home" });
           this.setState({ currentUser: currentUser, userReady: true })
           this.setState({ user: user, userReady: true })
@@ -52,15 +46,13 @@ class MyAppointments extends React.Component{
             });
     }
 
-
     render(){
         return (
             
             <div>
-                <br></br>
+                <br/>
                 <h1 className="text-center"> Work calendar </h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+
                 <div className="row">
             
                 </div>
@@ -73,12 +65,10 @@ class MyAppointments extends React.Component{
                             <td>Username</td>
                             <td>Firstname</td>
                             <td>Lastname</td>
-                           
                         </tr>
                     </thead>
 
                     <tbody>
-                        
                         {
                             this.state.appointments.map(
                                 appointment=>
@@ -88,19 +78,14 @@ class MyAppointments extends React.Component{
                                     <td>{appointment.nurse.user.username}</td>
                                     <td>{appointment.nurse.user.firstname}</td>
                                     <td>{appointment.nurse.user.lastname}</td>
-
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
-
             </div>
         )
     }
-
 }
 
 export default MyAppointments

@@ -10,7 +10,9 @@ class PatientComponent extends React.Component{
         this.state = {
             patients:[]
         }
+
         this.viewPatient = this.viewPatient.bind(this);
+
         this.sortByLBOAsc=()=>{
 
             let sortedPatientsAsc;
@@ -24,8 +26,6 @@ class PatientComponent extends React.Component{
 
         }
 
-
-
         this.sortByLBODsc=()=>{
 
             let sortedPatientsDsc;
@@ -37,6 +37,7 @@ class PatientComponent extends React.Component{
                 patients:sortedPatientsDsc
             })
         }
+
         this.sortByAdresaAsc=()=>{
 
             let sortByAdresaAsc;
@@ -47,19 +48,14 @@ class PatientComponent extends React.Component{
             this.setState({
                 patients:sortByAdresaAsc
             })
-
         }
-
 
     }
 
     componentDidMount(){
         PacijentService.getPacijente().then((response) =>{
             this.setState({patients:response.data})
-        });
-      
-
-        
+        });  
     }
 
     
@@ -71,44 +67,33 @@ class PatientComponent extends React.Component{
         const data = this.state.patients;
         data.sort((ASC) => [sortKey].localeCompare([sortKey]))
         this.setState({data})
-      }
-
-    onSort2(event, sortKey){
-    const data = this.state.patients;
-    data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
-    this.setState({data})
     }
 
-
-
-
-
-
+    onSort2(event, sortKey){
+        const data = this.state.patients;
+        data.sort((a,b) => a[sortKey].toString().localeCompare(b[sortKey]))
+        this.setState({data})
+    }
 
     sortAscending = () => {
         const { lastnames } = this.state;
         lastnames.sort((a, b) => a - b)    
         this.setState({ lastnames })
-      }
+    }
     
       sortDescending = () => {
         const { prices } = this.state;
         prices.sort((a, b) => a - b).reverse()
         this.setState({ prices })
-      }
+    }
     
-
     render(){
         return (
             <div>
                 <h1 className="text-center"> Lista pacijenata</h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
 
-        
                 <div className="row">
                     
-
                 </div><br></br><br></br>
                 <table className = "table table-striped">
                     <thead>
@@ -123,7 +108,7 @@ class PatientComponent extends React.Component{
                     </thead>
 
                     <tbody>
-                        
+            
                         {
                             this.state.patients.map(
                                 patient=>
@@ -138,17 +123,12 @@ class PatientComponent extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
-
-
             </div>
         )
     }
-
 }
 
 export default PatientComponent

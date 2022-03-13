@@ -31,23 +31,24 @@ class PregledComponent extends React.Component{
             this.setState({pregledi: this.state.pregledi.filter(pregledi => pregledi.id !== id)});
         });
     }
+
     editAppointment(id){
         this.props.history.push(`/updateAppointment/${id}`);
     }
+
     addAppointment(){
         this.props.history.push('/addAppointment');
     }
-
 
     render(){
         return (
             <div>
                 <h1 className="text-center"> Appointment List </h1>
-                {/* <button className="btn btn-primary" >Login</button>
-                <button className="btn btn-primary" onClick={this.addUser}>Register</button> */}
+
                 <div className="row">
                     
-<br></br>
+                <br/>
+
                 </div>
                 <table className = "table table-striped">
                     <thead>
@@ -58,16 +59,13 @@ class PregledComponent extends React.Component{
                             <td>Doctor lastname</td>
                             <td>Nurse name</td>
                             <td>Nurse lastname</td>
-
                             <td>Price</td>
-                            <td>Actions</td>
-
-                           
+                            <td>Actions</td>  
                         </tr>
                     </thead>
 
                     <tbody>
-                        
+                    
                         {
                             this.state.pregledi.map(
                                 appointment=>
@@ -87,21 +85,18 @@ class PregledComponent extends React.Component{
                                     </td>
                                 </tr>
                             )
-
                         }
                     </tbody>
-
                 </table>
+
                 <br></br>
-            <center>
-            <button className="btn btn-success" onClick={this.addAppointment}>Add appointment</button>
-            </center>
-            <br></br>
-            <hr></hr>
+                <center>
+                    <button className="btn btn-success" onClick={this.addAppointment}>Add appointment</button>
+                </center>
+                <br/><hr></hr>
             </div>
         )
     }
-
 }
 
 export default PregledComponent

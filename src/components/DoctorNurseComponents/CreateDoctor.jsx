@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import UserService from '../../services/UserService';
 import DoctorService from '../../services/DoctorService';
 
-
 class CreateDoctor extends React.Component {
     constructor(props){
         super(props)
@@ -26,16 +25,13 @@ class CreateDoctor extends React.Component {
         this.changeAdressHandler = this.changeAdressHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.changerepeatPasswordHandler = this.changerepeatPasswordHandler.bind(this);
-
         this.changeCityHandler = this.changeCityHandler.bind(this);
         this.changeCountryHandler = this.changeCountryHandler.bind(this);
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
         this.changeActiveHandler = this.changeActiveHandler.bind(this);
         this.changeClinicHandler = this.changeClinicHandler.bind(this);
 
-
         this.saveDoctor = this.saveDoctor.bind(this);
-    
 }
 
 saveDoctor = (e) =>{
@@ -60,7 +56,6 @@ saveDoctor = (e) =>{
             this.props.history.push('doktori')
         });
     }
-
 }
 
 changeFirstNameHandler= (event) =>{
@@ -86,21 +81,27 @@ changePasswordHandler= (event) =>{
 changeCityHandler= (event) =>{
     this.setState({city: event.target.value});
 }
+
 changeCountryHandler= (event) =>{
     this.setState({country: event.target.value});
 }
+
 changePhoneHandler= (event) =>{
     this.setState({phone: event.target.value});
 }
+
 changeActiveHandler= (event) =>{
     this.setState({active: event.target.value});
 }
+
 changeClinicHandler= (event) =>{
     this.setState({clinic_id: event.target.value});
 }
+
 changerepeatPasswordHandler= (event) =>{
     this.setState({repeatPassword: event.target.value});
 }
+
 cancel(){
     this.props.history.push('/korisnici');
 }
@@ -148,44 +149,41 @@ cancel(){
                                         <label>Ponovljen password:</label>
                                         <input placeholder="Ponovljen password" name="repeatPassword" type="password" className="form-control"
                                             value={this.state.repeatPassword} onChange={this.changerepeatPasswordHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>City</label>
                                         <input placeholder="City" name="city" className="form-control"
                                             value={this.state.city} onChange={this.changeCityHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>Country</label>
                                         <input placeholder="Country" name="country" className="form-control"
                                             value={this.state.country} onChange={this.changeCountryHandler}/>
-    
                                     </div>
+
                                     <div className="form-group">
                                         <label>Phone number</label>
                                         <input placeholder="Phone" name="phone" className="form-control"
                                             value={this.state.phone} onChange={this.changePhoneHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>Active</label>
                                         <input placeholder="Active" name="active" className="form-control"
                                             value={this.state.active} onChange={this.changeActiveHandler}/>
-    
                                     </div>
 
                                     <div className="form-group">
                                         <label>Clinic Id</label>
                                         <input placeholder="Clinic_Id" name="clinic_id" type="number" className="form-control"
                                             value={this.state.clinic_id} onChange={this.changeClinicHandler}/>
-    
                                     </div>
+
                                     <button className="btn btn-success" onClick={this.saveDoctor}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
+
                                 </form>
                             </div>
                         </div>
@@ -194,7 +192,6 @@ cancel(){
             </div>
         )
     }
-
 }
 
 export default CreateDoctor

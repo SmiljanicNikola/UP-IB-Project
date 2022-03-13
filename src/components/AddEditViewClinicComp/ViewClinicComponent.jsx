@@ -10,19 +10,18 @@ class ViewClinicComponent extends Component {
             id: this.props.match.params.id,
             klinike: {}
         }
-        
-}
+    }
 
-componentDidMount(){
-    ClinicService.getClinicById(this.state.id).then(res => {
-        this.setState({klinike: res.data});
-    });
-}
+    componentDidMount(){
+        ClinicService.getClinicById(this.state.id).then(res => {
+            this.setState({klinike: res.data});
+        });
+    }
     
 
-cancel(){
-    this.props.history.push('/klinike');
-}
+    cancel(){
+        this.props.history.push('/klinike');
+    }
 
     render(){
         return(
@@ -33,9 +32,11 @@ cancel(){
                         <div className="row">
                             <label style={{color:"red"}}>Naziv : {this.state.klinike.naziv}</label>
                         </div><br></br>
+
                         <div className="row">
                             <label style={{color:"red"}}>adresa : {this.state.klinike.adresa}</label>
                         </div><br></br>
+
                         <div className="row">
                             <label style={{color:"red"}}>Prosecna Ocena : {this.state.klinike.prosecnaOcena}</label>
                         </div><br></br>
